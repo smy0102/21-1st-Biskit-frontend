@@ -5,6 +5,33 @@ import Footer from '../../Components/Footer/Footer';
 import { withRouter } from 'react-router-dom';
 
 class Signup extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isCheck1: false,
+      isCheck2: false,
+      allCheckBox: false,
+    };
+  }
+
+  handleInput = () => {
+    this.state.allCheckBox
+      ? this.setState({ isCheck1: false, isCheck2: false })
+      : this.setState({ isCheck1: true, isCheck2: true });
+  };
+
+  inputAllCheckBox = () => {
+    this.state.isCheck1 && this.state.isCheck2
+      ? this.setState({ allCheckBox: true })
+      : this.setState({ allCheckBox: false });
+  };
+
+  handleChange = () => {
+    this.setState(e => ({
+      allCheckBox: !e.allCheckBox,
+    }));
+  };
+
   goToLogin = () => {
     this.props.history.push('/login');
   };
@@ -125,7 +152,13 @@ class Signup extends React.Component {
             <div className="sign-input-terms-all-box">
               <p>
                 <span className="term-check-box">
-                  <input type="checkbox" id="agreeAllCheck" />
+                  <input
+                    type="checkbox"
+                    id="agreeAllCheck"
+                    checked={this.state.allCheckBox}
+                    onChange={this.handleInput}
+                    onClick={this.handleChange}
+                  />
                 </span>
                 <label htmlFor="agreeAllCheck">
                   <strong>
@@ -429,7 +462,19 @@ class Signup extends React.Component {
               </div>
               <p className="check">
                 <span>이용약관에 동의하십니까?</span>
-                <input type="checkbox" id="agree-service-check-0"></input>
+                <input
+                  type="checkbox"
+                  id="agree-service-check-0"
+                  onChange={() =>
+                    this.setState(
+                      {
+                        isCheck1: !this.state.isCheck1,
+                      },
+                      this.inputAllCheckBox
+                    )
+                  }
+                  checked={this.state.isCheck1}
+                ></input>
                 <label htmlFor="agree-service-check-0">동의함</label>
               </p>
             </div>
@@ -461,7 +506,19 @@ class Signup extends React.Component {
               </div>
               <p className="check">
                 <span>개인정보 수집 및 이용에 동의하십니까?</span>
-                <input type="checkbox" id="agree-service-check-1"></input>
+                <input
+                  type="checkbox"
+                  id="agree-service-check-1"
+                  onChange={() =>
+                    this.setState(
+                      {
+                        isCheck2: !this.state.isCheck2,
+                      },
+                      this.inputAllCheckBox
+                    )
+                  }
+                  checked={this.state.isCheck2}
+                ></input>
                 <label htmlFor="agree-service-check-1">동의함</label>
               </p>
             </div>
@@ -469,7 +526,7 @@ class Signup extends React.Component {
               <button
                 className="signup-button"
                 onClick={this.goToLogin}
-                disabled
+                disabled={this.state.allCheckBox}
               >
                 회원가입
               </button>
