@@ -1,0 +1,116 @@
+@import '/src/Styles/reset.scss';
+@import '/src/Styles/common.scss';
+
+.login {
+  width: 1180px;
+  height: 100%;
+  margin: 0 auto;
+
+  .container {
+    min-height: 700px;
+    padding-top: 52px;
+
+    .login-wrap-title {
+      color: #101010;
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 56px;
+      text-align: center;
+    }
+
+    .login-wrap-memberlogin {
+      margin-bottom: 24px;
+      padding-top: 20px;
+      // padding-top: 56px;
+      font-weight: 700;
+      text-align: center;
+      font-size: 24px;
+
+      // 비회원 주문시 추가
+      // .login-wrap-border {
+      //   width: 110px;
+      //   padding-bottom: 4px;
+      //   border-bottom: 3px solid #202020;
+      //   margin: 0 auto;
+      // }
+    }
+
+    .login-wrap-container {
+      width: 478px;
+      margin: 0 auto;
+
+      .login-input-box {
+        width: 100%;
+        height: 48px;
+        padding: 0 16px;
+        border: 1px solid #ccc;
+        color: #101010;
+        font-size: 15px;
+        margin-bottom: 10px;
+      }
+
+      .desc-wrap {
+        display: flex;
+        width: 100%;
+        margin-top: 10px;
+        align-items: center;
+        justify-content: space-between;
+
+        .check-box {
+          margin-left: 0;
+          label {
+            cursor: pointer;
+            font-size: 15px;
+
+            input {
+              margin-right: 10px;
+              cursor: pointer;
+            }
+          }
+        }
+
+        .find a {
+          color: #101010;
+          font-size: 15px;
+          text-decoration: none;
+
+          &::before {
+            content: '';
+            display: inline-block;
+            width: 1px;
+            height: 12px;
+            margin: 0 8px;
+            background-color: #ccc;
+          }
+
+          &:first-child::before {
+            display: none;
+          }
+        }
+      }
+
+      .desc-buttons {
+        margin-top: 30px;
+      }
+
+      .button {
+        border: none;
+        color: #fff;
+        height: 56px;
+        font-weight: 700;
+        font-size: 18px;
+        width: 100%;
+        cursor: pointer;
+      }
+
+      .login-button {
+        background-color: $Basic-green;
+      }
+
+      .signup-button {
+        margin-top: 20px;
+        background-color: $primary-color;
+      }
+    }
+  }
+}

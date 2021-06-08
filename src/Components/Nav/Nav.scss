@@ -11,6 +11,7 @@
       display: flex;
       max-width: 1920px;
       min-width: 1260px;
+      margin: 0 auto;
       justify-content: flex-end;
       padding-right: 40px;
 
@@ -43,8 +44,10 @@
     justify-content: space-between;
     position: relative;
     max-width: 1920px;
+    margin: 0 auto;
     min-width: 1260px;
     height: 81px;
+    border-bottom: $grey-border;
 
     .logo {
       margin: 25px 0 0 40px;
