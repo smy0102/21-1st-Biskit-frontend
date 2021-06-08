@@ -1,7 +1,5 @@
 import React from 'react';
 import './Login.scss';
-import Nav from '../../Components/Nav/Nav';
-import Footer from '../../Components/Footer/Footer';
 import { Link, withRouter } from 'react-router-dom';
 
 class Login extends React.Component {
@@ -33,7 +31,6 @@ class Login extends React.Component {
     console.log(this.state.pwValue);
     return (
       <>
-        <Nav />
         <section className="login">
           <div className="container">
             <div className="login-wrap">
@@ -87,7 +84,6 @@ class Login extends React.Component {
             </div>
           </div>
         </section>
-        <Footer />
       </>
     );
   }
