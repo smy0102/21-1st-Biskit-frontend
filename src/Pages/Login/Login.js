@@ -42,7 +42,7 @@ class Login extends React.Component {
               <div className="login-wrap-container">
                 <input
                   type="text"
-                  placeholder="CJ ONE 통합아이디 6~20자"
+                  placeholder="BISKIT 통합아이디 6~20자"
                   className="login-input-box"
                   onChange={this.handleInput}
                   name="idValue"

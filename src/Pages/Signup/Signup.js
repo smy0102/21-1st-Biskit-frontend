@@ -3,7 +3,7 @@ import './Signup.scss';
 
 class Signup extends React.Component {
   render() {
-    return;
+    return <div>Signup</div>;
   }
 }
 

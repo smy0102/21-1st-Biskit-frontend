@@ -3,7 +3,7 @@ import './Main.scss';
 
 class Main extends React.Component {
   render() {
-    return;
+    return <div>Main</div>;
   }
 }
 
