@@ -11,10 +11,12 @@ class Signup extends React.Component {
       isCheck1: false,
       isCheck2: false,
       allCheckBox: false,
+      pwValue: '',
+      pwValueReconfirm: '',
     };
   }
 
-  handleInput = () => {
+  ChangeAll = () => {
     this.state.allCheckBox
       ? this.setState({ isCheck1: false, isCheck2: false })
       : this.setState({ isCheck1: true, isCheck2: true });
@@ -32,11 +34,18 @@ class Signup extends React.Component {
     }));
   };
 
+  handelInput = e => {
+    const { value, name } = e.target;
+    this.setState({ [name]: value });
+  };
+
   goToLogin = () => {
     this.props.history.push('/login');
   };
 
   render() {
+    console.log('pwValueReconfirm', this.state.pwValueReconfirm);
+    console.log('pwValue', this.state.pwValue);
     return (
       <>
         <Nav />
@@ -80,7 +89,12 @@ class Signup extends React.Component {
                       <img alt="필수" src="/images/Signup/Required.gif" />
                     </th>
                     <td>
-                      <input type="password" class="input-type-text" />
+                      <input
+                        type="password"
+                        class="input-type-text"
+                        name="pwValue"
+                        onChange={this.handelInput}
+                      />
                       <span>
                         (영문 대소문자/숫자/특수문자을 포함한 조합,8자 ~ 12자)
                       </span>
@@ -92,7 +106,16 @@ class Signup extends React.Component {
                       <img alt="필수" src="/images/Signup/Required.gif" />
                     </th>
                     <td>
-                      <input type="password" class="input-type-text" />
+                      <input
+                        type="password"
+                        class="input-type-text"
+                        name="pwValueReconfirm"
+                        onChange={this.handelInput}
+                        value={this.state.pwValueReconfirm}
+                      />
+                      {this.state.pwValueReconfirm !== this.state.pwValue && (
+                        <span>비밀번호가 일치하지 않습니다.</span>
+                      )}
                     </td>
                   </tr>
                   <tr>
@@ -156,7 +179,7 @@ class Signup extends React.Component {
                     type="checkbox"
                     id="agreeAllCheck"
                     checked={this.state.allCheckBox}
-                    onChange={this.handleInput}
+                    onChange={this.ChangeAll}
                     onClick={this.handleChange}
                   />
                 </span>
@@ -526,7 +549,7 @@ class Signup extends React.Component {
               <button
                 className="signup-button"
                 onClick={this.goToLogin}
-                disabled={this.state.allCheckBox}
+                disabled={!this.state.allCheckBox}
               >
                 회원가입
               </button>
