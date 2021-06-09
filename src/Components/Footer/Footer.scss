@@ -1,44 +1,41 @@
+@import '/src/Styles/variables.scss';
+
 .Footer {
-    padding: 50px 370px;
-    background-color: black;
-    color: white;
-  
+  padding: 50px 370px;
+  background-color: black;
+  color: white;
+
+  div {
+    @include flexSet(space-between, flex-start);
+
     div {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-  
-      div {
-        display: flex;
-        flex-direction: column;
-        margin-left: 30px;
-  
-        ul {
-          margin-bottom: 15px;
-          li {
-            margin-right: 25px;
-            float: left;
-          }
-        }
-  
-        div {
-          margin: 5px 0;
-          font-size: 12px;
+      @include flexSet(normal, normal, column);
+      margin-left: 30px;
+
+      ul {
+        margin-bottom: 15px;
+        li {
+          margin-right: 25px;
+          float: left;
         }
       }
-    }
-  
-    .wecodeLogoBox {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100px;
-      height: 100px;
-      border: 2px solid white;
-      border-radius: 50%;
-      
-      .wecodeLogo {
-        width: 80px;
+
+      div {
+        margin: 5px 0;
+        font-size: 12px;
       }
     }
   }
+
+  .wecodeLogoBox {
+    @include flexSet(center, center);
+    width: 100px;
+    height: 100px;
+    border: 2px solid white;
+    border-radius: 50%;
+
+    .wecodeLogo {
+      width: 80px;
+    }
+  }
+}

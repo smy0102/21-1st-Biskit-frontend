@@ -3,5 +3,5 @@ export const INFO = [
   { id: 2, content: 'BISKIT메뉴', path: 'menuList' },
   { id: 3, content: '리뷰', path: '/' },
   { id: 4, content: '이벤트', path: '/' },
-  { id: 5, content: 'MY쿡킷', path: '/' },
+  { id: 5, content: 'MY비스킷', path: '/' },
 ];

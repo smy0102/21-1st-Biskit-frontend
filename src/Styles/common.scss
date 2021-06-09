@@ -1,7 +1,20 @@
-$primary-color: #b5cd29;
-$Basic-black: #101010;
-$Basic-grey: #cccccc;
-$Basic-red: #ee0700;
-$Basic-green: #16853b;
-$Basic-darkgrey: #606060;
-$grey-border: 1px solid #cccccc;
+* {
+  box-sizing: border-box;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+img {
+  object-fit: cover;
+}
+
+input[type='checkbox'] {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}

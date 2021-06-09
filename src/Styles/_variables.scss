@@ -1,0 +1,14 @@
+$primaryColor: #b5cd29;
+$basicBlack: #101010;
+$basicGray: #cccccc;
+$basicRed: #ee0700;
+$basicGreen: #16853b;
+$basicDarkgray: #606060;
+$preyBorder: 1px solid #cccccc;
+
+@mixin flexSet($just: center, $align: center, $direction: row) {
+  display: flex;
+  justify-content: $just;
+  align-items: $align;
+  flex-direction: $direction;
+}
