@@ -1,4 +1,4 @@
-export const INFO = [
+export const LIST = [
   { id: 1, content: 'BISKIT소개', path: '/' },
   { id: 2, content: 'BISKIT메뉴', path: 'menuList' },
   { id: 3, content: '리뷰', path: '/' },

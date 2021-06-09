@@ -1,41 +1,64 @@
 @import '/src/Styles/variables.scss';
 
 .Footer {
-  padding: 50px 370px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   background-color: black;
-  color: white;
 
-  div {
-    @include flexSet(space-between, flex-start);
+  .FooterContainer {
+    padding: 30px 0;
+    color: white;
 
-    div {
-      @include flexSet(normal, normal, column);
-      margin-left: 30px;
+    .FooterContent {
+      width: 1180px;
+      @include flexSet(space-between, flex-start);
 
-      ul {
-        margin-bottom: 15px;
-        li {
-          margin-right: 25px;
-          float: left;
+      .as {
+        @include flexSet(normal, normal, column);
+        margin-left: 30px;
+
+        ul {
+          margin-bottom: 15px;
+
+          li {
+            margin-right: 25px;
+            display: inline-block;
+
+            &::before {
+              content: '';
+              display: inline-block;
+              position: relative;
+              width: 1px;
+              height: 14px;
+              margin-right: 24px;
+              background-color: rgba(255, 255, 255, 0.2);
+              vertical-align: middle;
+            }
+
+            &:first-child::before {
+              display: none;
+            }
+          }
+        }
+
+        div {
+          margin: 5px 0;
+          font-size: 12px;
         }
       }
-
-      div {
-        margin: 5px 0;
-        font-size: 12px;
-      }
     }
-  }
 
-  .wecodeLogoBox {
-    @include flexSet(center, center);
-    width: 100px;
-    height: 100px;
-    border: 2px solid white;
-    border-radius: 50%;
+    .wecodeLogoBox {
+      @include flexSet(center, center);
+      width: 100px;
+      height: 100px;
+      border: 2px solid white;
+      border-radius: 50%;
 
-    .wecodeLogo {
-      width: 80px;
+      .wecodeLogo {
+        width: 80px;
+      }
     }
   }
 }

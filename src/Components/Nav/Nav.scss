@@ -6,7 +6,7 @@
     height: 35px;
     background-color: $basicBlack;
 
-    .gnbUtil {
+    .gnbMenu {
       @include flexSet(flex-end);
       max-width: 1920px;
       min-width: 1260px;
@@ -35,7 +35,8 @@
       }
     }
   }
-  .gnbMenu {
+
+  .menuContainer {
     @include flexSet(space-between, normal);
     position: relative;
     max-width: 1920px;
