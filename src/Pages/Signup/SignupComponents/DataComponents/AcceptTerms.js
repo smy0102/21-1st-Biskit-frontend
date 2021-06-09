@@ -1,9 +1,9 @@
 import React from 'react';
 
-class TermsData1 extends React.Component {
+class AcceptTerms extends React.Component {
   render() {
     return (
-      <div className="content">
+      <div className="Content">
         제1조(목적) 이 약관은 주식회사 이퀄스킨(전자상거래 사업자)가 운영하는
         스킨스쿨 몰(이하 “몰”이라 한다)에서 제공하는 인터넷 관련 서비스(이하
         “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리.의무 및
@@ -264,4 +264,4 @@ class TermsData1 extends React.Component {
   }
 }
 
-export default TermsData1;
+export default AcceptTerms;

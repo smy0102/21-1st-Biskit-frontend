@@ -1,7 +1,7 @@
 @import '/src/Styles/reset.scss';
 @import '/src/Styles/common.scss';
 
-.signup {
+.Signup {
   width: 1130px;
   height: 100%;
   margin: 0 auto;
@@ -10,7 +10,7 @@
     min-height: 700px;
     padding-top: 52px;
 
-    .signup-wrap-title {
+    .signupWrapTitle {
       color: #101010;
       font-weight: 700;
       font-size: 40px;
@@ -18,14 +18,14 @@
       text-align: center;
     }
 
-    .signup-info {
+    .signupInfo {
       margin-top: 30px;
       color: $Basic-grey;
       font-size: 12px;
       text-align: center;
     }
 
-    .signup-input-info {
+    .signupInputInfo {
       margin-top: 20px;
       display: flex;
       align-items: center;
@@ -41,7 +41,7 @@
       }
     }
 
-    .signup-input-wrap {
+    .signupInputWrap {
       margin-top: 30px;
 
       input,
@@ -87,7 +87,7 @@
           border: 1px solid #d5d5d5;
         }
 
-        .input-type-text {
+        .inputTypeText {
           width: 300px;
           height: 40px;
           margin: 0 10px 0 0;
@@ -120,12 +120,12 @@
       }
     }
 
-    .sign-input-terms h3 {
+    .signInputTerms h3 {
       margin-top: 80px;
       font-size: 25px;
     }
 
-    .sign-input-terms-all-box {
+    .signInputTermsAllBox {
       margin: 20px 0;
       padding: 20px;
       background: #fafafa;
@@ -138,7 +138,7 @@
       }
     }
 
-    .sign-input-terms-box {
+    .signInputTermsBox {
       padding: 20px;
       background: #fff;
       border: 1px solid #e8e8e8;
@@ -151,7 +151,7 @@
         font-size: 18px;
       }
 
-      .content {
+      .Content {
         height: 110px;
         padding: 20px;
         background: #fff;
@@ -174,11 +174,11 @@
       }
     }
 
-    .signup-button-element {
+    .signupButtonElement {
       padding: 10px 0;
       text-align: center;
 
-      .signup-button {
+      .signupButton {
         display: inline-block;
         margin: 30px 0 50px 0;
         padding: 18px 63px;

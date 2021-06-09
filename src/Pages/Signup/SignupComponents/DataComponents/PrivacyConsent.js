@@ -1,9 +1,9 @@
 import React from 'react';
 
-class TermsData2 extends React.Component {
+class PrivacyConsent extends React.Component {
   render() {
     return (
-      <div className="content">
+      <div className="Content">
         1. 개인정보 수집목적 및 이용목적 가. 서비스 제공에 관한 계약 이행 및
         서비스 제공에 따른 요금정산 콘텐츠 제공 , 구매 및 요금 결제 , 물품배송
         또는 청구지 등 발송 , 금융거래 본인 인증 및 금융 서비스 나. 회원 관리
@@ -30,4 +30,4 @@ class TermsData2 extends React.Component {
   }
 }
 
-export default TermsData2;
+export default PrivacyConsent;
