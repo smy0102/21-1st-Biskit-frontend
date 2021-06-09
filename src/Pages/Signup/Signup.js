@@ -1,7 +1,5 @@
 import React from 'react';
 import './Signup.scss';
-import Nav from '../../Components/Nav/Nav';
-import Footer from '../../Components/Footer/Footer';
 import { withRouter } from 'react-router-dom';
 import TermsData1 from './SignupComponents/TermsData1';
 import TermsData2 from './SignupComponents/TermsData2';
@@ -68,7 +66,6 @@ class Signup extends React.Component {
     console.log('pwValue', this.state.pwValue);
     return (
       <>
-        <Nav />
         <div className="signup">
           <div className="container">
             <div className="signup-wrap-title">
@@ -263,7 +260,6 @@ class Signup extends React.Component {
             </div>
           </div>
         </div>
-        <Footer />
       </>
     );
   }
