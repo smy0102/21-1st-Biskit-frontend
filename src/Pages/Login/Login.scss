@@ -1,0 +1,102 @@
+@import '/src/Styles/variables.scss';
+
+.Login {
+  width: 1180px;
+  height: 100%;
+  margin: 0 auto;
+
+  .container {
+    min-height: 700px;
+    padding-top: 52px;
+
+    .loginWrapTitle {
+      color: #101010;
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 56px;
+      text-align: center;
+    }
+
+    .loginWrapMemberLogin {
+      margin-bottom: 24px;
+      padding-top: 20px;
+      font-weight: 700;
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .loginWrapContainer {
+      width: 478px;
+      margin: 0 auto;
+
+      .loginInputBox {
+        width: 100%;
+        height: 48px;
+        padding: 0 16px;
+        border: 1px solid #ccc;
+        color: #101010;
+        font-size: 15px;
+        margin-bottom: 10px;
+      }
+
+      .descWrap {
+        @include flexSet(space-between, center);
+        width: 100%;
+        margin-top: 10px;
+
+        .checkBox {
+          margin-left: 0;
+
+          label {
+            cursor: pointer;
+            font-size: 15px;
+
+            input {
+              margin-right: 10px;
+            }
+          }
+        }
+
+        .find a {
+          color: #101010;
+          font-size: 15px;
+          text-decoration: none;
+
+          &::before {
+            content: '';
+            display: inline-block;
+            width: 1px;
+            height: 12px;
+            margin: 0 8px;
+            background-color: #ccc;
+          }
+
+          &:first-child::before {
+            display: none;
+          }
+        }
+      }
+
+      .descButtons {
+        margin-top: 30px;
+      }
+
+      .button {
+        color: #fff;
+        padding: 18px;
+        font-weight: 700;
+        font-size: 18px;
+        width: 100%;
+      }
+
+      .loginButton {
+        background-color: $basicGreen;
+      }
+
+      .signupButton {
+        margin-top: 20px;
+        background-color: $primaryColor;
+      }
+    }
+  }
+}

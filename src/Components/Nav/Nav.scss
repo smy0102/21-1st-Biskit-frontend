@@ -1,18 +1,15 @@
-@import '/src/Styles/reset.scss';
-@import '/src/Styles/common.scss';
+@import '/src/Styles/variables.scss';
 
 .Nav {
-  .gnb_wrap {
+  .gnbWrap {
     min-width: 1260px;
     height: 35px;
-    background-color: $Basic-black;
+    background-color: $basicBlack;
 
-    .gnb_util {
-      display: flex;
-      margin: 0 auto;
+    .gnbMenu {
+      @include flexSet(flex-end);
       max-width: 1920px;
       min-width: 1260px;
-      justify-content: flex-end;
       padding-right: 40px;
 
       a {
@@ -20,7 +17,6 @@
         color: #fff;
         font-size: 13px;
         line-height: 21px;
-        text-decoration: none;
 
         &::before {
           content: '';
@@ -39,9 +35,9 @@
       }
     }
   }
-  .gnb_menu {
-    display: flex;
-    justify-content: space-between;
+
+  .menuContainer {
+    @include flexSet(space-between, normal);
     position: relative;
     margin: 0 auto;
     max-width: 1920px;
@@ -52,26 +48,23 @@
       margin: 25px 0 0 40px;
     }
 
-    .list_menu {
-      display: flex;
-      align-items: center;
+    .listMenu {
+      @include flexSet(normal, center);
 
       a {
         padding: 0 32px;
-        color: $Basic-black;
+        color: $basicBlack;
         font-weight: 700;
         font-size: 22px;
         line-height: 32px;
-        text-decoration: none;
       }
     }
 
-    .my_menu {
+    .myMenu {
       display: flex;
 
       ul {
-        display: flex;
-        align-items: center;
+        @include flexSet(normal, center);
         margin-right: 40px;
 
         li {
@@ -91,7 +84,7 @@
         font-size: 12px;
         line-height: 20px;
         letter-spacing: -1px;
-        color: $Basic-black;
+        color: $basicBlack;
       }
     }
   }

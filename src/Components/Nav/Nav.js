@@ -1,34 +1,42 @@
 import React from 'react';
 import './Nav.scss';
 import { Link } from 'react-router-dom';
-import { INFO } from './ListMenu';
-import { UTIL } from './gnb_util';
+import { LIST } from './NavConst/ListMenu';
+import { GNB } from './NavConst/GnbMenu';
 
 class Nav extends React.Component {
   render() {
     return (
       <nav className="Nav">
-        <div className="gnb_wrap">
-          <div className="gnb_util">
-            {UTIL.map(el => {
-              return <Link to={el.path}>{el.content}</Link>;
+        <div className="gnbWrap">
+          <div className="gnbMenu">
+            {GNB.map(el => {
+              return (
+                <Link to={el.path} key={el.id}>
+                  {el.content}
+                </Link>
+              );
             })}
           </div>
         </div>
-        <div className="gnb_menu">
+        <div className="menuContainer">
           <div className="logo">
             <Link to="/">
               <img alt="logo" src="/images/common/icon/logo.png"></img>
             </Link>
           </div>
-          <ul className="list_menu">
+          <ul className="listMenu">
             <li>
-              {INFO.map(el => {
-                return <Link to={el.path}>{el.content}</Link>;
+              {LIST.map(el => {
+                return (
+                  <Link to={el.path} key={el.id}>
+                    {el.content}
+                  </Link>
+                );
               })}
             </li>
           </ul>
-          <div className="my_menu">
+          <div className="myMenu">
             <ul>
               <li>
                 <Link to="/">
