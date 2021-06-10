@@ -9,6 +9,7 @@
 
     .gnb_util {
       display: flex;
+      margin: 0 auto;
       max-width: 1920px;
       min-width: 1260px;
       justify-content: flex-end;
@@ -42,6 +43,7 @@
     display: flex;
     justify-content: space-between;
     position: relative;
+    margin: 0 auto;
     max-width: 1920px;
     min-width: 1260px;
     height: 81px;

@@ -1,0 +1,312 @@
+@import '../../Styles/common.scss';
+
+section {
+  display: flex;
+  align-content: center;
+
+  .contentWarp {
+    max-width: 1180px;
+    min-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+
+    flex-direction: column;
+    position: relative;
+    min-height: 900px;
+
+    .topSec {
+      padding-top: 52px;
+      width: 100%;
+
+      h2 {
+        font-size: 40px;
+        line-height: 56px;
+        font-weight: 730;
+        letter-spacing: -0.5px;
+        margin-bottom: 12px;
+      }
+      .cateWrap {
+        width: 100%;
+        height: 64px;
+        vertical-align: middle;
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+        border-bottom: 1px solid rgba($Basic-darkgrey, $alpha: 0.1);
+        .tabWrap {
+          display: flex;
+          button {
+            background: none;
+            border: none;
+          }
+
+          .activateTab {
+            color: $Basic-black;
+            font-size: 24px;
+            line-height: 34px;
+            font-weight: 700;
+            cursor: pointer;
+            span {
+              text-decoration: none;
+              padding-bottom: 2px;
+              border-bottom: 3px solid (rgba($Basic-black, $alpha: 1));
+            }
+          }
+          .dateTab {
+            color: $Basic-darkgrey;
+            font-size: 24px;
+            line-height: 34px;
+            font-weight: 500;
+            cursor: pointer;
+          }
+          .themeTab {
+            color: $Basic-darkgrey;
+            font-size: 24px;
+            line-height: 34px;
+            font-weight: 500;
+            cursor: pointer;
+          }
+        }
+
+        .cate {
+          display: flex;
+          text-align: center;
+          justify-content: center;
+
+          .activateCate {
+            font-family: Arial;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 64px;
+            height: 64px;
+            margin-right: 12px;
+            color: $Basic-black;
+            font-size: 20px;
+            font-weight: 800;
+            text-decoration: underline;
+            line-height: 30px;
+            cursor: pointer;
+            &::after {
+              position: absolute;
+              content: '';
+              display: block;
+              top: 50%;
+              right: 0;
+              width: 1px;
+              height: 20px;
+              margin-top: -10px;
+              background-color: #363636;
+            }
+          }
+          .cateAll {
+            font-family: Arial;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 64px;
+            height: 64px;
+            margin-right: 12px;
+            color: $Basic-darkgrey;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 30px;
+            cursor: pointer;
+            &::after {
+              position: absolute;
+              content: '';
+              display: block;
+              top: 50%;
+              right: 0;
+              width: 1px;
+              height: 20px;
+              margin-top: -10px;
+              background-color: #363636;
+            }
+          }
+          button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 64px;
+            height: 64px;
+            margin-right: 12px;
+            color: $Basic-darkgrey;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 30px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            &:nth-last-child(1) {
+              padding: 0;
+            }
+          }
+          .days {
+            padding: 0;
+            color: $Basic-darkgrey;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 30px;
+            cursor: pointer;
+          }
+
+          .activateDays {
+            background-color: rgba($Basic-black, $alpha: 1);
+            border-radius: 50%;
+            padding: 0;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 30px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .filterWarp {
+      padding-top: 52px;
+      p {
+        color: $Basic-black;
+        font-size: 28px;
+        line-height: 42px;
+        font-weight: 700;
+      }
+      .filter {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        p {
+          color: $Basic-black;
+          font-size: 18px;
+          line-height: 42px;
+          font-weight: 500;
+        }
+        .filterListWarp {
+          button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 400;
+            border-right: 1px solid rgba($Basic-darkgrey, $alpha: 1);
+            &:nth-last-child(1) {
+              border: none;
+            }
+          }
+        }
+      }
+    }
+    .menuListContainer {
+      margin: 0;
+      min-width: 900px;
+      max-width: 1180px;
+      display: flex;
+      .menuUl {
+        display: flex;
+        padding-top: 28px;
+        .menuLi {
+          padding-right: 32px;
+
+          .menuImg {
+            object-fit: cover;
+            width: 268px;
+            height: 320px;
+            margin-bottom: 8px;
+          }
+          .recommend {
+            display: flex;
+            text-align: center;
+            height: 25px;
+            font-size: 12px;
+            font-weight: 600;
+            .limited {
+              color: #fff;
+              display: flex;
+              align-content: center;
+              justify-content: center;
+              align-items: center;
+              width: 55px;
+              height: 25px;
+              background-color: #ee0700;
+            }
+            .name {
+              color: rgba($Basic-darkgrey, $alpha: 1);
+              display: flex;
+              align-content: center;
+              justify-content: center;
+              align-items: center;
+              width: 55px;
+              height: 25px;
+              background-color: rgba($primary-color, $alpha: 1);
+            }
+          }
+          .menuInfo {
+            padding-top: 20px;
+            font-size: 14px;
+            color: rgba($Basic-darkgrey, $alpha: 1);
+            span {
+              padding-right: 8px;
+              margin-right: 8px;
+              border-right: 1px solid rgba($Basic-darkgrey, $alpha: 0.5);
+              &:nth-last-child(1) {
+                border: none;
+              }
+            }
+            .title {
+              color: rgba($Basic-black, $alpha: 1);
+              padding-top: 8px;
+              padding-bottom: 8px;
+              font-size: 20px;
+              font-weight: 600;
+            }
+            .price {
+              color: rgba($Basic-black, $alpha: 1);
+              font-size: 18px;
+              line-height: 27px;
+              font-weight: 700;
+            }
+          }
+          .reviewWarp {
+            display: flex;
+            line-height: 27px;
+            font-weight: 600;
+            align-items: center;
+            .review {
+              color: rgba($Basic-green, $alpha: 1);
+              padding-right: 8px;
+              font-size: 24px;
+            }
+            .reviewCount {
+              border-left: 1px solid rgba($Basic-darkgrey, $alpha: 0.3);
+              padding-left: 8px;
+              color: rgba($Basic-darkgrey, $alpha: 1);
+              font-size: 14px;
+            }
+          }
+          .iconBox {
+            padding-top: 8px;
+            display: flex;
+            align-content: center;
+            align-items: center;
+            button {
+              padding: 0;
+              background: none;
+              justify-content: center;
+              align-items: center;
+              margin-right: 8px;
+              border: none;
+              img {
+                width: 40px;
+                height: 40px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
