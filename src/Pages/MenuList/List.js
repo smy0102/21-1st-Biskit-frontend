@@ -1,13 +1,10 @@
 import React from 'react';
 class List extends React.Component {
   render() {
+    console.log(this.props.snack);
     return (
       <li className="menuLi">
-        <img
-          className="menuImg"
-          src="../images/MenuList/dummysnack.jpg"
-          alt="snack"
-        />
+        <img className="menuImg" src={this.props.img} alt="snack" />
         <div className="recommend">
           <span className="limited">기간한정</span>
           <span className="name">NEW</span>
@@ -16,8 +13,8 @@ class List extends React.Component {
           <span>100g</span>
           <span>300kcal</span>
           <span>맛</span>
-          <p className="title">손이가요 새우깡</p>
-          <p className="price">10,000원</p>
+          <p className="title">{this.props.name}</p>
+          <p className="price">{this.props.price}원</p>
         </div>
         <div className="reviewWarp">
           <span className="review">★★★★☆</span>

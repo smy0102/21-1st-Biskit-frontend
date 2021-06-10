@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "img" : "/data/MenuList/img1.jpg",
+    "name": "새우깡",
+    "price": 1000
+  },
+  {
+    "id": 2,
+    "img" : "/data/MenuList/img1.jpg",
+    "name": "오땅",
+    "price": 2000
+  },
+  {
+    "id": 3,
+    "img" : "/data/MenuList/img1.jpg",
+    "name": "나쵸",
+    "price": 3000
+  }
+]

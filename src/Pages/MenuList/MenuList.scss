@@ -1,4 +1,6 @@
 @import '../../Styles/common.scss';
+@import '../../Styles/reset.scss';
+@import '../../Styles/variables.scss';
 
 section {
   display: flex;
@@ -33,7 +35,8 @@ section {
         display: flex;
         justify-content: space-between;
         cursor: pointer;
-        border-bottom: 1px solid rgba($Basic-darkgrey, $alpha: 0.1);
+        border-bottom: 1px solid (rgba($basicGray, $alpha: 1));
+
         .tabWrap {
           display: flex;
           button {
@@ -42,7 +45,7 @@ section {
           }
 
           .activateTab {
-            color: $Basic-black;
+            color: $basicBlack;
             font-size: 24px;
             line-height: 34px;
             font-weight: 700;
@@ -50,18 +53,18 @@ section {
             span {
               text-decoration: none;
               padding-bottom: 2px;
-              border-bottom: 3px solid (rgba($Basic-black, $alpha: 1));
+              border-bottom: 3px solid (rgba($basicBlack, $alpha: 1));
             }
           }
           .dateTab {
-            color: $Basic-darkgrey;
+            color: $basicGray;
             font-size: 24px;
             line-height: 34px;
             font-weight: 500;
             cursor: pointer;
           }
           .themeTab {
-            color: $Basic-darkgrey;
+            color: $basicGray;
             font-size: 24px;
             line-height: 34px;
             font-weight: 500;
@@ -83,7 +86,7 @@ section {
             width: 64px;
             height: 64px;
             margin-right: 12px;
-            color: $Basic-black;
+            color: $basicBlack;
             font-size: 20px;
             font-weight: 800;
             text-decoration: underline;
@@ -110,7 +113,7 @@ section {
             width: 64px;
             height: 64px;
             margin-right: 12px;
-            color: $Basic-darkgrey;
+            color: $basicDarkgray;
             font-size: 20px;
             font-weight: 500;
             line-height: 30px;
@@ -134,7 +137,7 @@ section {
             width: 64px;
             height: 64px;
             margin-right: 12px;
-            color: $Basic-darkgrey;
+            color: $basicDarkgray;
             font-size: 20px;
             font-weight: 500;
             line-height: 30px;
@@ -147,7 +150,7 @@ section {
           }
           .days {
             padding: 0;
-            color: $Basic-darkgrey;
+            color: $basicDarkgray;
             font-size: 20px;
             font-weight: 500;
             line-height: 30px;
@@ -155,7 +158,7 @@ section {
           }
 
           .activateDays {
-            background-color: rgba($Basic-black, $alpha: 1);
+            background-color: rgba($basicBlack, $alpha: 1);
             border-radius: 50%;
             padding: 0;
             color: #fff;
@@ -170,7 +173,7 @@ section {
     .filterWarp {
       padding-top: 52px;
       p {
-        color: $Basic-black;
+        color: $basicBlack;
         font-size: 28px;
         line-height: 42px;
         font-weight: 700;
@@ -180,7 +183,7 @@ section {
         justify-content: space-between;
         align-items: center;
         p {
-          color: $Basic-black;
+          color: $basicBlack;
           font-size: 18px;
           line-height: 42px;
           font-weight: 500;
@@ -192,7 +195,7 @@ section {
             font-size: 16px;
             line-height: 24px;
             font-weight: 400;
-            border-right: 1px solid rgba($Basic-darkgrey, $alpha: 1);
+            border-right: 1px solid rgba($basicGray, $alpha: 1);
             &:nth-last-child(1) {
               border: none;
             }
@@ -234,37 +237,37 @@ section {
               background-color: #ee0700;
             }
             .name {
-              color: rgba($Basic-darkgrey, $alpha: 1);
+              color: rgba($basicDarkgray, $alpha: 1);
               display: flex;
               align-content: center;
               justify-content: center;
               align-items: center;
               width: 55px;
               height: 25px;
-              background-color: rgba($primary-color, $alpha: 1);
+              background-color: rgba($primaryColor, $alpha: 1);
             }
           }
           .menuInfo {
             padding-top: 20px;
             font-size: 14px;
-            color: rgba($Basic-darkgrey, $alpha: 1);
+            color: rgba($basicDarkgray, $alpha: 1);
             span {
               padding-right: 8px;
               margin-right: 8px;
-              border-right: 1px solid rgba($Basic-darkgrey, $alpha: 0.5);
+              border-right: 1px solid rgba($basicDarkgray, $alpha: 0.5);
               &:nth-last-child(1) {
                 border: none;
               }
             }
             .title {
-              color: rgba($Basic-black, $alpha: 1);
+              color: rgba($basicBlack, $alpha: 1);
               padding-top: 8px;
               padding-bottom: 8px;
               font-size: 20px;
               font-weight: 600;
             }
             .price {
-              color: rgba($Basic-black, $alpha: 1);
+              color: rgba($basicBlack, $alpha: 1);
               font-size: 18px;
               line-height: 27px;
               font-weight: 700;
@@ -276,14 +279,14 @@ section {
             font-weight: 600;
             align-items: center;
             .review {
-              color: rgba($Basic-green, $alpha: 1);
+              color: rgba($basicGreen, $alpha: 1);
               padding-right: 8px;
               font-size: 24px;
             }
             .reviewCount {
-              border-left: 1px solid rgba($Basic-darkgrey, $alpha: 0.3);
+              border-left: 1px solid rgba($basicDarkgray, $alpha: 0.3);
               padding-left: 8px;
-              color: rgba($Basic-darkgrey, $alpha: 1);
+              color: rgba($basicDarkgray, $alpha: 1);
               font-size: 14px;
             }
           }

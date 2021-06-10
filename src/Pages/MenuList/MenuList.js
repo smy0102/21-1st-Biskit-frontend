@@ -1,7 +1,5 @@
 import React from 'react';
 import './MenuList.scss';
-import Nav from '../../Components/Nav/Nav';
-import Footer from '../../Components/Footer/Footer';
 import { DAYS } from './MenuListDays';
 import { FILTER } from './MenuListFilter';
 import List from './List';
@@ -17,6 +15,18 @@ class MenuList extends React.Component {
     };
   }
 
+  componentDidMount() {
+    fetch('http://localhost:3000/data/MenuList/menuData.json', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          snackList: data,
+        });
+      });
+  }
+
   handleClickTab = e => {
     this.setState({ tab: e.target.innerHTML });
   };
@@ -29,7 +39,6 @@ class MenuList extends React.Component {
     console.log(this.state.cate);
     return (
       <>
-        <Nav />
         <section>
           <div className="contentWarp">
             <div className="topSec">
@@ -96,12 +105,20 @@ class MenuList extends React.Component {
             </div>
             <div className="menuListContainer">
               <ul className="menuUl">
-                <List />
+                {this.state.snackList.map(data => {
+                  return (
+                    <List
+                      key={data.id}
+                      name={data.name}
+                      price={data.price}
+                      img={data.img}
+                    />
+                  );
+                })}
               </ul>
             </div>
           </div>
         </section>
-        <Footer />
       </>
     );
   }
