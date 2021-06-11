@@ -19,7 +19,12 @@ class SignupInputWrap extends React.Component {
                 <img alt="필수" src="/images/Signup/Required.gif" />
               </th>
               <td>
-                <input type="text" class="inputTypeText" />
+                <input
+                  type="text"
+                  class="inputTypeText"
+                  name="idValue"
+                  onChange={handelInput}
+                />
                 <button>중복확인</button>
                 <span>(영문소문자/숫자, 6 ~ 20자)</span>
               </td>
@@ -65,7 +70,12 @@ class SignupInputWrap extends React.Component {
                 <img alt="필수" src="/images/Signup/Required.gif" />
               </th>
               <td>
-                <input type="text" class="inputTypeText" />
+                <input
+                  type="text"
+                  class="inputTypeText"
+                  name="nameValue"
+                  onChange={handelInput}
+                />
               </td>
             </tr>
             <tr>
@@ -74,7 +84,13 @@ class SignupInputWrap extends React.Component {
                 <img alt="필수" src="/images/Signup/Required.gif" />
               </th>
               <td>
-                <input type="text" class="inputTypeText" id="adress" />
+                <input
+                  type="text"
+                  class="inputTypeText"
+                  id="adress"
+                  name="adressValue"
+                  onChange={handelInput}
+                />
                 <span>(기본주소)</span>
               </td>
             </tr>
@@ -94,9 +110,19 @@ class SignupInputWrap extends React.Component {
                   })}
                 </select>
                 -
-                <input type="text" class="inputTypeText mobile" />
+                <input
+                  type="text"
+                  class="inputTypeText mobile"
+                  name="mobileFirst"
+                  onChange={handelInput}
+                />
                 -
-                <input type="text" class="inputTypeText mobile" />
+                <input
+                  type="text"
+                  class="inputTypeText mobile"
+                  name="mobileSecond"
+                  onChange={handelInput}
+                />
               </td>
             </tr>
             <tr>
@@ -105,7 +131,12 @@ class SignupInputWrap extends React.Component {
                 <img alt="필수" src="/images/Signup/Required.gif" />
               </th>
               <td>
-                <input type="text" class="inputTypeText" />
+                <input
+                  type="text"
+                  class="inputTypeText"
+                  name="emailValue"
+                  onChange={handelInput}
+                />
               </td>
             </tr>
           </tbody>

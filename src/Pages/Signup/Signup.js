@@ -12,8 +12,15 @@ class Signup extends React.Component {
       isCheck1: false,
       isCheck2: false,
       allCheckBox: false,
+      nameValue: '',
+      idValue: '',
       pwValue: '',
       pwValueReconfirm: '',
+      mobileValue: '',
+      adressValue: '',
+      emailValue: '',
+      mobileFirst: '',
+      mobileSecond: '',
     };
   }
 
@@ -38,8 +45,33 @@ class Signup extends React.Component {
     this.setState({ [name]: value });
   };
 
+  addEmail = () => {
+    this.setState({
+      mobileValue: this.state.mobileFirst + '-' + this.state.mobileSecond,
+    });
+  };
+
   goToLogin = () => {
-    this.props.history.push('/login');
+    fetch('http://10.58.2.73:8000/users/signup', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: this.state.nameValue,
+        account: this.state.idValue,
+        password: this.state.pwValue,
+        mobile: this.state.mobileFirst + '-' + this.state.mobileSecond,
+        address: this.state.adressValue,
+        email: this.state.emailValue,
+      }),
+    })
+      .then(response => response.json())
+      .then(result => {
+        console.log(result);
+        if (result.message === 'SUCCESS') {
+          this.props.history.push('/login');
+        } else {
+          alert('이메일과 패스워드를 확인해주세요');
+        }
+      });
   };
 
   toggleCheckBox = event => {
@@ -58,10 +90,17 @@ class Signup extends React.Component {
     const {
       pwValueReconfirm,
       checked,
+      nameValue,
+      idValue,
+      mobileValue,
+      adressValue,
+      emailValue,
       pwValue,
       isCheck1,
       isCheck2,
       allCheckBox,
+      mobileFirst,
+      mobileSecond,
     } = this.state;
     return (
       <div className="Signup">
@@ -84,6 +123,13 @@ class Signup extends React.Component {
             handelInput={handelInput}
             pwValueReconfirm={pwValueReconfirm}
             pwValue={pwValue}
+            nameValue={nameValue}
+            idValue={idValue}
+            mobileValue={mobileValue}
+            adressValue={adressValue}
+            emailValue={emailValue}
+            mobileFirst={mobileFirst}
+            mobileSecond={mobileSecond}
           />
           <SignInputTermsBox
             checked={checked}
