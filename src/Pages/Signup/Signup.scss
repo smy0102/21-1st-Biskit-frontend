@@ -1,5 +1,4 @@
-@import '/src/Styles/reset.scss';
-@import '/src/Styles/common.scss';
+@import '/src/Styles/variables.scss';
 
 .Signup {
   width: 1130px;
@@ -20,16 +19,14 @@
 
     .signupInfo {
       margin-top: 30px;
-      color: $Basic-grey;
+      color: $basicGray;
       font-size: 12px;
       text-align: center;
     }
 
     .signupInputInfo {
       margin-top: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      @include flexSet(space-between, center);
 
       h3 {
         font-size: 25px;
@@ -38,139 +35,6 @@
       span {
         margin-left: 2px;
         font-size: 12px;
-      }
-    }
-
-    .signupInputWrap {
-      margin-top: 30px;
-
-      input,
-      select {
-        &:focus {
-          outline: none;
-        }
-      }
-
-      col {
-        &:first-child {
-          width: 150px;
-        }
-      }
-
-      th {
-        width: 140px;
-        padding: 23px 0 10px 0;
-        background: #fff;
-        font-size: 18px;
-        border: 0;
-        border-right: 0;
-        text-align: left;
-
-        img {
-          margin-left: 5px;
-          vertical-align: middle;
-        }
-      }
-
-      td {
-        padding: 17px 0 7px 28px;
-        border: 0;
-        background: #fff;
-        color: #353535;
-        vertical-align: middle;
-
-        select {
-          width: 80px;
-          height: 40px;
-          margin-right: 4px;
-          color: #111111;
-          border: 1px solid #d5d5d5;
-        }
-
-        .inputTypeText {
-          width: 300px;
-          height: 40px;
-          margin: 0 10px 0 0;
-          padding: 0 0 0 10px;
-          color: #111111;
-          border: 1px solid #d5d5d5;
-          font-size: 18px;
-        }
-
-        #adress {
-          width: 400px;
-        }
-
-        .mobile {
-          width: 96px;
-          margin: 0 4px;
-        }
-
-        button {
-          padding: 5px;
-          margin-right: 10px;
-          border: $grey-border;
-          border-radius: 2px;
-          cursor: pointer;
-
-          &:active {
-            transform: scale(0.98);
-          }
-        }
-      }
-    }
-
-    .signInputTerms h3 {
-      margin-top: 80px;
-      font-size: 25px;
-    }
-
-    .signInputTermsAllBox {
-      margin: 20px 0;
-      padding: 20px;
-      background: #fafafa;
-      color: #404040;
-      border: 1px solid #e8e8e8;
-
-      input {
-        margin-right: 5px;
-        cursor: pointer;
-      }
-    }
-
-    .signInputTermsBox {
-      padding: 20px;
-      background: #fff;
-      border: 1px solid #e8e8e8;
-      color: #747474;
-      margin-bottom: 20px;
-
-      h3 {
-        margin: 0 0 15px;
-        color: #353535;
-        font-size: 18px;
-      }
-
-      .Content {
-        height: 110px;
-        padding: 20px;
-        background: #fff;
-        border: 1px solid #d5d5d5;
-        overflow: auto;
-      }
-
-      .check {
-        padding: 20px 0 5px 0;
-        color: #000;
-        font-size: 15px;
-
-        input {
-          width: 16px;
-          height: 16px;
-          margin: -4px 5px 0;
-          vertical-align: middle;
-          cursor: pointer;
-        }
       }
     }
 
@@ -185,17 +49,16 @@
         font-size: 19px;
         font-weight: 400;
         color: #fff;
-        background: $primary-color;
-        border: 1px solid $primary-color;
+        background: $primaryColor;
+        border: 1px solid $primaryColor;
         letter-spacing: 0.1em;
         text-align: center;
         transition: 0.3s;
         outline: 0;
-        cursor: pointer;
 
         &:disabled {
-          background: $Basic-grey;
-          border: $grey-border;
+          background: $basicGray;
+          border: $grayBorder;
           cursor: auto;
         }
       }

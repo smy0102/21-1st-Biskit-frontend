@@ -1,12 +1,14 @@
 import React from 'react';
 import './Signup.scss';
 import { withRouter } from 'react-router-dom';
-import SignupInputWrap from './SignupComponents/Components/SignupInputWrap';
-import SignInputTermsBox from './SignupComponents/Components/SignInputTermsBox';
+import SignupInputWrap from '../../Components/Signup/SignupComponents/Components/SignupInputWrap/SignupInputWrap';
+import SignInputTermsBox from '../../Components/Signup/SignupComponents/Components/SignInputTermsBox/SignInputTermsBox';
+
 class Signup extends React.Component {
   constructor() {
     super();
     this.state = {
+      // isCheck: [false, false],
       isCheck1: false,
       isCheck2: false,
       allCheckBox: false,
