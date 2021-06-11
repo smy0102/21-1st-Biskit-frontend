@@ -1,10 +1,85 @@
 import React from 'react';
 import './Login.scss';
+import { Link, withRouter } from 'react-router-dom';
 
 class Login extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      idValue: '',
+      pwValue: '',
+    };
+  }
+
+  handleInput = e => {
+    const { value, name } = e.target;
+    this.setState({ [name]: value });
+  };
+
+  goToSignup = () => {
+    this.props.history.push('/signup');
+  };
+
+  goToMain = () => {
+    // 로그인 패치 들어갈곳
+    alert('로그인 성공 되었습니다.');
+    this.props.history.push('/');
+  };
+
   render() {
-    return <div>Login</div>;
+    return (
+      <section className="Login">
+        <div className="container">
+          <div className="loginWrap">
+            <h1 className="loginWrapTitle">로그인</h1>
+            <h2 className="loginWrapMemberLogin">
+              {/* 회원 로그인 */}
+              <div className="loginWrapBorder"></div>
+            </h2>
+            <div className="loginWrapContainer">
+              <input
+                type="text"
+                placeholder="BISKIT 통합아이디 6~20자"
+                className="loginInputBox"
+                onChange={this.handleInput}
+                name="idValue"
+              />
+              <input
+                type="password"
+                placeholder="비밀번호 영문, 특수문자, 숫자혼합 8~12자"
+                className="loginInputBox"
+                onChange={this.handleInput}
+                name="pwValue"
+              />
+              <div className="descWrap">
+                <div className="checkBox">
+                  <label htmlFor="checkboxLabel">
+                    <input type="checkbox" id="checkboxLabel" />
+                    아이디 저장
+                  </label>
+                </div>
+                <div className="find">
+                  <Link to="/">아이디 찾기</Link>
+                  <Link to="/">비밀번호 찾기</Link>
+                </div>
+              </div>
+              <div className="descButtons">
+                <button className="loginButton button" onClick={this.goToMain}>
+                  로그인
+                </button>
+                <button
+                  className="signupButton button"
+                  onClick={this.goToSignup}
+                >
+                  회원가입
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
   }
 }
 
-export default Login;
+export default withRouter(Login);
