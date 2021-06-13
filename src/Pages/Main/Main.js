@@ -1,26 +1,32 @@
 import React from 'react';
 import './Main.scss';
 import { Link, withRouter } from 'react-router-dom';
+import GridWrap from '../../Components/Main/GridWrap/GridWrap';
+import SlideWrap from '../../Components/Main/SlideWrap/SlideWrap';
 
 class Main extends React.Component {
   constructor() {
     super();
+    let fixDate = new Date().setHours(31, 0, 0);
     this.state = {
       listTransform: 0,
       listTasteTransform: 0,
       listTransition: '1s ease-in-out',
-      toggleList: 'slideTaste',
+      isClassOn: false,
+      date: new Date(),
+      fixDate,
+      countDate: fixDate - new Date(),
     };
   }
 
   handeltoggleClick = () => {
     this.setState({
-      toggleList: 'slideTaste',
+      isClassOn: !this.state.isClassOn,
     });
   };
 
   handleNextMove = () => {
-    if (this.state.listTransform > -7680) {
+    if (this.state.listTransform > -1920 * 4) {
       this.setState({
         listTransform: this.state.listTransform - 1920,
         listTransition: '1s ease-in-out',
@@ -41,7 +47,7 @@ class Main extends React.Component {
       });
     } else {
       this.setState({
-        listTransform: -7680,
+        listTransform: -1920 * 4,
         listTransition: '0s',
       });
     }
@@ -75,151 +81,53 @@ class Main extends React.Component {
     }
   };
 
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+    clearInterval(this.autoNext);
+  }
+
+  tick() {
+    this.setState({
+      countDate: this.state.fixDate - new Date().getTime(),
+    });
+  }
+
   componentDidMount() {
-    setInterval(() => {
+    this.timerID = setInterval(() => this.tick(), 1000);
+    this.autoNext = setInterval(() => {
       this.handleNextMove();
     }, 4000);
   }
   render() {
+    const { listTransition, countDate, isClassOn } = this.state;
+    const { handlePrevMove, handleNextMove, handeltoggleClick } = this;
+    const hours = Math.floor(countDate / (60 * 60 * 1000));
+    const mins = Math.floor((countDate - hours * 60 * 60 * 1000) / (60 * 1000));
+    const secs = Math.floor(
+      (countDate - hours * 60 * 60 * 1000 - mins * 60 * 1000) / 1000
+    );
     const count = this.state.listTransform;
     const countTwo = this.state.listTasteTransform;
+    const days = ['일', '월', '화', '수', '목', '금', '토'];
     return (
       <div>
         <div className="Main">
           <section className="container">
-            <div className="slideWrap">
-              <div className="slideBox">
-                <div
-                  className="slideList"
-                  style={{
-                    transform: `translateX(${count}px)`,
-                    transition: `${this.state.listTransition}`,
-                  }}
-                >
-                  <div className="slideContent slide01">
-                    <p>
-                      <img alt="banner" src="images/Main/banner.jpeg" />
-                      <div className="bannerContent">
-                        <div className="bannerHead">이벤트 오픈</div>
-                        <div className="bannerTitle">
-                          쇼핑 축제 <p>비스킷 스낵 페스타!</p>
-                        </div>
-                        <div className="bannerSubTitle">
-                          매일매일 쓸쑤록 더 큰 혜택이 쏟아집니다.
-                        </div>
-                      </div>
-                    </p>
-                  </div>
-                  <div className="slideContent slide02">
-                    <img alt="banner" src="images/Main/banner.jpeg" />
-                    <div className="bannerContent">
-                      <div className="bannerHead">이벤트 오픈</div>
-                      <div className="bannerTitle">
-                        쇼핑 축제 <p>비스킷 스낵 페스타!</p>
-                      </div>
-                      <div className="bannerSubTitle">
-                        매일매일 쓸쑤록 더 큰 혜택이 쏟아집니다.
-                      </div>
-                    </div>
-                  </div>
-                  <div className="slideContent slide03">
-                    <img alt="banner" src="images/Main/banner.jpeg" />
-                    <div className="bannerContent">
-                      <div className="bannerHead">이벤트 오픈</div>
-                      <div className="bannerTitle">
-                        쇼핑 축제 <p>비스킷 스낵 페스타!</p>
-                      </div>
-                      <div className="bannerSubTitle">
-                        매일매일 쓸쑤록 더 큰 혜택이 쏟아집니다.
-                      </div>
-                    </div>
-                  </div>
-                  <div className="slideContent slide04">
-                    <img alt="banner" src="images/Main/banner.jpeg" />
-                    <div className="bannerContent">
-                      <div className="bannerHead">이벤트 오픈</div>
-                      <div className="bannerTitle">
-                        쇼핑 축제 <p>비스킷 스낵 페스타!</p>
-                      </div>
-                      <div className="bannerSubTitle">
-                        매일매일 쓸쑤록 더 큰 혜택이 쏟아집니다.
-                      </div>
-                    </div>
-                  </div>
-                  <div className="slideContent slide05">
-                    <img alt="banner" src="images/Main/banner.jpeg" />
-                    <div className="bannerContent">
-                      <div className="bannerHead">이벤트 오픈</div>
-                      <div className="bannerTitle">
-                        쇼핑 축제 <p>비스킷 스낵 페스타!</p>
-                      </div>
-                      <div className="bannerSubTitle">
-                        매일매일 쓸쑤록 더 큰 혜택이 쏟아집니다.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="slideBtnBox">
-                <button
-                  type="button"
-                  className="slideBtnPrev"
-                  onClick={this.handlePrevMove}
-                >
-                  <img alt="prev" src="images/Main/arrow.png" />
-                </button>
-                <button
-                  type="button"
-                  className="slideBtnNext"
-                  onClick={this.handleNextMove}
-                >
-                  <img alt="next" src="images/Main/arrow.png" />
-                </button>
-                <div className="controlBox">
-                  <span className="num">
-                    <strong className="uiPageNum">
-                      {count === 0 ? 1 : Math.abs(count / 1920) + 1}
-                    </strong>
-                    <span className="dash">/</span>5
-                  </span>
-                  <button className="controlPlay">
-                    <img alt="play" src="images/Main/play.png" />
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="gridWrap">
-              <div className="leftArea gridArea">
-                <Link to="/">
-                  <strong>우리집도 BISKIT 배송이 되나요?</strong>
-                  <p>배송이 가능한지 알려드려요.</p>
-                  <span className="linkMap link">
-                    <img alt="area" src="images/Main/maps-and-flags.png"></img>
-                    <span>배송지 검색</span>
-                  </span>
-                  <img
-                    alt="areaIcon"
-                    src="images/Main/delivery-truck.png"
-                  ></img>
-                </Link>
-              </div>
-              <div className="rightArea gridArea">
-                <Link to="/">
-                  <strong>6월 12일(토)에 받을 수 있어요</strong>
-                  <p>오전 7시까지 주문하시면 다음날 배송됩니다</p>
-                  <span className="linkTime link">
-                    <img alt="area" src="images/Main/clock.png"></img>
-                    <span>08:05:22</span>
-                    <span class="timeRemaining">남은시간</span>
-                  </span>
-                  <img
-                    className="cookie"
-                    alt="areaIcon"
-                    src="images/Main/cookies.png"
-                  ></img>
-                </Link>
-              </div>
-            </div>
+            <SlideWrap
+              count={count}
+              listTransition={listTransition}
+              handlePrevMove={handlePrevMove}
+              handleNextMove={handleNextMove}
+            />
+            <GridWrap
+              days={days}
+              hours={hours}
+              mins={mins}
+              secs={secs}
+              getMonth={this.state.date.getMonth()}
+              getDate={this.state.date.getDate()}
+              getDay={this.state.date.getDay()}
+            />
             <div className="recommendWrap">
               <div className="individ">
                 <dl>
@@ -227,10 +135,13 @@ class Main extends React.Component {
                     <div className="major">
                       <div class="row personProdCase2">나는</div>
                       <div className="row">
-                        <div className={this.state.toggleList}>
+                        <div
+                          className={'slideTaste ' + (isClassOn ? 'on' : '')}
+                        >
                           <button
+                            type="button"
                             className="slideHide"
-                            onclick={this.handeltoggleClick}
+                            onClick={handeltoggleClick}
                           >
                             <strong>매콤한맛</strong>
                             <img
@@ -270,8 +181,9 @@ class Main extends React.Component {
                     <span className="opacityLeft"></span>
                     <div className="miniSlideArrowWrap">
                       <button
+                        type="button"
                         className="slidePrev"
-                        onClick={this.handleTasteNextMove}
+                        onClick={() => this.handleNextMove(787, 2)}
                       >
                         <img alt="arrow" src="/images/Main/left-arrow.png" />
                       </button>
@@ -281,8 +193,9 @@ class Main extends React.Component {
                         </span>
                       </span>
                       <button
+                        type="button"
                         className="slideNext"
-                        onClick={this.handleTastePrevMove}
+                        onClick={() => this.handleNextMove(787, 2)}
                       >
                         <img alt="arrow" src="/images/Main/right-arrow.png" />
                       </button>
@@ -324,7 +237,7 @@ class Main extends React.Component {
                                       <span className="won">원</span>
                                     </p>
                                     <p className="servings">/ 3인분</p>
-                                    <button className="cartBtn">
+                                    <button type="button" className="cartBtn">
                                       <img
                                         alt="cart"
                                         src="/images/common/icon/basket.png"
@@ -356,7 +269,7 @@ class Main extends React.Component {
                                       <span className="won">원</span>
                                     </p>
                                     <p className="servings">/ 3인분</p>
-                                    <button className="cartBtn">
+                                    <button type="button" className="cartBtn">
                                       <img
                                         alt="cart"
                                         src="/images/common/icon/basket.png"
@@ -388,7 +301,7 @@ class Main extends React.Component {
                                       <span className="won">원</span>
                                     </p>
                                     <p className="servings">/ 3인분</p>
-                                    <button className="cartBtn">
+                                    <button type="button" className="cartBtn">
                                       <img
                                         alt="cart"
                                         src="/images/common/icon/basket.png"
@@ -435,7 +348,7 @@ class Main extends React.Component {
                                       <span className="won">원</span>
                                     </p>
                                     <p className="servings">/ 3인분</p>
-                                    <button className="cartBtn">
+                                    <button type="button" className="cartBtn">
                                       <img
                                         alt="cart"
                                         src="/images/common/icon/basket.png"
@@ -467,7 +380,7 @@ class Main extends React.Component {
                                       <span className="won">원</span>
                                     </p>
                                     <p className="servings">/ 3인분</p>
-                                    <button className="cartBtn">
+                                    <button type="button" className="cartBtn">
                                       <img
                                         alt="cart"
                                         src="/images/common/icon/basket.png"
@@ -499,7 +412,7 @@ class Main extends React.Component {
                                       <span className="won">원</span>
                                     </p>
                                     <p className="servings">/ 3인분</p>
-                                    <button className="cartBtn">
+                                    <button type="button" className="cartBtn">
                                       <img
                                         alt="cart"
                                         src="/images/common/icon/basket.png"
@@ -545,7 +458,7 @@ class Main extends React.Component {
                                       <span className="won">원</span>
                                     </p>
                                     <p className="servings">/ 3인분</p>
-                                    <button className="cartBtn">
+                                    <button type="button" className="cartBtn">
                                       <img
                                         alt="cart"
                                         src="/images/common/icon/basket.png"
@@ -577,7 +490,7 @@ class Main extends React.Component {
                                       <span className="won">원</span>
                                     </p>
                                     <p className="servings">/ 3인분</p>
-                                    <button className="cartBtn">
+                                    <button type="button" className="cartBtn">
                                       <img
                                         alt="cart"
                                         src="/images/common/icon/basket.png"
@@ -609,7 +522,7 @@ class Main extends React.Component {
                                       <span className="won">원</span>
                                     </p>
                                     <p className="servings">/ 3인분</p>
-                                    <button className="cartBtn">
+                                    <button type="button" className="cartBtn">
                                       <img
                                         alt="cart"
                                         src="/images/common/icon/basket.png"
@@ -655,7 +568,7 @@ class Main extends React.Component {
                                       <span className="won">원</span>
                                     </p>
                                     <p className="servings">/ 3인분</p>
-                                    <button className="cartBtn">
+                                    <button type="button" className="cartBtn">
                                       <img
                                         alt="cart"
                                         src="/images/common/icon/basket.png"
@@ -687,7 +600,7 @@ class Main extends React.Component {
                                       <span className="won">원</span>
                                     </p>
                                     <p className="servings">/ 3인분</p>
-                                    <button className="cartBtn">
+                                    <button type="button" className="cartBtn">
                                       <img
                                         alt="cart"
                                         src="/images/common/icon/basket.png"
@@ -719,7 +632,7 @@ class Main extends React.Component {
                                       <span className="won">원</span>
                                     </p>
                                     <p className="servings">/ 3인분</p>
-                                    <button className="cartBtn">
+                                    <button type="button" className="cartBtn">
                                       <img
                                         alt="cart"
                                         src="/images/common/icon/basket.png"
@@ -772,7 +685,7 @@ class Main extends React.Component {
                         </Link>
                       </div>
                       <div className="actBtnWrap">
-                        <button className="btnCart" />
+                        <button type="button" className="btnCart" />
                       </div>
                     </div>
                   </li>
@@ -803,7 +716,7 @@ class Main extends React.Component {
                         </Link>
                       </div>
                       <div className="actBtnWrap">
-                        <button className="btnCart" />
+                        <button type="button" className="btnCart" />
                       </div>
                     </div>
                   </li>
@@ -834,7 +747,7 @@ class Main extends React.Component {
                         </Link>
                       </div>
                       <div className="actBtnWrap">
-                        <button className="btnCart" />
+                        <button type="button" className="btnCart" />
                       </div>
                     </div>
                   </li>
@@ -865,7 +778,7 @@ class Main extends React.Component {
                         </Link>
                       </div>
                       <div className="actBtnWrap">
-                        <button className="btnCart" />
+                        <button type="button" className="btnCart" />
                       </div>
                     </div>
                   </li>
@@ -896,7 +809,7 @@ class Main extends React.Component {
                         </Link>
                       </div>
                       <div className="actBtnWrap">
-                        <button className="btnCart" />
+                        <button type="button" className="btnCart" />
                       </div>
                     </div>
                   </li>
@@ -927,7 +840,7 @@ class Main extends React.Component {
                         </Link>
                       </div>
                       <div className="actBtnWrap">
-                        <button className="btnCart" />
+                        <button type="button" className="btnCart" />
                       </div>
                     </div>
                   </li>
@@ -950,7 +863,7 @@ class Main extends React.Component {
               <div className="reviewMain">
                 <div className="listSlide">
                   <div className="reviewSlideArrowWrap">
-                    <button className="slidePrev">
+                    <button type="button" className="slidePrev">
                       <img alt="arrow" src="/images/Main/left-arrow.png" />
                     </button>
                     <span class="countWrap">
@@ -958,7 +871,7 @@ class Main extends React.Component {
                         <strong>1</strong>/4
                       </span>
                     </span>
-                    <button className="slideNext">
+                    <button type="button" className="slideNext">
                       <img alt="arrow" src="/images/Main/right-arrow.png" />
                     </button>
                   </div>

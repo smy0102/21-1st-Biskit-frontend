@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "head": "이벤트 오픈",
+    "titleFirst": "쇼핑 축제",
+    "titleSecond": "비스킷 스낵 페스타",
+    "subtitle": "매일매일 쓸쑤록 더 큰 혜택이 쏟아집니다.",
+    "img": "images/Main/banner.jpeg"
+  },
+  {
+    "id": "2",
+    "head": "웹매거진 오픈",
+    "titleFirst": "비스킷으로",
+    "titleSecond": "여행에 맛을 더하다.",
+    "subtitle": "웹매거진 '월간 비스킷 패밀리' Vol.6",
+    "img": "images/Main/banner2.jpeg"
+  },
+  {
+    "id": "3",
+    "head": "이벤트 오픈",
+    "titleFirst": "쇼핑 축제",
+    "titleSecond": "비스킷 스낵 페스타",
+    "subtitle": "매일매일 쓸쑤록 더 큰 혜택이 쏟아집니다.",
+    "img": "images/Main/banner.jpeg"
+  },
+  {
+    "id": "4",
+    "head": "웹매거진 오픈",
+    "titleFirst": "비스킷으로",
+    "titleSecond": "여행에 맛을 더하다.",
+    "subtitle": "웹매거진 '월간 비스킷 패밀리' Vol.6",
+    "img": "images/Main/banner2.jpeg"
+  },
+  {
+    "id": "5",
+    "head": "이벤트 오픈",
+    "titleFirst": "쇼핑 축제",
+    "titleSecond": "비스킷 스낵 페스타",
+    "subtitle": "매일매일 쓸쑤록 더 큰 혜택이 쏟아집니다.",
+    "img": "images/Main/banner.jpeg"
+  }
+]
