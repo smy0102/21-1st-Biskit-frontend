@@ -28,7 +28,7 @@ class GridWrap extends React.Component {
             <span className="linkTime link">
               <img alt="area" src="images/Main/clock.png"></img>
               <span>
-                {hours < 10 ? '0' + hours : hours}:
+                {hours < 10 ? '0' + hours : hours}
                 {mins < 10 ? '0' + mins : mins}:{secs < 10 ? '0' + secs : secs}
               </span>
               <span class="timeRemaining">남은시간</span>

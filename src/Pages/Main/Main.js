@@ -11,17 +11,25 @@ class Main extends React.Component {
     this.state = {
       listTransform: 0,
       listTasteTransform: 0,
+      listReviewTranfrom: 0,
       listTransition: '1s ease-in-out',
-      isClassOn: false,
+      isTasteClass: false,
       date: new Date(),
       fixDate,
       countDate: fixDate - new Date(),
+      recommendTaste: '매콤한맛',
     };
   }
 
-  handeltoggleClick = () => {
+  handelTasteToggleClick = () => {
     this.setState({
-      isClassOn: !this.state.isClassOn,
+      isTasteClass: !this.state.isTasteClass,
+    });
+  };
+
+  handelTasteToggleClick = () => {
+    this.setState({
+      isTasteClass: !this.state.isTasteClass,
     });
   };
 
@@ -53,7 +61,7 @@ class Main extends React.Component {
     }
   };
 
-  handleTastePrevMove = () => {
+  handleTasteNextMove = () => {
     if (this.state.listTasteTransform > -1574) {
       this.setState({
         listTasteTransform: this.state.listTasteTransform - 787,
@@ -67,7 +75,7 @@ class Main extends React.Component {
     }
   };
 
-  handleTasteNextMove = () => {
+  handleTastePrevMove = () => {
     if (this.state.listTasteTransform < 0) {
       this.setState({
         listTasteTransform: this.state.listTasteTransform + 787,
@@ -81,10 +89,33 @@ class Main extends React.Component {
     }
   };
 
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-    clearInterval(this.autoNext);
-  }
+  handleReveiwNextMove = () => {
+    if (this.state.listReviewTranfrom > -2160) {
+      this.setState({
+        listReviewTranfrom: this.state.listReviewTranfrom - 720,
+        listTransition: '1s ease-in-out',
+      });
+    } else {
+      this.setState({
+        listReviewTranfrom: 0,
+        listTransition: '0s',
+      });
+    }
+  };
+
+  handleReveiwPrevMove = () => {
+    if (this.state.listReviewTranfrom < 0) {
+      this.setState({
+        listReviewTranfrom: this.state.listReviewTranfrom + 720,
+        listTransition: '1s ease-in-out',
+      });
+    } else {
+      this.setState({
+        listReviewTranfrom: -2160,
+        listTransition: '0s',
+      });
+    }
+  };
 
   tick() {
     this.setState({
@@ -92,15 +123,28 @@ class Main extends React.Component {
     });
   }
 
+  handleClick = e => {
+    this.setState({
+      recommendTaste: e.target.innerText,
+      isTasteClass: !this.state.isTasteClass,
+    });
+  };
+
   componentDidMount() {
     this.timerID = setInterval(() => this.tick(), 1000);
     this.autoNext = setInterval(() => {
       this.handleNextMove();
     }, 4000);
   }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+    clearInterval(this.autoNext);
+  }
+
   render() {
-    const { listTransition, countDate, isClassOn } = this.state;
-    const { handlePrevMove, handleNextMove, handeltoggleClick } = this;
+    const { listTransition, countDate, isTasteClass } = this.state;
+    const { handlePrevMove, handleNextMove, handelTasteToggleClick } = this;
     const hours = Math.floor(countDate / (60 * 60 * 1000));
     const mins = Math.floor((countDate - hours * 60 * 60 * 1000) / (60 * 1000));
     const secs = Math.floor(
@@ -108,6 +152,7 @@ class Main extends React.Component {
     );
     const count = this.state.listTransform;
     const countTwo = this.state.listTasteTransform;
+    const countThree = this.state.listReviewTranfrom;
     const days = ['일', '월', '화', '수', '목', '금', '토'];
     return (
       <div>
@@ -136,33 +181,44 @@ class Main extends React.Component {
                       <div class="row personProdCase2">나는</div>
                       <div className="row">
                         <div
-                          className={'slideTaste ' + (isClassOn ? 'on' : '')}
+                          className={'slideTaste ' + (isTasteClass ? 'on' : '')}
                         >
                           <button
                             type="button"
                             className="slideHide"
-                            onClick={handeltoggleClick}
+                            onClick={handelTasteToggleClick}
                           >
-                            <strong>매콤한맛</strong>
+                            <strong>{this.state.recommendTaste}</strong>
                             <img
                               alt="arrow"
                               src="/images/Main/bold-arrow.png"
                             />
                           </button>
-                          {/* 클릭하면 slidetaste에 .on 클래스 추가 */}
                           <div className="slideLayout">
-                            <Link to="recom010" className="selected">
+                            <button
+                              className="selected"
+                              onClick={this.handleClick}
+                            >
                               <span>매콤한맛</span>
-                            </Link>
-                            <Link className="selected">
+                            </button>
+                            <button
+                              className="selected"
+                              onClick={this.handleClick}
+                            >
                               <span>짭짤한맛</span>
-                            </Link>
-                            <Link className="selected">
+                            </button>
+                            <button
+                              className="selected"
+                              onClick={this.handleClick}
+                            >
                               <span>새콤한맛</span>
-                            </Link>
-                            <Link className="selected">
+                            </button>
+                            <button
+                              className="selected"
+                              onClick={this.handleClick}
+                            >
                               <span>달달한맛</span>
-                            </Link>
+                            </button>
                           </div>
                         </div>
                         <span class="row personProdCase2">을</span>
@@ -183,27 +239,37 @@ class Main extends React.Component {
                       <button
                         type="button"
                         className="slidePrev"
-                        onClick={() => this.handleNextMove(787, 2)}
+                        onClick={this.handleTastePrevMove}
                       >
                         <img alt="arrow" src="/images/Main/left-arrow.png" />
                       </button>
                       <span class="countWrap">
                         <span classNme="num">
-                          <strong>1</strong>/2
+                          <strong>
+                            {countTwo === 0 ? 1 : Math.abs(countTwo / 787) + 1}
+                          </strong>
+                          /3
                         </span>
                       </span>
                       <button
                         type="button"
                         className="slideNext"
-                        onClick={() => this.handleNextMove(787, 2)}
+                        onClick={this.handleTasteNextMove}
                       >
                         <img alt="arrow" src="/images/Main/right-arrow.png" />
                       </button>
                     </div>
                   </dt>
                   <dd class="dd">
-                    {/* 맛별로나누기 */}
-                    <div id="recom010" class="listRecom">
+                    <div
+                      id="recom010"
+                      class="listRecom"
+                      style={
+                        this.state.recommendTaste === '매콤한맛'
+                          ? { display: 'block' }
+                          : { display: 'none' }
+                      }
+                    >
                       <div class="imgListSlide">
                         <div class="prodList">
                           <ul
@@ -213,8 +279,6 @@ class Main extends React.Component {
                               transition: `${this.state.listTransition}`,
                             }}
                           >
-                            {/* ul을 슬라이드 */}
-                            {/* 슬라이드 이미지 */}
                             <li class="slideCount">
                               <div className="proModule">
                                 <div className="imgWrap">
@@ -311,21 +375,28 @@ class Main extends React.Component {
                                 </div>
                               </div>
                             </li>
-                            {/* 슬라이드 이미지 */}
                           </ul>
                         </div>
                       </div>
                     </div>
-                    {/* 맛별로 나누기 */}
                     <div
                       id="recom020"
                       class="listRecom"
-                      style={{ display: 'none' }}
+                      style={
+                        this.state.recommendTaste === '짭짤한맛'
+                          ? { display: 'block' }
+                          : { display: 'none' }
+                      }
                     >
                       <div class="imgListSlide">
                         <div class="prodList">
-                          <ul class="prodCarousel">
-                            {/* 슬라이드 이미지 */}
+                          <ul
+                            class="prodCarousel"
+                            style={{
+                              transform: `translateX(${countTwo}px)`,
+                              transition: `${this.state.listTransition}`,
+                            }}
+                          >
                             <li class="slideCount">
                               <div className="proModule">
                                 <div className="imgWrap">
@@ -422,7 +493,6 @@ class Main extends React.Component {
                                 </div>
                               </div>
                             </li>
-                            {/* 슬라이드 이미지 */}
                           </ul>
                         </div>
                       </div>
@@ -430,12 +500,21 @@ class Main extends React.Component {
                     <div
                       id="recom030"
                       class="listRecom"
-                      style={{ display: 'none' }}
+                      style={
+                        this.state.recommendTaste === '새콤한맛'
+                          ? { display: 'block' }
+                          : { display: 'none' }
+                      }
                     >
                       <div class="imgListSlide">
                         <div class="prodList">
-                          <ul class="prodCarousel">
-                            {/* 슬라이드 이미지 */}
+                          <ul
+                            class="prodCarousel"
+                            style={{
+                              transform: `translateX(${countTwo}px)`,
+                              transition: `${this.state.listTransition}`,
+                            }}
+                          >
                             <li class="slideCount">
                               <div className="proModule">
                                 <div className="imgWrap">
@@ -532,7 +611,6 @@ class Main extends React.Component {
                                 </div>
                               </div>
                             </li>
-                            {/* 슬라이드 이미지 */}
                           </ul>
                         </div>
                       </div>
@@ -540,12 +618,21 @@ class Main extends React.Component {
                     <div
                       id="recom040"
                       class="listRecom"
-                      style={{ display: 'none' }}
+                      style={
+                        this.state.recommendTaste === '달달한맛'
+                          ? { display: 'block' }
+                          : { display: 'none' }
+                      }
                     >
                       <div class="imgListSlide">
                         <div class="prodList">
-                          <ul class="prodCarousel">
-                            {/* 슬라이드 이미지 */}
+                          <ul
+                            class="prodCarousel"
+                            style={{
+                              transform: `translateX(${countTwo}px)`,
+                              transition: `${this.state.listTransition}`,
+                            }}
+                          >
                             <li class="slideCount">
                               <div className="proModule">
                                 <div className="imgWrap">
@@ -642,7 +729,6 @@ class Main extends React.Component {
                                 </div>
                               </div>
                             </li>
-                            {/* 슬라이드 이미지 */}
                           </ul>
                         </div>
                       </div>
@@ -863,15 +949,28 @@ class Main extends React.Component {
               <div className="reviewMain">
                 <div className="listSlide">
                   <div className="reviewSlideArrowWrap">
-                    <button type="button" className="slidePrev">
+                    <button
+                      type="button"
+                      className="slidePrev"
+                      onClick={this.handleReveiwPrevMove}
+                    >
                       <img alt="arrow" src="/images/Main/left-arrow.png" />
                     </button>
                     <span class="countWrap">
                       <span classNme="num">
-                        <strong>1</strong>/4
+                        <strong>
+                          {countThree === 0
+                            ? 1
+                            : Math.abs(countThree / 720) + 1}
+                        </strong>
+                        /4
                       </span>
                     </span>
-                    <button type="button" className="slideNext">
+                    <button
+                      type="button"
+                      className="slideNext"
+                      onClick={this.handleReveiwNextMove}
+                    >
                       <img alt="arrow" src="/images/Main/right-arrow.png" />
                     </button>
                   </div>
@@ -883,7 +982,15 @@ class Main extends React.Component {
                         src="images/Main/quotes.png"
                       />
                       <ul>
-                        <li className="reviewCommentList on">
+                        <li
+                          className={
+                            (countThree === 0
+                              ? 1
+                              : Math.abs(countThree / 720) + 1) === 1
+                              ? 'reviewCommentList on'
+                              : 'reviewCommentList'
+                          }
+                        >
                           <div className="reviewMod">
                             <Link to="/">
                               <strong className="title">몽골리안비프</strong>
@@ -905,7 +1012,44 @@ class Main extends React.Component {
                             </Link>
                           </div>
                         </li>
-                        <li className="reviewCommentList">
+                        <li
+                          className={
+                            (countThree === 0
+                              ? 1
+                              : Math.abs(countThree / 720) + 1) === 2
+                              ? 'reviewCommentList on'
+                              : 'reviewCommentList'
+                          }
+                        >
+                          <div className="reviewMod">
+                            <Link to="/">
+                              <strong className="title">모둠해물찜</strong>
+                              <div className="txtWrap">
+                                <p className="comment">
+                                  바다향 한 입 가득~ 비스킷은 해물이 더 많네요^^
+                                  해물이 많아 놀라고 맛에 또 놀랐어요
+                                </p>
+                              </div>
+                              <div className="ratingWrap">
+                                <span className="ratingStar">
+                                  <span className="star">
+                                    <span>★&nbsp;★&nbsp;★&nbsp;★&nbsp;★</span>
+                                  </span>
+                                </span>
+                              </div>
+                              <span className="id">by. ekf******</span>
+                            </Link>
+                          </div>
+                        </li>
+                        <li
+                          className={
+                            (countThree === 0
+                              ? 1
+                              : Math.abs(countThree / 720) + 1) === 3
+                              ? 'reviewCommentList on'
+                              : 'reviewCommentList'
+                          }
+                        >
                           <div className="reviewMod">
                             <Link to="/">
                               <strong className="title">몽골리안비프</strong>
@@ -927,37 +1071,22 @@ class Main extends React.Component {
                             </Link>
                           </div>
                         </li>
-                        <li className="reviewCommentList">
+                        <li
+                          className={
+                            (countThree === 0
+                              ? 1
+                              : Math.abs(countThree / 720) + 1) === 4
+                              ? 'reviewCommentList on'
+                              : 'reviewCommentList'
+                          }
+                        >
                           <div className="reviewMod">
                             <Link to="/">
-                              <strong className="title">몽골리안비프</strong>
+                              <strong className="title">모듬해물찜</strong>
                               <div className="txtWrap">
                                 <p className="comment">
-                                  짭쪼룸한 맛과 꽈리고추의 살짝 매운맛이 너무
-                                  매력적인 요리입니다. 대접용요리로도 손색이
-                                  없어요
-                                </p>
-                              </div>
-                              <div className="ratingWrap">
-                                <span className="ratingStar">
-                                  <span className="star">
-                                    <span>★&nbsp;★&nbsp;★&nbsp;★&nbsp;★</span>
-                                  </span>
-                                </span>
-                              </div>
-                              <span className="id">by. ekf******</span>
-                            </Link>
-                          </div>
-                        </li>
-                        <li className="reviewCommentList">
-                          <div className="reviewMod">
-                            <Link to="/">
-                              <strong className="title">몽골리안비프</strong>
-                              <div className="txtWrap">
-                                <p className="comment">
-                                  짭쪼룸한 맛과 꽈리고추의 살짝 매운맛이 너무
-                                  매력적인 요리입니다. 대접용요리로도 손색이
-                                  없어요
+                                  바다향 한 입 가득~ 비스킷은 해물이 더 많네요^^
+                                  해물이 많아 놀라고 맛에 또 놀랐어요
                                 </p>
                               </div>
                               <div className="ratingWrap">
@@ -974,7 +1103,13 @@ class Main extends React.Component {
                       </ul>
                     </div>
                     <div className="reviewList">
-                      <ul className="prodCarousel">
+                      <ul
+                        className="prodCarousel"
+                        style={{
+                          transform: `translateX(${countThree}px)`,
+                          transition: `${this.state.listTransition}`,
+                        }}
+                      >
                         <li className="slideCount">
                           <div className="reviewMod">
                             <div className="imgWrap">
@@ -1019,28 +1154,60 @@ class Main extends React.Component {
                     </div>
                     <div className="reviewMajorImg">
                       <ul>
-                        <li className="majorImgList on">
+                        <li
+                          className={
+                            (countThree === 0
+                              ? 1
+                              : Math.abs(countThree / 720) + 1) === 1
+                              ? 'majorImgList on'
+                              : 'majorImgList'
+                          }
+                        >
                           <div className="reviewMod">
                             <div className="imgMajor">
                               <img alt="food" src="/images/Main/food4.png" />
                             </div>
                           </div>
                         </li>
-                        <li className="majorImgList">
+                        <li
+                          className={
+                            (countThree === 0
+                              ? 1
+                              : Math.abs(countThree / 720) + 1) === 2
+                              ? 'majorImgList on'
+                              : 'majorImgList'
+                          }
+                        >
                           <div className="reviewMod">
                             <div className="imgMajor">
                               <img alt="food" src="/images/Main/food4.png" />
                             </div>
                           </div>
                         </li>
-                        <li className="majorImgList">
+                        <li
+                          className={
+                            (countThree === 0
+                              ? 1
+                              : Math.abs(countThree / 720) + 1) === 3
+                              ? 'majorImgList on'
+                              : 'majorImgList'
+                          }
+                        >
                           <div className="reviewMod">
                             <div className="imgMajor">
                               <img alt="food" src="/images/Main/food4.png" />
                             </div>
                           </div>
                         </li>
-                        <li className="majorImgList">
+                        <li
+                          className={
+                            (countThree === 0
+                              ? 1
+                              : Math.abs(countThree / 720) + 1) === 4
+                              ? 'majorImgList on'
+                              : 'majorImgList'
+                          }
+                        >
                           <div className="reviewMod">
                             <div className="imgMajor">
                               <img alt="food" src="/images/Main/food4.png" />

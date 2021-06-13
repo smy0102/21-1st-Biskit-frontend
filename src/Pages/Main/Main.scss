@@ -109,7 +109,7 @@
               background: #fff;
               z-index: 1;
 
-              a {
+              button {
                 display: block;
                 width: 100%;
                 height: 54px;
@@ -213,7 +213,6 @@
           .prodCarousel {
             opacity: 1;
             width: 25000px;
-            // transform: translateX(-787px);
 
             .slideCount {
               float: left;
@@ -516,6 +515,8 @@
               width: 100%;
               height: 259px;
               opacity: 0;
+              transition: 1s opacity ease;
+              transition-delay: 0.1s;
 
               &.on {
                 opacity: 1;
@@ -582,7 +583,6 @@
             .prodCarousel {
               opacity: 1;
               width: 25000px;
-              // transform: ;
 
               .slideCount {
                 float: left;
@@ -615,6 +615,8 @@
               height: 340px;
               opacity: 0;
               transform: translate(100px, 0px);
+              transition: 1s all ease-in;
+              transition-delay: 0.2s;
 
               &.on {
                 opacity: 1;
