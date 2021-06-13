@@ -19,7 +19,7 @@ class SlideWrap extends React.Component {
       });
   }
   render() {
-    const { count, listTransition, handlePrevMove, handleNextMove } =
+    const { listTransform, listTransition, handlePrevMove, handleNextMove } =
       this.props;
     return (
       <div className="SlideWrap">
@@ -27,7 +27,7 @@ class SlideWrap extends React.Component {
           <div
             className="slideList"
             style={{
-              transform: `translateX(${count}px)`,
+              transform: `translateX(${listTransform}px)`,
               transition: `${listTransition}`,
             }}
           >
@@ -64,7 +64,7 @@ class SlideWrap extends React.Component {
           <div className="controlBox">
             <span className="num">
               <strong className="uiPageNum">
-                {count === 0 ? 1 : Math.abs(count / 1920) + 1}
+                {listTransform === 0 ? 1 : Math.abs(listTransform / 1920) + 1}
               </strong>
               <span className="dash">/</span>5
             </span>
