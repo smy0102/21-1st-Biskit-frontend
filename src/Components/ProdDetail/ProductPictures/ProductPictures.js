@@ -11,14 +11,13 @@ class ProductPictures extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/data/ProdDetail/picturesData.json', {
-      method: 'GET',
-    })
+    fetch('/data/ProdDetail/prodDetailData.json')
       .then(res => res.json())
       .then(data => {
+        const pictureArr = data.result.detail_image;
         this.setState({
-          pictureList: data,
-          mainPictureSrc: data[0].url,
+          pictureList: pictureArr,
+          mainPictureSrc: pictureArr[0],
         });
       });
   }
@@ -30,21 +29,20 @@ class ProductPictures extends Component {
   };
 
   render() {
+    const { mainPictureSrc, pictureList } = this.state;
     return (
       <div className="ProductPictures">
         <div className="mainPic">
-          <img alt="product" src={this.state.mainPictureSrc} />
+          <img alt="product" src={mainPictureSrc} />
         </div>
         <div className="smallPic">
-          {this.state.pictureList.map(picture => {
+          {pictureList.map(picture => {
             return (
               <img
-                className={
-                  this.state.mainPictureSrc === picture.url && 'picturefocusOn'
-                }
+                className={mainPictureSrc === picture && 'picturefocusOn'}
                 alt="product"
-                key={picture.id}
-                src={picture.url}
+                key={picture.index}
+                src={picture}
                 onClick={this.changePicture}
               />
             );

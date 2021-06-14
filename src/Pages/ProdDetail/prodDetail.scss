@@ -1,10 +1,5 @@
 @import '/src/Styles/variables.scss';
-
-@mixin headInfoSet($padding: 20px) {
-  display: flex;
-  padding: $padding 0;
-  font-size: 14px;
-}
+@import '../../Styles/ProdDetail/mixin';
 
 .DetailHead {
   display: flex;
@@ -48,7 +43,6 @@
 
           img {
             width: 22px;
-            height: 22px;
             margin-right: 5px;
             opacity: 0.7;
           }
@@ -202,19 +196,28 @@
       padding: 20px 0;
       border-top: 2px solid $basicBlack;
 
-      select {
-        width: 500px;
-        height: 50px;
-        padding: 5px;
-        border: $grayBorder;
-        color: $basicDarkgray;
-        font-size: 16px;
-      }
-
       .headCartInformation {
         border-right: $grayBorder;
         border-left: $grayBorder;
       }
     }
+  }
+}
+
+.detailContents {
+  display: flex;
+  justify-content: center;
+
+  .sideCart {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 9vh;
+    width: 320px;
+    height: 91vh;
+    padding: 20px 0;
+    margin-left: 76px;
+    border: $grayBorder;
+    border-top: none;
   }
 }

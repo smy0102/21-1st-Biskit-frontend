@@ -1,0 +1,58 @@
+{
+    "result": [
+        {
+            "user": "vel", 
+            "review_image": "Perspiciatis voluptates est quaerat.", 
+            "content": "Iure esse molestiae corporis laudantium blanditiis voluptas.Iure esse molestiae corporis laudantium blanditiis voluptas.Iure esse molestiae corporis laudantium blanditiis voluptas.Iure esse molestiae corporis laudantium blanditiis voluptas.Iure esse molestiae corporis laudantium blanditiis voluptas.Iure esse molestiae corporis laudantium blanditiis voluptas.Iure esse molestiae corporis laudantium blanditiis voluptas.Iure esse molestiae corporis laudantium blanditiis voluptas.Iure esse molestiae corporis laudantium blanditiis voluptas.Iure esse molestiae corporis laudantium blanditiis voluptas.Iure esse molestiae corporis laudantium blanditiis voluptas.", 
+            "created_at": "2021-06-09T16:00:24.699", 
+            "star_rating": "6.0"
+        }, 
+        {
+            "user": "tempora", 
+            "review_image": "Laudantium inventore velit corrupti.", 
+            "content": "Aperiam itaque sit dicta.", 
+            "created_at": "2021-06-09T16:00:26.415", 
+            "star_rating": "4.0"
+        }, 
+        {
+            "user": "minima", 
+            "review_image": "Exercitationem veritatis quasi corporis consequatur nisi sit id.", 
+            "content": "Maxime architecto odit quisquam commodi.", 
+            "created_at": "2021-06-09T16:00:36.550", 
+            "star_rating": "1.0"
+        }, 
+        {
+            "user": "v3234el", 
+            "review_image": "Perspiciatis voluptates est quaerat.", 
+            "content": "Iure esse molestiae corporis laudantium blanditiis voluptas.", 
+            "created_at": "2021-06-09T16:00:24.699", 
+            "star_rating": "6.0"
+        }, 
+        {
+            "user": "tempora", 
+            "review_image": "Laudantium inventore velit corrupti.", "content": "Aperiam itaque sit dicta.", "created_at": "2021-06-09T16:00:26.415", "star_rating": "4.0"}, {"user": "minima", "review_image": "Exercitationem veritatis quasi corporis consequatur nisi sit id.", "content": "Maxime architecto odit quisquam commodi.", 
+            "created_at": "2021-06-09T16:00:36.550", 
+            "star_rating": "1.0"
+        },
+        {
+            "user": "v5522el", 
+            "review_image": "Perspiciatis voluptates est quaerat.", 
+            "content": "Iure esse molestiae corporis laudantium blanditiis voluptas.", 
+            "created_at": "2021-06-09T16:00:24.699", 
+            "star_rating": "6.0"
+        }, 
+        {
+            "user": "tempora", 
+            "review_image": "Laudantium inventore velit corrupti.", "content": "Aperiam itaque sit dicta.", "created_at": "2021-06-09T16:00:26.415", "star_rating": "4.0"}, {"user": "minima", "review_image": "Exercitationem veritatis quasi corporis consequatur nisi sit id.", "content": "Maxime architecto odit quisquam commodi.", 
+            "created_at": "2021-06-09T16:00:36.550", 
+            "star_rating": "1.0"
+        }
+    ],
+
+    "detail_rate" : [
+        {
+            "star": "3.666666666666666666666666667", 
+            "count": 3
+        }
+    ]
+} 

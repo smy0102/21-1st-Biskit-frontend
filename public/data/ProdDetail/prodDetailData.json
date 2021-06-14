@@ -1,0 +1,53 @@
+{
+    "result": {
+        "title": "*애호박 돼지고기짜글이", 
+        "sub_title": "도톰한 돼지목살과 큼직한 채소", 
+        "price": "28000.00", 
+        "gram": "150.0", 
+        "calorie": "4227.0", 
+        "detail_image": [
+            "https://img.cjcookit.com/images/file/product/544/20210521113810365.jpg?RS=600x600", 
+            "https://img.cjcookit.com/images/file/product/265/20210521113821355.jpg?RS=600x600",
+            "https://img.cjcookit.com/images/file/product/918/20210521114745796.jpg?RS=600x600",
+            "https://img.cjcookit.com/images/file/product/426/20210521114752583.jpg?RS=600x600",
+            "https://img.cjcookit.com/images/file/product/867/20210521114759550.jpg?RS=600x600"
+        ], 
+        "taste": ["매운맛"]
+    }, 
+
+    "description_info": {
+            "detail": "https://www.cjcookit.com/cjkit/design/detail/0039/0039_pc_detail_01.jpg", 
+            "information": "https://www.cjcookit.com/cjkit/design/detail/0037/0037_pc_detail_01.jpg", 
+            "delivery": "et", 
+            "refund": "molestiae"
+    }, 
+
+    "review_detail": [
+        {
+            "user": "mysshin", 
+            "review_image": "Perspiciatis voluptates est quaerat.", 
+            "content": "Iure esse molestiae corporis laudantium blanditiis voluptas.", 
+            "created_at": "2021-06-09T16:00:24.699", 
+            "star_rating": "6.0"
+        }, 
+        {
+            "user": "tempora", 
+            "review_image": "Laudantium inventore velit corrupti.", 
+            "content": "Aperiam itaque sit dicta.", 
+            "created_at": "2021-06-09T16:00:26.415", 
+            "star_rating": "4.0"
+        }, 
+        {
+            "user": "minima", 
+            "review_image": "Exercitationem veritatis quasi corporis consequatur nisi sit id.", 
+            "content": "Maxime architecto odit quisquam commodi.", 
+            "created_at": "2021-06-09T16:00:36.550", 
+            "star_rating": "1.0"
+        }
+    ], 
+    
+    "detail_rate": {
+        "star": "3.666666666666666666666666667", 
+        "count": 3
+    }
+}
