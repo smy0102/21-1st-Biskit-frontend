@@ -1,0 +1,64 @@
+{
+  "result": [
+    {
+      "id": 1,
+      "title": "하노이식 분짜",
+      "sub_title": "adipisci",
+      "price": "25,800",
+      "calorie": "61.0",
+      "gram": "36.0",
+      "taste": ["짠맛"],
+      "images": "images/Main/food1.jpeg"
+    },
+    {
+      "id": 2,
+      "title": "nesciunt",
+      "sub_title": "dolorem",
+      "price": "69.00",
+      "calorie": "82.0",
+      "gram": "54.0",
+      "taste": ["단맛"],
+      "images": "images/Main/food1.jpeg"
+    },
+    {
+      "id": 3,
+      "title": "omnis",
+      "sub_title": "adipisci",
+      "price": "44.00",
+      "calorie": "61.0",
+      "gram": "36.0",
+      "taste": ["짠맛"],
+      "images": "images/Main/food1.jpeg"
+    },
+    {
+      "id": 4,
+      "title": "omnis",
+      "sub_title": "adipisci",
+      "price": "44.00",
+      "calorie": "61.0",
+      "gram": "36.0",
+      "taste": ["짠맛"],
+      "images": "images/Main/food1.jpeg"
+    },
+    {
+      "id": 5,
+      "title": "omnis",
+      "sub_title": "adipisci",
+      "price": "44.00",
+      "calorie": "61.0",
+      "gram": "36.0",
+      "taste": ["짠맛"],
+      "images": "images/Main/food1.jpeg"
+    },
+    {
+      "id": 6,
+      "title": "omnis",
+      "sub_title": "adipisci",
+      "price": "44.00",
+      "calorie": "61.0",
+      "gram": "36.0",
+      "taste": ["짠맛"],
+      "images": "images/Main/food1.jpeg"
+    }
+  ]
+}

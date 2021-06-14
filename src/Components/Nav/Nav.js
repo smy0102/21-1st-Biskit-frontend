@@ -1,8 +1,8 @@
 import React from 'react';
-import './Nav.scss';
 import { Link } from 'react-router-dom';
 import { LIST } from './NavConst/ListMenu';
 import { GNB } from './NavConst/GnbMenu';
+import './Nav.scss';
 
 class Nav extends React.Component {
   render() {

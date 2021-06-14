@@ -2,15 +2,16 @@ import React from 'react';
 
 class SlideList extends React.Component {
   render() {
+    const { id, img, head, titleFirst, titleSecond, subtitle } = this.props;
     return (
-      <div className="slideContent" key={this.props.id}>
-        <img alt="banner" src={this.props.img} />
+      <div className="slideContent" key={id}>
+        <img alt="banner" src={img} />
         <div className="bannerContent">
-          <div className="bannerHead">{this.props.head}</div>
+          <div className="bannerHead">{head}</div>
           <div className="bannerTitle">
-            {this.props.titleFirst} <p>{this.props.titleSecond}</p>
+            {titleFirst} <p>{titleSecond}</p>
           </div>
-          <div className="bannerSubTitle">{this.props.subtitle}</div>
+          <div className="bannerSubTitle">{subtitle}</div>
         </div>
       </div>
     );

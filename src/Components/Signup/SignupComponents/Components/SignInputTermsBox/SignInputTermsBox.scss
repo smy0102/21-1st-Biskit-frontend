@@ -1,0 +1,54 @@
+.SignInputTerms {
+  h3 {
+    margin-top: 80px;
+    font-size: 25px;
+  }
+
+  .signInputTermsAllBox {
+    margin: 20px 0;
+    padding: 20px;
+    background: #fafafa;
+    color: #404040;
+    border: 1px solid #e8e8e8;
+
+    input {
+      margin-right: 5px;
+      cursor: pointer;
+    }
+  }
+
+  .signInputTermsBox {
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    color: #747474;
+    margin-bottom: 20px;
+
+    h3 {
+      margin: 0 0 15px;
+      color: #353535;
+      font-size: 18px;
+    }
+
+    .content {
+      height: 110px;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #d5d5d5;
+      overflow: auto;
+    }
+
+    .check {
+      padding: 20px 0 5px 0;
+      color: #000;
+      font-size: 15px;
+
+      input {
+        width: 16px;
+        height: 16px;
+        margin: -4px 5px 0;
+        vertical-align: middle;
+      }
+    }
+  }
+}

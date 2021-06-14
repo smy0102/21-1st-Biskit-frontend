@@ -1,8 +1,25 @@
 import React from 'react';
-import './RecommendWrap.scss';
 import { Link } from 'react-router-dom';
+import RecommendSlideCount from './RecommendSlideCount';
+import { TASTE } from './RecommendWrapConst/GnbMenu';
+import './RecommendWrap.scss';
 
 class RecommendWrap extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      recommendList: [],
+    };
+  }
+  componentDidMount() {
+    fetch('/data/Main/RecommendWrap/RecommendWrap.json')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          recommendList: data,
+        });
+      });
+  }
   render() {
     const {
       isTasteClass,
@@ -14,13 +31,14 @@ class RecommendWrap extends React.Component {
       listTransition,
       listTasteTransform,
     } = this.props;
+    const { recommendList } = this.state;
     return (
       <div className="RecommendWrap">
         <div className="individ">
           <dl>
             <dt className="dt">
               <div className="major">
-                <div class="row personProdCase2">나는</div>
+                <div class="row">나는</div>
                 <div className="row">
                   <div className={'slideTaste ' + (isTasteClass ? 'on' : '')}>
                     <button
@@ -32,25 +50,24 @@ class RecommendWrap extends React.Component {
                       <img alt="arrow" src="/images/Main/bold-arrow.png" />
                     </button>
                     <div className="slideLayout">
-                      <button className="selected" onClick={handleClick}>
-                        <span>매콤한맛</span>
-                      </button>
-                      <button className="selected" onClick={handleClick}>
-                        <span>짭짤한맛</span>
-                      </button>
-                      <button className="selected" onClick={handleClick}>
-                        <span>새콤한맛</span>
-                      </button>
-                      <button className="selected" onClick={handleClick}>
-                        <span>달달한맛</span>
-                      </button>
+                      {TASTE.map(el => {
+                        return (
+                          <button
+                            className="selected"
+                            onClick={handleClick}
+                            key={el.id}
+                          >
+                            <span>{el.content}</span>
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
-                  <span class="row personProdCase2">을</span>
+                  <span class="row">을</span>
                 </div>
-                <div className="row personProdCase2">좋아합니다.</div>
+                <div className="row">좋아합니다.</div>
               </div>
-              <p className="desc personProdCase2">
+              <p className="desc">
                 <span className="name">고객님</span>의 구매 내역과&nbsp;
                 <Link to="/" class="linkTxtGreen">
                   맛취향
@@ -71,11 +88,12 @@ class RecommendWrap extends React.Component {
                 <span class="countWrap">
                   <span classNme="num">
                     <strong>
-                      {listTasteTransform === 0
+                      {Math.abs(listTasteTransform / 787) ===
+                      recommendList.result?.length + 1
                         ? 1
-                        : Math.abs(listTasteTransform / 787) + 1}
+                        : Math.abs(listTasteTransform / 787)}
                     </strong>
-                    /3
+                    /{recommendList.result?.length}
                   </span>
                 </span>
                 <button
@@ -88,442 +106,146 @@ class RecommendWrap extends React.Component {
               </div>
             </dt>
             <dd class="dd">
-              <div
-                id="recom010"
-                class="listRecom"
-                style={
-                  recommendTaste === '매콤한맛'
-                    ? { display: 'block' }
-                    : { display: 'none' }
-                }
-              >
-                <div class="imgListSlide">
-                  <div class="prodList">
-                    <ul
-                      class="prodCarousel"
-                      style={{
-                        transform: `translateX(${listTasteTransform}px)`,
-                        transition: `${listTransition}`,
-                      }}
-                    >
-                      <li class="slideCount">
-                        <div className="proModule">
-                          <div className="imgWrap">
-                            <Link to="/" class="count">
-                              <img alt="상품" src="images/Main/food2.png" />
-                            </Link>
-                          </div>
-                          <div className="txtWrap">
-                            <Link to="/" class="count">
-                              <div className="titleInfo">
-                                <span class="title">눈꽃치즈닭갈비</span>
+              {TASTE.map(el => {
+                return (
+                  <div
+                    class="listRecom"
+                    style={
+                      recommendTaste === el.content
+                        ? { display: 'block' }
+                        : { display: 'none' }
+                    }
+                  >
+                    <div class="imgListSlide">
+                      <div class="prodList">
+                        <ul
+                          class="prodCarousel"
+                          style={{
+                            transform: `translateX(${listTasteTransform}px)`,
+                            transition: `${listTransition}`,
+                          }}
+                        >
+                          <li
+                            class="slideCount"
+                            key={
+                              recommendList.result?.[
+                                recommendList.result?.length - 1
+                              ].id
+                            }
+                          >
+                            <div className="proModule">
+                              <div className="imgWrap">
+                                <Link to="/" class="count">
+                                  <img
+                                    alt="상품"
+                                    src={
+                                      recommendList.result?.[
+                                        recommendList.result?.length - 1
+                                      ].images
+                                    }
+                                  />
+                                </Link>
                               </div>
-                            </Link>
-                            <div className="priceInfo">
-                              <p className="sale">
-                                <span className="price">25,101</span>
-                                <span className="won">원</span>
-                              </p>
-                              <p className="servings">/ 3인분</p>
-                              <button type="button" className="cartBtn">
-                                <img
-                                  alt="cart"
-                                  src="/images/common/icon/basket.png"
-                                />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="slideCount">
-                        <div className="proModule">
-                          <div className="imgWrap">
-                            <Link to="/" class="count">
-                              <img alt="상품" src="images/Main/food2.png" />
-                            </Link>
-                          </div>
-                          <div className="txtWrap">
-                            <Link to="/" class="count">
-                              <div className="titleInfo">
-                                <span class="title">눈꽃치즈닭갈비</span>
+                              <div className="txtWrap">
+                                <Link to="/" class="count">
+                                  <div className="titleInfo">
+                                    <span class="title">
+                                      {
+                                        recommendList.result?.[
+                                          recommendList.result?.length - 1
+                                        ].title
+                                      }
+                                    </span>
+                                  </div>
+                                </Link>
+                                <div className="priceInfo">
+                                  <p className="sale">
+                                    <span className="price">
+                                      {
+                                        recommendList.result?.[
+                                          recommendList.result?.length - 1
+                                        ].price
+                                      }
+                                    </span>
+                                    <span className="won">원</span>
+                                  </p>
+                                  <p className="servings">
+                                    /
+                                    {
+                                      recommendList.result?.[
+                                        recommendList.result?.length - 1
+                                      ].gram
+                                    }
+                                    g
+                                  </p>
+                                  <button type="button" className="cartBtn">
+                                    <img
+                                      alt="cart"
+                                      src="/images/common/icon/basket.png"
+                                    />
+                                  </button>
+                                </div>
                               </div>
-                            </Link>
-                            <div className="priceInfo">
-                              <p className="sale">
-                                <span className="price">25,102</span>
-                                <span className="won">원</span>
-                              </p>
-                              <p className="servings">/ 3인분</p>
-                              <button type="button" className="cartBtn">
-                                <img
-                                  alt="cart"
-                                  src="/images/common/icon/basket.png"
-                                />
-                              </button>
                             </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="slideCount">
-                        <div className="proModule">
-                          <div className="imgWrap">
-                            <Link to="/" class="count">
-                              <img alt="상품" src="images/Main/food2.png" />
-                            </Link>
-                          </div>
-                          <div className="txtWrap">
-                            <Link to="/" class="count">
-                              <div className="titleInfo">
-                                <span class="title">눈꽃치즈닭갈비</span>
+                          </li>
+                          {recommendList.result?.map(ele => {
+                            return (
+                              <RecommendSlideCount
+                                key={ele.id}
+                                title={ele.title}
+                                price={ele.price}
+                                gram={ele.gram}
+                                images={ele.images}
+                              />
+                            );
+                          })}
+                          <li
+                            class="slideCount"
+                            key={recommendList.result?.[0].id}
+                          >
+                            <div className="proModule">
+                              <div className="imgWrap">
+                                <Link to="/" class="count">
+                                  <img
+                                    alt="상품"
+                                    src={recommendList.result?.[0].images}
+                                  />
+                                </Link>
                               </div>
-                            </Link>
-                            <div className="priceInfo">
-                              <p className="sale">
-                                <span className="price">25,103</span>
-                                <span className="won">원</span>
-                              </p>
-                              <p className="servings">/ 3인분</p>
-                              <button type="button" className="cartBtn">
-                                <img
-                                  alt="cart"
-                                  src="/images/common/icon/basket.png"
-                                />
-                              </button>
+                              <div className="txtWrap">
+                                <Link to="/" class="count">
+                                  <div className="titleInfo">
+                                    <span class="title">
+                                      {recommendList.result?.[0].title}
+                                    </span>
+                                  </div>
+                                </Link>
+                                <div className="priceInfo">
+                                  <p className="sale">
+                                    <span className="price">
+                                      {recommendList.result?.[0].price}
+                                    </span>
+                                    <span className="won">원</span>
+                                  </p>
+                                  <p className="servings">
+                                    / {recommendList.result?.[0].gram}g
+                                  </p>
+                                  <button type="button" className="cartBtn">
+                                    <img
+                                      alt="cart"
+                                      src="/images/common/icon/basket.png"
+                                    />
+                                  </button>
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div
-                id="recom020"
-                class="listRecom"
-                style={
-                  recommendTaste === '짭짤한맛'
-                    ? { display: 'block' }
-                    : { display: 'none' }
-                }
-              >
-                <div class="imgListSlide">
-                  <div class="prodList">
-                    <ul
-                      class="prodCarousel"
-                      style={{
-                        transform: `translateX(${listTasteTransform}px)`,
-                        transition: `${listTransition}`,
-                      }}
-                    >
-                      <li class="slideCount">
-                        <div className="proModule">
-                          <div className="imgWrap">
-                            <Link to="/" class="count">
-                              <img alt="상품" src="images/Main/food2.png" />
-                            </Link>
-                          </div>
-                          <div className="txtWrap">
-                            <Link to="/" class="count">
-                              <div className="titleInfo">
-                                <span class="title">눈꽃치즈닭갈비</span>
-                              </div>
-                            </Link>
-                            <div className="priceInfo">
-                              <p className="sale">
-                                <span className="price">25,201</span>
-                                <span className="won">원</span>
-                              </p>
-                              <p className="servings">/ 3인분</p>
-                              <button type="button" className="cartBtn">
-                                <img
-                                  alt="cart"
-                                  src="/images/common/icon/basket.png"
-                                />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="slideCount">
-                        <div className="proModule">
-                          <div className="imgWrap">
-                            <Link to="/" class="count">
-                              <img alt="상품" src="images/Main/food2.png" />
-                            </Link>
-                          </div>
-                          <div className="txtWrap">
-                            <Link to="/" class="count">
-                              <div className="titleInfo">
-                                <span class="title">눈꽃치즈닭갈비</span>
-                              </div>
-                            </Link>
-                            <div className="priceInfo">
-                              <p className="sale">
-                                <span className="price">25,202</span>
-                                <span className="won">원</span>
-                              </p>
-                              <p className="servings">/ 3인분</p>
-                              <button type="button" className="cartBtn">
-                                <img
-                                  alt="cart"
-                                  src="/images/common/icon/basket.png"
-                                />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="slideCount">
-                        <div className="proModule">
-                          <div className="imgWrap">
-                            <Link to="/" class="count">
-                              <img alt="상품" src="images/Main/food2.png" />
-                            </Link>
-                          </div>
-                          <div className="txtWrap">
-                            <Link to="/" class="count">
-                              <div className="titleInfo">
-                                <span class="title">눈꽃치즈닭갈비</span>
-                              </div>
-                            </Link>
-                            <div className="priceInfo">
-                              <p className="sale">
-                                <span className="price">25,203</span>
-                                <span className="won">원</span>
-                              </p>
-                              <p className="servings">/ 3인분</p>
-                              <button type="button" className="cartBtn">
-                                <img
-                                  alt="cart"
-                                  src="/images/common/icon/basket.png"
-                                />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div
-                id="recom030"
-                class="listRecom"
-                style={
-                  recommendTaste === '새콤한맛'
-                    ? { display: 'block' }
-                    : { display: 'none' }
-                }
-              >
-                <div class="imgListSlide">
-                  <div class="prodList">
-                    <ul
-                      class="prodCarousel"
-                      style={{
-                        transform: `translateX(${listTasteTransform}px)`,
-                        transition: `${listTransition}`,
-                      }}
-                    >
-                      <li class="slideCount">
-                        <div className="proModule">
-                          <div className="imgWrap">
-                            <Link to="/" class="count">
-                              <img alt="상품" src="images/Main/food2.png" />
-                            </Link>
-                          </div>
-                          <div className="txtWrap">
-                            <Link to="/" class="count">
-                              <div className="titleInfo">
-                                <span class="title">눈꽃치즈닭갈비</span>
-                              </div>
-                            </Link>
-                            <div className="priceInfo">
-                              <p className="sale">
-                                <span className="price">25,301</span>
-                                <span className="won">원</span>
-                              </p>
-                              <p className="servings">/ 3인분</p>
-                              <button type="button" className="cartBtn">
-                                <img
-                                  alt="cart"
-                                  src="/images/common/icon/basket.png"
-                                />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="slideCount">
-                        <div className="proModule">
-                          <div className="imgWrap">
-                            <Link to="/" class="count">
-                              <img alt="상품" src="images/Main/food2.png" />
-                            </Link>
-                          </div>
-                          <div className="txtWrap">
-                            <Link to="/" class="count">
-                              <div className="titleInfo">
-                                <span class="title">눈꽃치즈닭갈비</span>
-                              </div>
-                            </Link>
-                            <div className="priceInfo">
-                              <p className="sale">
-                                <span className="price">25,302</span>
-                                <span className="won">원</span>
-                              </p>
-                              <p className="servings">/ 3인분</p>
-                              <button type="button" className="cartBtn">
-                                <img
-                                  alt="cart"
-                                  src="/images/common/icon/basket.png"
-                                />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="slideCount">
-                        <div className="proModule">
-                          <div className="imgWrap">
-                            <Link to="/" class="count">
-                              <img alt="상품" src="images/Main/food2.png" />
-                            </Link>
-                          </div>
-                          <div className="txtWrap">
-                            <Link to="/" class="count">
-                              <div className="titleInfo">
-                                <span class="title">눈꽃치즈닭갈비</span>
-                              </div>
-                            </Link>
-                            <div className="priceInfo">
-                              <p className="sale">
-                                <span className="price">25,303</span>
-                                <span className="won">원</span>
-                              </p>
-                              <p className="servings">/ 3인분</p>
-                              <button type="button" className="cartBtn">
-                                <img
-                                  alt="cart"
-                                  src="/images/common/icon/basket.png"
-                                />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div
-                id="recom040"
-                class="listRecom"
-                style={
-                  recommendTaste === '달달한맛'
-                    ? { display: 'block' }
-                    : { display: 'none' }
-                }
-              >
-                <div class="imgListSlide">
-                  <div class="prodList">
-                    <ul
-                      class="prodCarousel"
-                      style={{
-                        transform: `translateX(${listTasteTransform}px)`,
-                        transition: `${listTransition}`,
-                      }}
-                    >
-                      <li class="slideCount">
-                        <div className="proModule">
-                          <div className="imgWrap">
-                            <Link to="/" class="count">
-                              <img alt="상품" src="images/Main/food2.png" />
-                            </Link>
-                          </div>
-                          <div className="txtWrap">
-                            <Link to="/" class="count">
-                              <div className="titleInfo">
-                                <span class="title">눈꽃치즈닭갈비</span>
-                              </div>
-                            </Link>
-                            <div className="priceInfo">
-                              <p className="sale">
-                                <span className="price">25,401</span>
-                                <span className="won">원</span>
-                              </p>
-                              <p className="servings">/ 3인분</p>
-                              <button type="button" className="cartBtn">
-                                <img
-                                  alt="cart"
-                                  src="/images/common/icon/basket.png"
-                                />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="slideCount">
-                        <div className="proModule">
-                          <div className="imgWrap">
-                            <Link to="/" class="count">
-                              <img alt="상품" src="images/Main/food2.png" />
-                            </Link>
-                          </div>
-                          <div className="txtWrap">
-                            <Link to="/" class="count">
-                              <div className="titleInfo">
-                                <span class="title">눈꽃치즈닭갈비</span>
-                              </div>
-                            </Link>
-                            <div className="priceInfo">
-                              <p className="sale">
-                                <span className="price">25,402</span>
-                                <span className="won">원</span>
-                              </p>
-                              <p className="servings">/ 3인분</p>
-                              <button type="button" className="cartBtn">
-                                <img
-                                  alt="cart"
-                                  src="/images/common/icon/basket.png"
-                                />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="slideCount">
-                        <div className="proModule">
-                          <div className="imgWrap">
-                            <Link to="/" class="count">
-                              <img alt="상품" src="images/Main/food2.png" />
-                            </Link>
-                          </div>
-                          <div className="txtWrap">
-                            <Link to="/" class="count">
-                              <div className="titleInfo">
-                                <span class="title">눈꽃치즈닭갈비</span>
-                              </div>
-                            </Link>
-                            <div className="priceInfo">
-                              <p className="sale">
-                                <span className="price">25,403</span>
-                                <span className="won">원</span>
-                              </p>
-                              <p className="servings">/ 3인분</p>
-                              <button type="button" className="cartBtn">
-                                <img
-                                  alt="cart"
-                                  src="/images/common/icon/basket.png"
-                                />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+                );
+              })}
             </dd>
           </dl>
         </div>

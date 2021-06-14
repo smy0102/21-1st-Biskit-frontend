@@ -53,14 +53,12 @@
         display: inline-block;
         vertical-align: middle;
         z-index: 4;
-        transition: 0.5s all;
 
         &.on {
           .slideLayout {
             display: block;
             max-height: 180px;
             overflow-y: auto;
-            transition: 0.5s all;
           }
         }
 

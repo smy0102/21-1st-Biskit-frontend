@@ -1,10 +1,11 @@
 import React from 'react';
-import './NoticeWrap.scss';
 import { Link } from 'react-router-dom';
+import './NoticeWrap.scss';
 
 class NoticeWrap extends React.Component {
   render() {
     const { getMonth } = this.props;
+
     return (
       <div className="NoticeWrap">
         <div className="notice">

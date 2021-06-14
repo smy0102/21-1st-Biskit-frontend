@@ -1,6 +1,6 @@
 import React from 'react';
-import './SlideWrap.scss';
 import SlideList from './SlideList';
+import './SlideWrap.scss';
 
 class SlideWrap extends React.Component {
   constructor() {
@@ -10,7 +10,7 @@ class SlideWrap extends React.Component {
     };
   }
   componentDidMount() {
-    fetch('http://localhost:3000/data/Main/SlideWrap/SlideList.json')
+    fetch('/data/Main/SlideWrap/SlideList.json')
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -19,8 +19,15 @@ class SlideWrap extends React.Component {
       });
   }
   render() {
-    const { listTransform, listTransition, handlePrevMove, handleNextMove } =
-      this.props;
+    const {
+      listTransform,
+      listTransition,
+      handlePrevMove,
+      handleNextMove,
+      handelPlayToggleClick,
+      isPlayOn,
+    } = this.props;
+    const { slideList } = this.state;
     return (
       <div className="SlideWrap">
         <div className="slideBox">
@@ -28,10 +35,28 @@ class SlideWrap extends React.Component {
             className="slideList"
             style={{
               transform: `translateX(${listTransform}px)`,
-              transition: `${listTransition}`,
+              transition: listTransition,
             }}
           >
-            {this.state.slideList.map(el => {
+            <div
+              className="slideContent"
+              key={slideList[slideList.length - 1]?.id}
+            >
+              <img alt="banner" src={slideList[slideList.length - 1]?.img} />
+              <div className="bannerContent">
+                <div className="bannerHead">
+                  {slideList[slideList.length - 1]?.head}
+                </div>
+                <div className="bannerTitle">
+                  {slideList[slideList.length - 1]?.titleFirst}
+                  <p>{slideList[slideList.length - 1]?.titleSecond}</p>
+                </div>
+                <div className="bannerSubTitle">
+                  {slideList[slideList.length - 1]?.subtitle}
+                </div>
+              </div>
+            </div>
+            {slideList.map(el => {
               return (
                 <SlideList
                   key={el.id}
@@ -44,6 +69,18 @@ class SlideWrap extends React.Component {
                 />
               );
             })}
+
+            <div className="slideContent" key={slideList[0]?.id}>
+              <img alt="banner" src={slideList[0]?.img} />
+              <div className="bannerContent">
+                <div className="bannerHead">{slideList[0]?.head}</div>
+                <div className="bannerTitle">
+                  {slideList[0]?.titleFirst}
+                  <p>{slideList[0]?.titleSecond}</p>
+                </div>
+                <div className="bannerSubTitle">{slideList[0]?.subtitle}</div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="slideBtnBox">
@@ -64,12 +101,23 @@ class SlideWrap extends React.Component {
           <div className="controlBox">
             <span className="num">
               <strong className="uiPageNum">
-                {listTransform === 0 ? 1 : Math.abs(listTransform / 1920) + 1}
+                {Math.abs(listTransform / 1920) === slideList.length + 1
+                  ? 1
+                  : Math.abs(listTransform / 1920)}
               </strong>
-              <span className="dash">/</span>5
+              <span className="dash">/</span>
+              {slideList.length}
             </span>
-            <button type="button" className="controlPlay">
-              <img alt="play" src="images/Main/play.png" />
+            <button
+              type="button"
+              className="controlPlay"
+              onClick={handelPlayToggleClick}
+            >
+              {isPlayOn ? (
+                <img alt="play" src="images/Main/pause.png" />
+              ) : (
+                <img alt="play" src="images/Main/play.png" />
+              )}
             </button>
           </div>
         </div>

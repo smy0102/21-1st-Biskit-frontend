@@ -1,8 +1,25 @@
 import React from 'react';
-import './ReviewWrap.scss';
 import { Link } from 'react-router-dom';
+import ImgCount from './ReviewList/ImgCount';
+import SlideCount from './ReviewList/SlideCount';
+import './ReviewWrap.scss';
 
 class ReviewWrap extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      reviewList: [],
+    };
+  }
+  componentDidMount() {
+    fetch('/data/Main/ReviewWrap/Review.json')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          reviewList: data,
+        });
+      });
+  }
   render() {
     const {
       handleReveiwPrevMove,
@@ -10,6 +27,8 @@ class ReviewWrap extends React.Component {
       handleReveiwNextMove,
       listTransition,
     } = this.props;
+    const { reviewList } = this.state;
+    console.log(Math.abs(0 / 720) + 1);
     return (
       <div className="ReviewWrap">
         <div className="reviewTitle">
@@ -31,11 +50,12 @@ class ReviewWrap extends React.Component {
               <span class="countWrap">
                 <span classNme="num">
                   <strong>
-                    {listReviewTranfrom === 0
+                    {Math.abs(listReviewTranfrom / 720) ===
+                    reviewList.result?.length + 1
                       ? 1
-                      : Math.abs(listReviewTranfrom / 720) + 1}
+                      : Math.abs(listReviewTranfrom / 720)}
                   </strong>
-                  /4
+                  /{reviewList.result?.length}
                 </span>
               </span>
               <button
@@ -55,118 +75,99 @@ class ReviewWrap extends React.Component {
                 />
                 <ul>
                   <li
+                    key={reviewList.result?.[reviewList.result?.length - 1].key}
                     className={
-                      (listReviewTranfrom === 0
+                      (listReviewTranfrom === -720
                         ? 1
-                        : Math.abs(listReviewTranfrom / 720) + 1) === 1
+                        : Math.abs(listReviewTranfrom / 720) + 1) ===
+                      reviewList.result?.[reviewList.result?.length - 1].id
                         ? 'reviewCommentList on'
                         : 'reviewCommentList'
                     }
                   >
                     <div className="reviewMod">
                       <Link to="/">
-                        <strong className="title">몽골리안비프</strong>
+                        <strong className="title">
+                          {
+                            reviewList.result?.[reviewList.result?.length - 1]
+                              .title
+                          }
+                        </strong>
                         <div className="txtWrap">
                           <p className="comment">
-                            짭쪼룸한 맛과 꽈리고추의 살짝 매운맛이 너무 매력적인
-                            요리입니다. 대접용요리로도 손색이 없어요
+                            {
+                              reviewList.result?.[reviewList.result?.length - 1]
+                                .content
+                            }
                           </p>
                         </div>
                         <div className="ratingWrap">
                           <span className="ratingStar">
                             <span className="star">
-                              <span>★&nbsp;★&nbsp;★&nbsp;★&nbsp;★</span>
+                              <span>
+                                {
+                                  reviewList.result?.[
+                                    reviewList.result?.length - 1
+                                  ].star_rating
+                                }
+                              </span>
                             </span>
                           </span>
                         </div>
-                        <span className="id">by. ekf******</span>
+                        <span className="id">
+                          {
+                            reviewList.result?.[reviewList.result?.length - 1]
+                              .account
+                          }
+                        </span>
                       </Link>
                     </div>
                   </li>
+                  {this.state.reviewList.result?.map(el => {
+                    return (
+                      <ImgCount
+                        key={el.id}
+                        review_image={el.review_image}
+                        listReviewTranfrom={listReviewTranfrom}
+                        content={el.content}
+                        title={el.title}
+                        star_rating={el.star_rating}
+                        account={el.account}
+                        id={el.id}
+                      />
+                    );
+                  })}
                   <li
+                    key={reviewList.result?.[0].key}
                     className={
                       (listReviewTranfrom === 0
                         ? 1
-                        : Math.abs(listReviewTranfrom / 720) + 1) === 2
+                        : Math.abs(listReviewTranfrom / 720) + 1) ===
+                      reviewList.result?.[0].id
                         ? 'reviewCommentList on'
                         : 'reviewCommentList'
                     }
                   >
                     <div className="reviewMod">
                       <Link to="/">
-                        <strong className="title">모둠해물찜</strong>
+                        <strong className="title">
+                          {reviewList.result?.[0].title}
+                        </strong>
                         <div className="txtWrap">
                           <p className="comment">
-                            바다향 한 입 가득~ 비스킷은 해물이 더 많네요^^
-                            해물이 많아 놀라고 맛에 또 놀랐어요
+                            {reviewList.result?.[0].content}
                           </p>
                         </div>
                         <div className="ratingWrap">
                           <span className="ratingStar">
                             <span className="star">
-                              <span>★&nbsp;★&nbsp;★&nbsp;★&nbsp;★</span>
+                              <span>{reviewList.result?.[0].star_rating}</span>
                             </span>
                           </span>
                         </div>
-                        <span className="id">by. ekf******</span>
-                      </Link>
-                    </div>
-                  </li>
-                  <li
-                    className={
-                      (listReviewTranfrom === 0
-                        ? 1
-                        : Math.abs(listReviewTranfrom / 720) + 1) === 3
-                        ? 'reviewCommentList on'
-                        : 'reviewCommentList'
-                    }
-                  >
-                    <div className="reviewMod">
-                      <Link to="/">
-                        <strong className="title">몽골리안비프</strong>
-                        <div className="txtWrap">
-                          <p className="comment">
-                            짭쪼룸한 맛과 꽈리고추의 살짝 매운맛이 너무 매력적인
-                            요리입니다. 대접용요리로도 손색이 없어요
-                          </p>
-                        </div>
-                        <div className="ratingWrap">
-                          <span className="ratingStar">
-                            <span className="star">
-                              <span>★&nbsp;★&nbsp;★&nbsp;★&nbsp;★</span>
-                            </span>
-                          </span>
-                        </div>
-                        <span className="id">by. ekf******</span>
-                      </Link>
-                    </div>
-                  </li>
-                  <li
-                    className={
-                      (listReviewTranfrom === 0
-                        ? 1
-                        : Math.abs(listReviewTranfrom / 720) + 1) === 4
-                        ? 'reviewCommentList on'
-                        : 'reviewCommentList'
-                    }
-                  >
-                    <div className="reviewMod">
-                      <Link to="/">
-                        <strong className="title">모듬해물찜</strong>
-                        <div className="txtWrap">
-                          <p className="comment">
-                            바다향 한 입 가득~ 비스킷은 해물이 더 많네요^^
-                            해물이 많아 놀라고 맛에 또 놀랐어요
-                          </p>
-                        </div>
-                        <div className="ratingWrap">
-                          <span className="ratingStar">
-                            <span className="star">
-                              <span>★&nbsp;★&nbsp;★&nbsp;★&nbsp;★</span>
-                            </span>
-                          </span>
-                        </div>
-                        <span className="id">by. ekf******</span>
+                        <span className="id">
+                          {reviewList.result?.[0].account}
+                        </span>
                       </Link>
                     </div>
                   </li>
@@ -183,92 +184,35 @@ class ReviewWrap extends React.Component {
                   <li className="slideCount">
                     <div className="reviewMod">
                       <div className="imgWrap">
-                        <img alt="몽골리안비프" src="/images/Main/food3.jpeg" />
+                        <img
+                          alt={
+                            reviewList.result?.[reviewList.result?.length - 1]
+                              .title
+                          }
+                          src={
+                            reviewList.result?.[reviewList.result?.length - 1]
+                              .images
+                          }
+                        />
                       </div>
                     </div>
                   </li>
+                  {reviewList.result?.map(el => {
+                    return (
+                      <SlideCount
+                        key={el.id}
+                        images={el.review_image}
+                        title={el.title}
+                      />
+                    );
+                  })}
                   <li className="slideCount">
                     <div className="reviewMod">
                       <div className="imgWrap">
-                        <img alt="몽골리안비프" src="/images/Main/food3.jpeg" />
-                      </div>
-                    </div>
-                  </li>
-                  <li className="slideCount">
-                    <div className="reviewMod">
-                      <div className="imgWrap">
-                        <img alt="몽골리안비프" src="/images/Main/food3.jpeg" />
-                      </div>
-                    </div>
-                  </li>
-                  <li className="slideCount">
-                    <div className="reviewMod">
-                      <div className="imgWrap">
-                        <img alt="몽골리안비프" src="/images/Main/food3.jpeg" />
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div className="reviewMajorImg">
-                <ul>
-                  <li
-                    className={
-                      (listReviewTranfrom === 0
-                        ? 1
-                        : Math.abs(listReviewTranfrom / 720) + 1) === 1
-                        ? 'majorImgList on'
-                        : 'majorImgList'
-                    }
-                  >
-                    <div className="reviewMod">
-                      <div className="imgMajor">
-                        <img alt="food" src="/images/Main/food4.png" />
-                      </div>
-                    </div>
-                  </li>
-                  <li
-                    className={
-                      (listReviewTranfrom === 0
-                        ? 1
-                        : Math.abs(listReviewTranfrom / 720) + 1) === 2
-                        ? 'majorImgList on'
-                        : 'majorImgList'
-                    }
-                  >
-                    <div className="reviewMod">
-                      <div className="imgMajor">
-                        <img alt="food" src="/images/Main/food4.png" />
-                      </div>
-                    </div>
-                  </li>
-                  <li
-                    className={
-                      (listReviewTranfrom === 0
-                        ? 1
-                        : Math.abs(listReviewTranfrom / 720) + 1) === 3
-                        ? 'majorImgList on'
-                        : 'majorImgList'
-                    }
-                  >
-                    <div className="reviewMod">
-                      <div className="imgMajor">
-                        <img alt="food" src="/images/Main/food4.png" />
-                      </div>
-                    </div>
-                  </li>
-                  <li
-                    className={
-                      (listReviewTranfrom === 0
-                        ? 1
-                        : Math.abs(listReviewTranfrom / 720) + 1) === 4
-                        ? 'majorImgList on'
-                        : 'majorImgList'
-                    }
-                  >
-                    <div className="reviewMod">
-                      <div className="imgMajor">
-                        <img alt="food" src="/images/Main/food4.png" />
+                        <img
+                          alt={reviewList.result?.[0].title}
+                          src={reviewList.result?.[0].images}
+                        />
                       </div>
                     </div>
                   </li>

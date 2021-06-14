@@ -172,33 +172,6 @@
           }
         }
       }
-
-      .reviewMajorImg {
-        position: absolute;
-        z-index: 1;
-        left: 747px;
-        top: 80px;
-        width: 340px;
-        height: 340px;
-
-        .majorImgList {
-          position: absolute;
-          left: 0;
-          top: 0;
-          width: 340px;
-          height: 340px;
-          opacity: 0;
-          transform: translate(100px, 0px);
-          transition: 1s all ease-in;
-          transition-delay: 0.2s;
-
-          &.on {
-            opacity: 1;
-            transform: translate(0px, 0px);
-            z-index: 2;
-          }
-        }
-      }
     }
   }
 
