@@ -21,7 +21,7 @@ section {
       padding-top: 52px;
       width: 100%;
 
-      h2 {
+      h1 {
         font-size: 40px;
         line-height: 56px;
         font-weight: 730;
@@ -30,11 +30,13 @@ section {
       }
       .cateWrap {
         width: 100%;
-        height: 64px;
+        height: 96px;
         vertical-align: middle;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         cursor: pointer;
+
         border-bottom: 1px solid (rgba($basicGray, $alpha: 1));
 
         .tabWrap {
@@ -71,103 +73,6 @@ section {
             cursor: pointer;
           }
         }
-
-        .cate {
-          display: flex;
-          text-align: center;
-          justify-content: center;
-
-          .activateCate {
-            font-family: Arial;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 64px;
-            height: 64px;
-            margin-right: 12px;
-            color: $basicBlack;
-            font-size: 20px;
-            font-weight: 800;
-            text-decoration: underline;
-            line-height: 30px;
-            cursor: pointer;
-            &::after {
-              position: absolute;
-              content: '';
-              display: block;
-              top: 50%;
-              right: 0;
-              width: 1px;
-              height: 20px;
-              margin-top: -10px;
-              background-color: #363636;
-            }
-          }
-          .cateAll {
-            font-family: Arial;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 64px;
-            height: 64px;
-            margin-right: 12px;
-            color: $basicDarkgray;
-            font-size: 20px;
-            font-weight: 500;
-            line-height: 30px;
-            cursor: pointer;
-            &::after {
-              position: absolute;
-              content: '';
-              display: block;
-              top: 50%;
-              right: 0;
-              width: 1px;
-              height: 20px;
-              margin-top: -10px;
-              background-color: #363636;
-            }
-          }
-          button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 64px;
-            height: 64px;
-            margin-right: 12px;
-            color: $basicDarkgray;
-            font-size: 20px;
-            font-weight: 500;
-            line-height: 30px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            &:nth-last-child(1) {
-              padding: 0;
-            }
-          }
-          .days {
-            padding: 0;
-            color: $basicDarkgray;
-            font-size: 20px;
-            font-weight: 500;
-            line-height: 30px;
-            cursor: pointer;
-          }
-
-          .activateDays {
-            background-color: rgba($basicBlack, $alpha: 1);
-            border-radius: 50%;
-            padding: 0;
-            color: #fff;
-            font-size: 20px;
-            font-weight: 700;
-            line-height: 30px;
-            cursor: pointer;
-          }
-        }
       }
     }
     .filterWarp {
@@ -182,14 +87,14 @@ section {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        p {
+        span {
           color: $basicBlack;
           font-size: 18px;
           line-height: 42px;
           font-weight: 500;
         }
         .filterListWarp {
-          button {
+          .filterList {
             background: none;
             border: none;
             font-size: 16px;
@@ -200,115 +105,30 @@ section {
               border: none;
             }
           }
+
+          .activatefilterList {
+            background: none;
+            border: none;
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 700;
+            border-right: 1px solid rgba($basicGray, $alpha: 1);
+            &:nth-last-child(1) {
+              border: none;
+            }
+          }
         }
       }
     }
     .menuListContainer {
-      margin: 0;
-      min-width: 900px;
-      max-width: 1180px;
       display: flex;
+      justify-content: center;
+      width: 1180px;
+      margin: 0 auto;
       .menuUl {
-        display: flex;
+        width: 1180px;
         padding-top: 28px;
-        .menuLi {
-          padding-right: 32px;
-
-          .menuImg {
-            object-fit: cover;
-            width: 268px;
-            height: 320px;
-            margin-bottom: 8px;
-          }
-          .recommend {
-            display: flex;
-            text-align: center;
-            height: 25px;
-            font-size: 12px;
-            font-weight: 600;
-            .limited {
-              color: #fff;
-              display: flex;
-              align-content: center;
-              justify-content: center;
-              align-items: center;
-              width: 55px;
-              height: 25px;
-              background-color: #ee0700;
-            }
-            .name {
-              color: rgba($basicDarkgray, $alpha: 1);
-              display: flex;
-              align-content: center;
-              justify-content: center;
-              align-items: center;
-              width: 55px;
-              height: 25px;
-              background-color: rgba($primaryColor, $alpha: 1);
-            }
-          }
-          .menuInfo {
-            padding-top: 20px;
-            font-size: 14px;
-            color: rgba($basicDarkgray, $alpha: 1);
-            span {
-              padding-right: 8px;
-              margin-right: 8px;
-              border-right: 1px solid rgba($basicDarkgray, $alpha: 0.5);
-              &:nth-last-child(1) {
-                border: none;
-              }
-            }
-            .title {
-              color: rgba($basicBlack, $alpha: 1);
-              padding-top: 8px;
-              padding-bottom: 8px;
-              font-size: 20px;
-              font-weight: 600;
-            }
-            .price {
-              color: rgba($basicBlack, $alpha: 1);
-              font-size: 18px;
-              line-height: 27px;
-              font-weight: 700;
-            }
-          }
-          .reviewWarp {
-            display: flex;
-            line-height: 27px;
-            font-weight: 600;
-            align-items: center;
-            .review {
-              color: rgba($basicGreen, $alpha: 1);
-              padding-right: 8px;
-              font-size: 24px;
-            }
-            .reviewCount {
-              border-left: 1px solid rgba($basicDarkgray, $alpha: 0.3);
-              padding-left: 8px;
-              color: rgba($basicDarkgray, $alpha: 1);
-              font-size: 14px;
-            }
-          }
-          .iconBox {
-            padding-top: 8px;
-            display: flex;
-            align-content: center;
-            align-items: center;
-            button {
-              padding: 0;
-              background: none;
-              justify-content: center;
-              align-items: center;
-              margin-right: 8px;
-              border: none;
-              img {
-                width: 40px;
-                height: 40px;
-              }
-            }
-          }
-        }
+        margin: 0 auto;
       }
     }
   }
