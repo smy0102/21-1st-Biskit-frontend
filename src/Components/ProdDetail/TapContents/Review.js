@@ -16,15 +16,10 @@ class Review extends Component {
       .then(data => {
         this.setState({
           reviewList: data.result,
-          evaluation: data.result.avg,
+          evaluation: Math.round(data.product_rate[0].avg * 10) / 10,
         });
       });
   }
-
-  getReviewDate = () => {
-    let str = this.state.reviewList.created_at;
-    return str.substr(0, 8);
-  };
 
   render() {
     const { reviewList, evaluation } = this.state;
@@ -32,8 +27,8 @@ class Review extends Component {
       <div className="Review">
         <div className="evaluationAverage">
           <div>
-            ★★★★★ <span>{evaluation}</span>
-            <span>/ 5.0</span>
+            고객평점 <span>{evaluation}</span>
+            <span className="perfectScore">/ 5.0</span>
           </div>
           <button>리뷰작성</button>
         </div>
@@ -48,9 +43,13 @@ class Review extends Component {
                 <div className="review" key={idx}>
                   <div className="informations">
                     <div className="id">{review.user}</div>
-                    <div className="date">{review.created_at}</div>
+                    <div className="date">
+                      {review.created_at.substr(0, 10)}
+                    </div>
                   </div>
-                  <div className="evalueation">{review.star_rating}</div>
+                  <div className="evalueation">
+                    고객평점: {review.star_rating}
+                  </div>
                   <div className="contents">{review.content}</div>
                 </div>
               );

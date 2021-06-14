@@ -14,11 +14,8 @@ class TapList extends Component {
               <li
                 key={idx}
                 id={idx}
-                className={activatedTap === idx && 'tapOn'}
-                onClick={
-                  // e => console.log(e.target, idx, activatedTap + 1)
-                  handleTap
-                }
+                className={Number(activatedTap) === idx && 'tapOn'}
+                onClick={handleTap}
               >
                 {tap}
                 {idx === 2 && `(${reviewCount}개)`}

@@ -11,7 +11,12 @@
     background-color: #f7f7f7;
 
     div {
-      font-size: 32px;
+      font-size: 26px;
+
+      .perfectScore {
+        color: $basicDarkgray;
+        font-size: 20px;
+      }
     }
 
     button {
@@ -58,6 +63,7 @@
 
         .evalueation {
           padding-bottom: 10px;
+          color: $basicGreen;
         }
       }
     }

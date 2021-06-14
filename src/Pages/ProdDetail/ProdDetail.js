@@ -25,6 +25,7 @@ class ProdDetail extends React.Component {
       gram: '',
       calorie: '',
       taste: [],
+      evaluation: 0,
       reviewCount: 0,
       deliveryDateArr: [],
       selectedDate: '',
@@ -41,7 +42,6 @@ class ProdDetail extends React.Component {
       .then(res => res.json())
       .then(data => {
         const informationArr = data.result;
-        const reviewCount = data.detail_rate;
         this.setState({
           mainTitle: informationArr.title,
           subTitle: informationArr.sub_title,
@@ -49,35 +49,35 @@ class ProdDetail extends React.Component {
           gram: informationArr.gram,
           calorie: informationArr.calorie,
           taste: informationArr.taste,
-          reviewCount: reviewCount.count,
+        });
+      });
+
+    fetch('/data/ProdDetail/review.json')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          reviewCount: data.product_rate[0].count,
+          evaluation: Math.round(data.product_rate[0].avg * 10) / 10,
         });
       });
   }
 
   setDeliveryDate = () => {
-    // const weekName = ['일', '월', '화', '수', '목', '금', '토'];
-    // let dateArr = [];
+    const weekName = ['일', '월', '화', '수', '목', '금', '토'];
+    let dateArr = [];
 
-    // for (let i = 2; i < 8; i++) {
-    //   const today = new Date();
-    //   const date = new Date(today.setDate(today.getDate() + i));
-    //   let day = weekName[date.getDay()];
-    //   if(day !== '일' && dateArr.length < 6) {dateArr.push(date)};
-    // }
+    for (let i = 2; i < 8; i++) {
+      const today = new Date();
+      const date = new Date(today.setDate(today.getDate() + i));
+      let day = weekName[date.getDay()];
+      day !== '일' && dateArr.length < 6 && dateArr.push(date);
+    }
 
-    // for (let i = 0; i < dateArr.length; i++) {
-    //   dateArr[i] = `${dateArr[i].getMonth() + 1}월 ${
-    //     dateArr[i].getDate() + 1
-    //   }일 (${weekName[dateArr[i].getDay()]})`;
-    // }
-
-    const dateArr = [
-      '6월 14일 (월)',
-      '6월 15일 (화)',
-      '6월 16일 (수)',
-      '6월 17일 (목)',
-      '6월 18일 (금)',
-    ];
+    for (let i = 0; i < dateArr.length; i++) {
+      dateArr[i] = `${dateArr[i].getMonth() + 1}월 ${
+        dateArr[i].getDate() + 1
+      }일 (${weekName[dateArr[i].getDay()]})`;
+    }
 
     this.setState({ deliveryDateArr: dateArr });
   };
@@ -148,12 +148,11 @@ class ProdDetail extends React.Component {
     fetch('api주소', {
       method: 'POST',
       body: JSON.stringify({
-        id: this.state.id,
         title: this.state.mainTitle,
-        price: this.state.price,
+        status: '주문전',
         quantity: this.state.quantity,
-        // deliveryDate: this.state.selectedDate,
-        // resultPrice: this.state.resultPrice,
+        deliveryDate: this.state.selectedDate,
+        resultPrice: this.state.resultPrice,
       }),
     })
       .then(response => response.json())
@@ -168,6 +167,7 @@ class ProdDetail extends React.Component {
       gram,
       calorie,
       taste,
+      evaluation,
       reviewCount,
       deliveryDateArr,
       selectedDate,
@@ -185,7 +185,7 @@ class ProdDetail extends React.Component {
             <div className="subInfo">
               <div className="evaluation">
                 <div>
-                  ★★★★★ <span>5.0</span>
+                  고객평점 <span>{evaluation}</span>
                 </div>
                 <div className="reviewCount">
                   리뷰수 <span>{reviewCount}</span>

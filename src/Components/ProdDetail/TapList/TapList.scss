@@ -30,7 +30,7 @@
       cursor: pointer;
 
       &.tapOn {
-        border-bottom: 4px solid red;
+        border-bottom: 4px solid $basicBlack;
         font-weight: 800;
       }
     }

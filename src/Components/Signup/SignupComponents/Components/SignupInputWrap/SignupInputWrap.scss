@@ -1,0 +1,80 @@
+@import '/src/Styles/variables.scss';
+
+.SignupInputWrap {
+  margin-top: 30px;
+
+  input,
+  select {
+    &:focus {
+      outline: none;
+    }
+  }
+
+  col {
+    &:first-child {
+      width: 150px;
+    }
+  }
+
+  th {
+    width: 140px;
+    padding: 23px 0 10px 0;
+    background: #fff;
+    font-size: 18px;
+    border: 0;
+    border-right: 0;
+    text-align: left;
+
+    img {
+      margin-left: 5px;
+      vertical-align: middle;
+    }
+  }
+
+  td {
+    padding: 17px 0 7px 28px;
+    border: 0;
+    background: #fff;
+    color: #353535;
+    vertical-align: middle;
+
+    select {
+      width: 80px;
+      height: 40px;
+      margin-right: 4px;
+      color: #111111;
+      border: 1px solid #d5d5d5;
+    }
+
+    .inputTypeText {
+      width: 300px;
+      height: 40px;
+      margin: 0 10px 0 0;
+      padding: 0 0 0 10px;
+      color: #111111;
+      border: 1px solid #d5d5d5;
+      font-size: 18px;
+    }
+
+    #adress {
+      width: 400px;
+    }
+
+    .mobile {
+      width: 96px;
+      margin: 0 4px;
+    }
+
+    button {
+      padding: 5px;
+      margin-right: 10px;
+      border: $grayBorder;
+      border-radius: 2px;
+      cursor: pointer;
+
+      &:active {
+        transform: scale(0.98);
+      }
+    }
+  }
+}
