@@ -145,18 +145,22 @@ class ProdDetail extends React.Component {
   };
 
   putCart = () => {
-    fetch('api주소', {
-      method: 'POST',
-      body: JSON.stringify({
-        title: this.state.mainTitle,
-        status: '주문전',
-        quantity: this.state.quantity,
-        deliveryDate: this.state.selectedDate,
-        resultPrice: this.state.resultPrice,
-      }),
-    })
-      .then(response => response.json())
-      .then(result => console.log('결과: ', result));
+    if (this.state.selectedDate === '') {
+      alert('배송받을 날짜를 선택하세요.');
+    } else {
+      fetch('api주소', {
+        method: 'POST',
+        body: JSON.stringify({
+          title: this.state.mainTitle,
+          status: '주문전',
+          quantity: this.state.quantity,
+          deliveryDate: this.state.selectedDate,
+          resultPrice: this.state.resultPrice,
+        }),
+      })
+        .then(response => response.json())
+        .then(result => console.log('결과: ', result));
+    }
   };
 
   render() {
