@@ -21,9 +21,23 @@ class Login extends React.Component {
   };
 
   goToMain = () => {
-    // 로그인 패치 들어갈곳
-    alert('로그인 성공 되었습니다.');
-    this.props.history.push('/');
+    fetch('http://10.58.2.73:8000/users/signin', {
+      method: 'POST',
+      body: JSON.stringify({
+        account: this.state.idValue,
+        password: this.state.pwValue,
+      }),
+    })
+      .then(response => response.json())
+      .then(result => {
+        console.log(result);
+        if (result.message === 'SUCCESS') {
+          this.props.history.push('/');
+          localStorage.setItem('token', result.token);
+        } else {
+          alert('아이디와 패스워드를 확인해주세요');
+        }
+      });
   };
 
   render() {
