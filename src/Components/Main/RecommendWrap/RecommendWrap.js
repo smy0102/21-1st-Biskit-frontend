@@ -47,7 +47,11 @@ class RecommendWrap extends React.Component {
                       onClick={handelTasteToggleClick}
                     >
                       <strong>{recommendTaste}</strong>
-                      <img alt="arrow" src="/images/Main/bold-arrow.png" />
+                      {isTasteClass ? (
+                        <img alt="arrow" src="/images/Main/up-arrow.png" />
+                      ) : (
+                        <img alt="arrow" src="/images/Main/down-arrow.png" />
+                      )}
                     </button>
                     <div className="slideLayout">
                       {TASTE.map(el => {
@@ -122,7 +126,7 @@ class RecommendWrap extends React.Component {
                           class="prodCarousel"
                           style={{
                             transform: `translateX(${listTasteTransform}px)`,
-                            transition: `${listTransition}`,
+                            transition: listTransition,
                           }}
                         >
                           <li

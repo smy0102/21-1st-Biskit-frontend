@@ -17,9 +17,9 @@ class ImgCount extends React.Component {
       <li
         key={key}
         className={
-          (listReviewTranfrom === 0
+          (listReviewTranfrom === -720
             ? 1
-            : Math.abs(listReviewTranfrom / 720) + 1) === id
+            : Math.abs(listReviewTranfrom / 720)) === id
             ? 'reviewCommentList on'
             : 'reviewCommentList'
         }

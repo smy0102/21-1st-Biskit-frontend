@@ -74,6 +74,10 @@
             width: 30px;
             height: 30px;
             margin-bottom: 4px;
+
+            &:first-child {
+              margin-left: 2px;
+            }
           }
         }
       }

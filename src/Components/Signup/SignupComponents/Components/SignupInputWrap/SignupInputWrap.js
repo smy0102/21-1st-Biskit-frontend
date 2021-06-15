@@ -24,6 +24,7 @@ class SignupInputWrap extends React.Component {
                   class="inputTypeText"
                   name="idValue"
                   onChange={handelInput}
+                  placeholder="biskit123"
                 />
                 <button type="button" onClick={checkID}>
                   중복확인
@@ -77,6 +78,7 @@ class SignupInputWrap extends React.Component {
                   class="inputTypeText"
                   name="nameValue"
                   onChange={handelInput}
+                  placeholder="홍길동"
                 />
               </td>
             </tr>
@@ -92,6 +94,7 @@ class SignupInputWrap extends React.Component {
                   id="adress"
                   name="adressValue"
                   onChange={handelInput}
+                  placeholder="서울특별시 강남구 테헤란로 427 위워크타워"
                 />
                 <span>(기본주소)</span>
               </td>
@@ -117,6 +120,8 @@ class SignupInputWrap extends React.Component {
                   class="inputTypeText mobile"
                   name="mobileFirst"
                   onChange={handelInput}
+                  placeholder="0000"
+                  maxLength="4"
                 />
                 -
                 <input
@@ -124,7 +129,10 @@ class SignupInputWrap extends React.Component {
                   class="inputTypeText mobile"
                   name="mobileSecond"
                   onChange={handelInput}
+                  placeholder="0000"
+                  maxLength="4"
                 />
+                <span> (휴대전화)</span>
               </td>
             </tr>
             <tr>
@@ -138,7 +146,9 @@ class SignupInputWrap extends React.Component {
                   class="inputTypeText"
                   name="emailValue"
                   onChange={handelInput}
+                  placeholder="biskit@gmail.com"
                 />
+                <span>(이메일)</span>
               </td>
             </tr>
           </tbody>

@@ -8,7 +8,6 @@ class Signup extends React.Component {
   constructor() {
     super();
     this.state = {
-      // isCheck: [false, false],
       isCheck1: false,
       isCheck2: false,
       allCheckBox: false,
@@ -48,13 +47,14 @@ class Signup extends React.Component {
   };
 
   goToLogin = () => {
-    fetch('http://10.58.2.73:8000/users/signup', {
+    fetch('http://10.58.2.209:8000/users/signup', {
       method: 'POST',
       body: JSON.stringify({
         name: this.state.nameValue,
         account: this.state.idValue,
         password: this.state.pwValue,
-        mobile: this.state.mobileFirst + '-' + this.state.mobileSecond,
+        mobile:
+          '010' + '-' + this.state.mobileFirst + '-' + this.state.mobileSecond,
         address: this.state.adressValue,
         email: this.state.emailValue,
       }),
@@ -64,8 +64,12 @@ class Signup extends React.Component {
         console.log(result);
         if (result.message === 'SUCCESS') {
           this.props.history.push('/login');
-        } else {
-          alert('이메일과 패스워드를 확인해주세요');
+        } else if (result.message === 'VALUE_IS_EMPTY') {
+          alert('입력창을 다시 확인 해주세요.');
+        } else if (result.message === 'INVALID_FORMAT') {
+          alert('알맞지 않은 형식입니다 다시 확인 해주세요');
+        } else if (result.message === 'ALREADY_EXISTS') {
+          alert('중복된 ID입니다.');
         }
       });
   };
@@ -83,7 +87,7 @@ class Signup extends React.Component {
   checkID(e) {
     e.preventDefault();
     console.log(this.state.idValue);
-    fetch('http://10.58.2.73:8000/users/signup', {
+    fetch('http://10.58.2.209:8000/users/account-validator', {
       method: 'POST',
       body: JSON.stringify({
         account: this.state.idValue,
@@ -91,17 +95,16 @@ class Signup extends React.Component {
     })
       .then(response => response.json())
       .then(result => {
-        console.log('asdasdasdasd');
+        console.log(result);
         if (result.message === 'ALREADY_EXISTS') {
-          alert('중복된 ID입니다. 다른ID를 입력해주세요');
-        } else {
-          alert('다른 ID를 입력해주세요.');
-        }
+          alert('중복된 ID입니다. 다른 ID를 입력해주세요');
+        } else if (result.message === 'INVALID_FORMAT') {
+          alert('알맞는 형식을 입력해주세요');
+        } else alert('가입 가능한 ID 입니다.');
       });
   }
 
   render() {
-    console.log(this.state.idValue);
     const {
       handelInput,
       changeAll,

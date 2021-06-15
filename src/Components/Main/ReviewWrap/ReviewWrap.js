@@ -11,6 +11,7 @@ class ReviewWrap extends React.Component {
       reviewList: [],
     };
   }
+
   componentDidMount() {
     fetch('/data/Main/ReviewWrap/Review.json')
       .then(res => res.json())
@@ -20,6 +21,7 @@ class ReviewWrap extends React.Component {
         });
       });
   }
+
   render() {
     const {
       handleReveiwPrevMove,
@@ -28,7 +30,7 @@ class ReviewWrap extends React.Component {
       listTransition,
     } = this.props;
     const { reviewList } = this.state;
-    console.log(Math.abs(0 / 720) + 1);
+
     return (
       <div className="ReviewWrap">
         <div className="reviewTitle">
@@ -79,8 +81,8 @@ class ReviewWrap extends React.Component {
                     className={
                       (listReviewTranfrom === -720
                         ? 1
-                        : Math.abs(listReviewTranfrom / 720) + 1) ===
-                      reviewList.result?.[reviewList.result?.length - 1].id
+                        : Math.abs(listReviewTranfrom / 720)) ===
+                      reviewList.result?.[0].id - 1
                         ? 'reviewCommentList on'
                         : 'reviewCommentList'
                     }
@@ -140,10 +142,10 @@ class ReviewWrap extends React.Component {
                   <li
                     key={reviewList.result?.[0].key}
                     className={
-                      (listReviewTranfrom === 0
+                      (listReviewTranfrom === -720
                         ? 1
-                        : Math.abs(listReviewTranfrom / 720) + 1) ===
-                      reviewList.result?.[0].id
+                        : Math.abs(listReviewTranfrom / 720)) ===
+                      reviewList.result?.[reviewList.result?.length - 1].id + 1
                         ? 'reviewCommentList on'
                         : 'reviewCommentList'
                     }
@@ -191,7 +193,7 @@ class ReviewWrap extends React.Component {
                           }
                           src={
                             reviewList.result?.[reviewList.result?.length - 1]
-                              .images
+                              .review_image
                           }
                         />
                       </div>
@@ -211,7 +213,7 @@ class ReviewWrap extends React.Component {
                       <div className="imgWrap">
                         <img
                           alt={reviewList.result?.[0].title}
-                          src={reviewList.result?.[0].images}
+                          src={reviewList.result?.[0].review_image}
                         />
                       </div>
                     </div>

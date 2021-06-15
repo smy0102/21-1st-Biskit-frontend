@@ -22,7 +22,7 @@ class ProdList extends React.Component {
                   <span className="price">{this.props.price}</span>
                   <span className="won">원</span>
                 </p>
-                <p className="servings">/ {this.props.gram}</p>
+                <p className="servings">/ {this.props.gram}g</p>
               </div>
             </Link>
           </div>
