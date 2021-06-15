@@ -16,8 +16,9 @@ class OrderInformation extends Component {
       isLike,
       setDeliveryDate,
       selectDeliveryDate,
-      subtractQuantity,
-      addQuantity,
+      // subtractQuantity,
+      // addQuantity,
+      handleQuantity,
       closeSelectBox,
       handleLike,
       putCart,
@@ -41,7 +42,7 @@ class OrderInformation extends Component {
         </select>
         <div
           className="CartInformation"
-          style={!isSelectBoxOn ? { display: 'none' } : {}}
+          style={{ display: !isSelectBoxOn ? 'none' : 'block' }}
         >
           <div className="deliveryDate">
             <div>{selectedDate}</div>
@@ -50,11 +51,17 @@ class OrderInformation extends Component {
           <div className="selectQuantity">
             <div className="productTitle">{mainTitle}</div>
             <div className="quantityButtons">
-              <button className="quantityMinus" onClick={subtractQuantity}>
+              <button
+                className="quantityMinus"
+                onClick={() => handleQuantity('minus')}
+              >
                 &#45;
               </button>
               <span>{quantity}</span>
-              <button className="quantityPlus" onClick={addQuantity}>
+              <button
+                className="quantityPlus"
+                onClick={() => handleQuantity('plus')}
+              >
                 +
               </button>
             </div>

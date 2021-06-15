@@ -13,9 +13,9 @@ class Description extends Component {
     fetch('/data/ProdDetail/prodDetailData.json')
       .then(res => res.json())
       .then(data => {
-        const descriptionInfoArr = data.description_info;
+        const { detail } = data.description_info;
         this.setState({
-          imageSrc: descriptionInfoArr.detail,
+          imageSrc: detail,
         });
       });
   }

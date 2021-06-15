@@ -6,6 +6,7 @@ import Description from '../../Components/ProdDetail/TapContents/Description';
 import Information from '../../Components/ProdDetail/TapContents/Information';
 import Review from '../../Components/ProdDetail/TapContents/Review';
 import DeliveryRefund from '../../Components/ProdDetail/TapContents/DeliveryRefund';
+import WEEK_NAME from '../../Data/weekname';
 import './prodDetail.scss';
 
 const tapContents = {
@@ -41,14 +42,14 @@ class ProdDetail extends React.Component {
     fetch('/data/ProdDetail/prodDetailData.json')
       .then(res => res.json())
       .then(data => {
-        const informationArr = data.result;
+        const { title, sub_title, price, gram, calorie, taste } = data.result;
         this.setState({
-          mainTitle: informationArr.title,
-          subTitle: informationArr.sub_title,
-          price: informationArr.price,
-          gram: informationArr.gram,
-          calorie: informationArr.calorie,
-          taste: informationArr.taste,
+          mainTitle: title,
+          subTitle: sub_title,
+          price: price,
+          gram: gram,
+          calorie: calorie,
+          taste: taste,
         });
       });
 
@@ -63,60 +64,52 @@ class ProdDetail extends React.Component {
   }
 
   setDeliveryDate = () => {
-    const weekName = ['일', '월', '화', '수', '목', '금', '토'];
     let dateArr = [];
 
     for (let i = 2; i < 8; i++) {
       const today = new Date();
       const date = new Date(today.setDate(today.getDate() + i));
-      let day = weekName[date.getDay()];
+      let day = WEEK_NAME[date.getDay()];
       day !== '일' && dateArr.length < 6 && dateArr.push(date);
     }
 
     for (let i = 0; i < dateArr.length; i++) {
       dateArr[i] = `${dateArr[i].getMonth() + 1}월 ${
         dateArr[i].getDate() + 1
-      }일 (${weekName[dateArr[i].getDay()]})`;
+      }일 (${WEEK_NAME[dateArr[i].getDay()]})`;
     }
 
     this.setState({ deliveryDateArr: dateArr });
   };
 
   selectDeliveryDate = date => {
-    date.target.value !== '' &&
-      this.setState(
-        {
-          selectedDate: date.target.value,
-          quantity: 1,
-          resultPrice: parseInt(this.state.price).toLocaleString(),
-          isSelectBoxOn: true,
-        },
-        () => {
-          date.target.value = '';
-        }
-      );
-  };
+    if (!date.target.value) {
+      return;
+    }
 
-  addQuantity = () => {
     this.setState(
-      state => ({
-        quantity: state.quantity + 1,
-      }),
-      () => this.calculatePrice()
+      {
+        selectedDate: date.target.value,
+        quantity: 1,
+        resultPrice: parseInt(this.state.price).toLocaleString(),
+        isSelectBoxOn: true,
+      },
+      () => {
+        date.target.value = '';
+      }
     );
   };
 
-  subtractQuantity = () => {
-    if (this.state.quantity === 1) {
-      alert('최소 1개 이상 구매하셔야 합니다. 수량을 변경해 주세요.');
-    } else {
+  handleQuantity = word => {
+    const { quantity } = this.state;
+
+    if (word === 'minus')
       this.setState(
-        state => ({
-          quantity: state.quantity - 1,
-        }),
-        () => this.calculatePrice()
+        {
+          quantity: word === 'plus' ? quantity + 1 : quantity - 1,
+        },
+        this.calculatePrice
       );
-    }
   };
 
   calculatePrice = () => {
@@ -268,11 +261,10 @@ class ProdDetail extends React.Component {
                 isLike={isLike}
                 setDeliveryDate={this.setDeliveryDate}
                 selectDeliveryDate={this.selectDeliveryDate}
-                subtractQuantity={this.subtractQuantity}
-                addQuantity={this.addQuantity}
                 closeSelectBox={this.closeSelectBox}
                 handleLike={this.handleLike}
                 putCart={this.putCart}
+                handleQuantity={this.handleQuantity}
               />
             </div>
           </article>
@@ -300,11 +292,10 @@ class ProdDetail extends React.Component {
                 isLike={isLike}
                 setDeliveryDate={this.setDeliveryDate}
                 selectDeliveryDate={this.selectDeliveryDate}
-                subtractQuantity={this.subtractQuantity}
-                addQuantity={this.addQuantity}
                 closeSelectBox={this.closeSelectBox}
                 handleLike={this.handleLike}
                 putCart={this.putCart}
+                handleQuantity={this.handleQuantity}
               />
             </article>
           </div>
