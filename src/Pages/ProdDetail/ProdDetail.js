@@ -103,13 +103,17 @@ class ProdDetail extends React.Component {
   handleQuantity = word => {
     const { quantity } = this.state;
 
-    if (word === 'minus')
-      this.setState(
-        {
-          quantity: word === 'plus' ? quantity + 1 : quantity - 1,
-        },
-        this.calculatePrice
-      );
+    if (word === 'minus' && quantity === 1) {
+      alert('최소 1개 이사 구매하셔야 합니다. 수량을 변경해 주세요.');
+      return;
+    }
+
+    this.setState(
+      {
+        quantity: word === 'plus' ? quantity + 1 : quantity - 1,
+      },
+      this.calculatePrice
+    );
   };
 
   calculatePrice = () => {
