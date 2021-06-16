@@ -9,9 +9,9 @@ class Cart extends React.Component {
     this.state = {
       quantity: 1,
       listData: [],
-      resultPrice: 0,
       selectedArr: [],
-      resultPirce: 0,
+      deletedArr: [],
+      resultPrice: 0,
       selectedAll: true,
     };
   }
@@ -97,11 +97,33 @@ class Cart extends React.Component {
       (pre, curr) => pre + parseInt(curr.quantity * curr.price),
       0
     );
-    this.setState({ resultPirce: result });
+    this.setState({ resultPrice: result });
+  };
+
+  selectDelete = () => {
+    const { listData, selectedArr } = this.state;
+    const checkedArr = [];
+    let idx = selectedArr.indexOf(true);
+    while (idx !== -1) {
+      checkedArr.push(idx + 1);
+      console.log(selectedArr.indexOf(true));
+      idx = selectedArr.indexOf(true, idx + 1);
+    }
+    const newCheckedArr = listData.filter(cartItem => {
+      return !checkedArr.includes(parseInt(cartItem.id));
+    });
+    const newDeletedArr = listData.filter(cartItem => {
+      return checkedArr.includes(parseInt(cartItem.id));
+    });
+    this.setState({
+      listData: newCheckedArr,
+      deletedArr: newDeletedArr,
+      selectedArr: Array(newCheckedArr.length).fill(false),
+    });
   };
 
   render() {
-    const { listData, resultPirce } = this.state;
+    const { listData, resultPrice } = this.state;
     return (
       <div className="Cart">
         <article className="title">
@@ -137,9 +159,13 @@ class Cart extends React.Component {
               onClick={this.handleSelectedAll}
             />
             <div>
-              총 <span>3</span>/<span>{this.state.listData.length}</span>개
+              총{' '}
+              <span>
+                {this.state.selectedArr.filter(el => true === el).length}
+              </span>
+              /<span>{this.state.listData.length}</span>개
             </div>
-            <button>선택삭제</button>
+            <button onClick={this.selectDelete}>선택삭제</button>
           </div>
           <div className="ShoppingList">
             {listData.map((data, index) => {
@@ -160,7 +186,7 @@ class Cart extends React.Component {
           <div className="totalShoppingPrice">
             <div>
               <div className="priceTitle">총 상품금액</div>
-              <div className="accent">{resultPirce.toLocaleString()}원</div>
+              <div className="accent">{resultPrice.toLocaleString()}원</div>
             </div>
             <div className="priceOperator">-</div>
             <div>
@@ -175,7 +201,7 @@ class Cart extends React.Component {
             <div className="priceOperator">=</div>
             <div>
               <div className="priceTitle">총 결제예정금액</div>
-              <div className="totalPrice">{resultPirce.toLocaleString()}원</div>
+              <div className="totalPrice">{resultPrice.toLocaleString()}원</div>
             </div>
           </div>
           <div className="purchaseButtons">
