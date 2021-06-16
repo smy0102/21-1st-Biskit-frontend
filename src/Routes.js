@@ -8,6 +8,7 @@ import Login from './Pages/Login/Login';
 import Signup from './Pages/Signup/Signup';
 import Nav from './Components/Nav/Nav';
 import Footer from './Components/Footer/Footer';
+import Cart from './Pages/Cart/Cart';
 
 class Routes extends React.Component {
   render() {
@@ -20,6 +21,7 @@ class Routes extends React.Component {
           <Route exact path="/prodDetail" component={ProdDetail} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
+          <Route exact path="/cart" component={Cart} />
         </Switch>
         <Footer />
       </Router>

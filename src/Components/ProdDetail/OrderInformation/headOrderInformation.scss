@@ -1,0 +1,117 @@
+@import '../../../Styles/variables';
+@import '../../../Styles/mixin';
+
+.headOrderInfo {
+  select {
+    width: 500px;
+    height: 50px;
+    padding: 5px;
+    border: $grayBorder;
+    color: $basicDarkgray;
+    font-size: 16px;
+  }
+
+  .CartInformation {
+    // display: none;
+    margin: 25px 0;
+    border: $grayBorder;
+
+    .deliveryDate {
+      @include flexSet(space-between);
+      padding: 15px;
+      font-size: 15px;
+    }
+
+    .selectQuantity {
+      @include flexSet(space-between);
+      align-content: space-between;
+      flex-wrap: wrap;
+      padding: 20px 15px;
+      border-top: $grayBorder;
+      font: {
+        size: 16px;
+        weight: bold;
+      }
+
+      .productTitle {
+        width: 220px;
+        padding: 10px 0;
+      }
+
+      .quantityButtons {
+        @include flexSet(space-between);
+        width: 100px;
+        padding: 5px;
+        border: $grayBorder;
+
+        span {
+          margin: 0 12px;
+        }
+
+        button {
+          border: none;
+          background-color: white;
+
+          &.quantityMinus {
+            padding-bottom: 5px;
+            font-size: 23px;
+          }
+
+          &.quantityPlus {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  .putCart {
+    .selectedInfo {
+      @include flexSet(space-between);
+      margin-top: 20px;
+
+      .finalQuantity {
+        font: {
+          size: 20px;
+          weight: bold;
+        }
+      }
+
+      .finalPrice {
+        color: $basicRed;
+        font: {
+          size: 32px;
+          weight: bold;
+        }
+      }
+    }
+
+    .finalButtons {
+      display: flex;
+      justify-content: space-between;
+      height: 54px;
+      margin-top: 15px;
+
+      .likeButton {
+        width: 54px;
+        border: 1px solid black;
+        background-color: white;
+
+        img {
+          width: 25px;
+          height: 25px;
+        }
+      }
+
+      .cartButton {
+        width: 430px;
+        border: none;
+        background-color: $primaryColor;
+        font: {
+          size: 16px;
+          weight: bold;
+        }
+      }
+    }
+  }
+}

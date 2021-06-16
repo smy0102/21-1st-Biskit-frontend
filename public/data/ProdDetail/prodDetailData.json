@@ -1,0 +1,24 @@
+{
+    "result": {
+        "title": "*애호박 돼지고기짜글이", 
+        "sub_title": "도톰한 돼지목살과 큼직한 채소", 
+        "price": "28000.00", 
+        "gram": "150.0", 
+        "calorie": "4227.0", 
+        "detail_image": [
+            "https://img.cjcookit.com/images/file/product/544/20210521113810365.jpg?RS=600x600", 
+            "https://img.cjcookit.com/images/file/product/265/20210521113821355.jpg?RS=600x600",
+            "https://img.cjcookit.com/images/file/product/918/20210521114745796.jpg?RS=600x600",
+            "https://img.cjcookit.com/images/file/product/426/20210521114752583.jpg?RS=600x600",
+            "https://img.cjcookit.com/images/file/product/867/20210521114759550.jpg?RS=600x600"
+        ], 
+        "taste": "매운맛"
+    }, 
+
+    "description_info": {
+            "detail": "https://www.cjcookit.com/cjkit/design/detail/0039/0039_pc_detail_01.jpg", 
+            "information": "https://www.cjcookit.com/cjkit/design/detail/0037/0037_pc_detail_01.jpg", 
+            "delivery": "et", 
+            "refund": "molestiae"
+    }
+}
