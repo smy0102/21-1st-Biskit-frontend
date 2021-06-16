@@ -7,14 +7,22 @@ import NoticeWrap from '../../Components/Main/NoticeWrap/NoticeWrap';
 import RecommendWrap from '../../Components/Main/RecommendWrap/RecommendWrap';
 import './Main.scss';
 
+const days = ['일', '월', '화', '수', '목', '금', '토'];
+const slideTransform = 1920;
+const tasteransform = 787;
+const reveiwTransform = 720;
+const slideindex = 4;
+const tasteindex = 3;
+const reviewindex = 4;
+
 class Main extends React.Component {
   constructor() {
     super();
     let fixDate = new Date().setHours(31, 0, 0);
     this.state = {
-      listTransform: -1920,
-      listTasteTransform: -787,
-      listReviewTranfrom: -720,
+      listTransform: -slideTransform,
+      listTasteTransform: -tasteransform,
+      listReviewTranfrom: -reveiwTransform,
       listTransition: '1s ease-in-out',
       isTasteClass: false,
       date: new Date(),
@@ -52,7 +60,7 @@ class Main extends React.Component {
     this.setState({
       recommendTaste: e.target.innerText,
       isTasteClass: !this.state.isTasteClass,
-      listTasteTransform: -787,
+      listTasteTransform: -tasteransform,
     });
   };
 
@@ -69,9 +77,9 @@ class Main extends React.Component {
   }
 
   handleNextMove = () => {
-    if (this.state.listTransform > -11520) {
+    if (this.state.listTransform > -slideTransform * (slideindex + 1)) {
       this.setState({
-        listTransform: this.state.listTransform - 1920,
+        listTransform: this.state.listTransform - slideTransform,
         listTransition: '1s ease-in-out',
       });
     }
@@ -80,16 +88,16 @@ class Main extends React.Component {
   handlePrevMove = () => {
     if (this.state.listTransform < 0) {
       this.setState({
-        listTransform: this.state.listTransform + 1920,
+        listTransform: this.state.listTransform + slideTransform,
         listTransition: '1s ease-in-out',
       });
     }
   };
 
   handleTasteNextMove = () => {
-    if (this.state.listTasteTransform > -3148) {
+    if (this.state.listTasteTransform > -tasteransform * (tasteindex + 1)) {
       this.setState({
-        listTasteTransform: this.state.listTasteTransform - 787,
+        listTasteTransform: this.state.listTasteTransform - tasteransform,
         listTransition: '1s ease-in-out',
       });
     }
@@ -98,16 +106,16 @@ class Main extends React.Component {
   handleTastePrevMove = () => {
     if (this.state.listTasteTransform < 0) {
       this.setState({
-        listTasteTransform: this.state.listTasteTransform + 787,
+        listTasteTransform: this.state.listTasteTransform + tasteransform,
         listTransition: '1s ease-in-out',
       });
     }
   };
 
   handleReveiwNextMove = () => {
-    if (this.state.listReviewTranfrom > -3600) {
+    if (this.state.listReviewTranfrom > -reveiwTransform * (reviewindex + 1)) {
       this.setState({
-        listReviewTranfrom: this.state.listReviewTranfrom - 720,
+        listReviewTranfrom: this.state.listReviewTranfrom - reveiwTransform,
         listTransition: '1s ease-in-out',
       });
     }
@@ -116,17 +124,17 @@ class Main extends React.Component {
   handleReveiwPrevMove = () => {
     if (this.state.listReviewTranfrom < 0) {
       this.setState({
-        listReviewTranfrom: this.state.listReviewTranfrom + 720,
+        listReviewTranfrom: this.state.listReviewTranfrom + reveiwTransform,
         listTransition: '1s ease-in-out',
       });
     }
   };
 
   componentDidUpdate() {
-    if (this.state.listTransform === -11520) {
+    if (this.state.listTransform === -slideTransform * (slideindex + 1)) {
       setTimeout(() => {
         this.setState({
-          listTransform: -1920,
+          listTransform: -slideTransform,
           listTransition: '0s',
         });
       }, 1000);
@@ -135,16 +143,16 @@ class Main extends React.Component {
     if (this.state.listTransform === 0) {
       setTimeout(() => {
         this.setState({
-          listTransform: -9600,
+          listTransform: -slideTransform * slideindex,
           listTransition: '0s',
         });
       }, 1000);
     }
 
-    if (this.state.listTasteTransform === -3148) {
+    if (this.state.listTasteTransform === -tasteransform * (tasteindex + 1)) {
       setTimeout(() => {
         this.setState({
-          listTasteTransform: -787,
+          listTasteTransform: -tasteransform,
           listTransition: '0s',
         });
       }, 1000);
@@ -153,16 +161,19 @@ class Main extends React.Component {
     if (this.state.listTasteTransform === 0) {
       setTimeout(() => {
         this.setState({
-          listTasteTransform: -2361,
+          listTasteTransform: -tasteransform * tasteindex,
           listTransition: '0s',
         });
       }, 1000);
     }
 
-    if (this.state.listReviewTranfrom === -3600) {
+    if (
+      this.state.listReviewTranfrom ===
+      -reveiwTransform * (reviewindex + 1)
+    ) {
       setTimeout(() => {
         this.setState({
-          listReviewTranfrom: -720,
+          listReviewTranfrom: -reveiwTransform,
           listTransition: '0s',
         });
       }, 1000);
@@ -171,7 +182,7 @@ class Main extends React.Component {
     if (this.state.listReviewTranfrom === 0) {
       setTimeout(() => {
         this.setState({
-          listReviewTranfrom: -2880,
+          listReviewTranfrom: -reveiwTransform * reviewindex,
           listTransition: '0s',
         });
       }, 1000);
@@ -189,13 +200,11 @@ class Main extends React.Component {
       recommendTaste,
       isPlayOn,
     } = this.state;
-
     const hours = Math.floor(countDate / (60 * 60 * 1000));
     const mins = Math.floor((countDate - hours * 60 * 60 * 1000) / (60 * 1000));
     const secs = Math.floor(
       (countDate - hours * 60 * 60 * 1000 - mins * 60 * 1000) / 1000
     );
-    const days = ['일', '월', '화', '수', '목', '금', '토'];
 
     const {
       handlePrevMove,

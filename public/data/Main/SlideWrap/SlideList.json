@@ -1,42 +1,34 @@
 [
   {
     "id": "1",
-    "head": "이벤트 오픈",
-    "titleFirst": "쇼핑 축제",
-    "titleSecond": "비스킷 스낵 페스타",
-    "subtitle": "매일매일 쓸쑤록 더 큰 혜택이 쏟아집니다.",
-    "img": "images/Main/banner.jpeg"
+    "head": "신메뉴 오픈",
+    "titleFirst": "10년전으로 떠나는",
+    "titleSecond": "특별한 추억여행",
+    "subtitle": "심심할 때 마다 먹기 좋은 귀여운 사탕",
+    "img": "images/Main/candy.jpg"
   },
   {
     "id": "2",
-    "head": "웹매거진 오픈",
-    "titleFirst": "비스킷으로",
-    "titleSecond": "여행에 맛을 더하다.",
-    "subtitle": "웹매거진 '월간 비스킷 패밀리' Vol.6",
-    "img": "images/Main/banner2.jpeg"
+    "head": "웹 매거진 오픈",
+    "titleFirst": "피크닉에도",
+    "titleSecond": "비스킷 으로 가자!",
+    "subtitle": "웹매거진 '월간 비스킷패밀리' Vol.6'",
+    "img": "images/Main/picnic.jpg"
   },
   {
     "id": "3",
     "head": "이벤트 오픈",
-    "titleFirst": "쇼핑 축제",
-    "titleSecond": "비스킷 스낵 페스타",
-    "subtitle": "매일매일 쓸쑤록 더 큰 혜택이 쏟아집니다.",
-    "img": "images/Main/banner.jpeg"
+    "titleFirst": "오리지널의 맛",
+    "titleSecond": "달콤한 크로아상",
+    "subtitle": "이번달 만큼 20% 할인된 가격으로!",
+    "img": "images/Main/bread.jpg"
   },
   {
     "id": "4",
-    "head": "웹매거진 오픈",
-    "titleFirst": "비스킷으로",
-    "titleSecond": "여행에 맛을 더하다.",
-    "subtitle": "웹매거진 '월간 비스킷 패밀리' Vol.6",
-    "img": "images/Main/banner2.jpeg"
-  },
-  {
-    "id": "5",
     "head": "이벤트 오픈",
-    "titleFirst": "쇼핑 축제",
-    "titleSecond": "비스킷 스낵 페스타",
-    "subtitle": "매일매일 쓸쑤록 더 큰 혜택이 쏟아집니다.",
-    "img": "images/Main/banner.jpeg"
+    "titleFirst": "오리지널의 맛",
+    "titleSecond": "달콤한 크로아상",
+    "subtitle": "이번달 만큼 20% 할인된 가격으로!",
+    "img": "images/Main/bread.jpg"
   }
 ]

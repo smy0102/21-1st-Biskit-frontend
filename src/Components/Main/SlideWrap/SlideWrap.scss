@@ -4,6 +4,7 @@
   height: 640px;
   max-width: 1920px;
   overflow: hidden;
+  margin: 0 auto;
 
   .slideBox {
     width: 100%;
@@ -13,6 +14,7 @@
     .slideList {
       position: relative;
       width: 13440px;
+      overflow: hidden;
 
       .slideContent {
         position: relative;
@@ -21,10 +23,29 @@
         width: 1920px;
         height: 640px;
 
+        &::after {
+          content: '';
+          position: absolute;
+          left: 300px;
+          width: 30%;
+          height: 100%;
+          z-index: 1;
+          background: rgba(255, 255, 255, 0.5);
+        }
+
+        img {
+          position: absolute;
+        }
+
+        video {
+          position: absolute;
+        }
+
         .bannerContent {
           position: absolute;
           left: 17%;
           top: 15%;
+          z-index: 2;
 
           .bannerHead {
             padding: 8px 10px;

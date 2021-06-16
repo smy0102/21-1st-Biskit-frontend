@@ -1,6 +1,8 @@
 @import '/src/Styles/variables.scss';
 
 .Nav {
+  border-bottom: $grayBorder;
+
   .gnbWrap {
     min-width: 1260px;
     height: 35px;
@@ -39,10 +41,10 @@
   .menuContainer {
     @include flexSet(space-between, normal);
     position: relative;
+    margin: 0 auto;
     max-width: 1920px;
     min-width: 1260px;
     height: 81px;
-    border-bottom: $grayBorder;
 
     .logo {
       margin: 25px 0 0 40px;

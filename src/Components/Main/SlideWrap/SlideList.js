@@ -6,6 +6,7 @@ class SlideList extends React.Component {
     return (
       <div className="slideContent" key={id}>
         <img alt="banner" src={img} />
+        <video src={img} autoPlay loop muted />
         <div className="bannerContent">
           <div className="bannerHead">{head}</div>
           <div className="bannerTitle">

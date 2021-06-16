@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "img": "/data/MenuList/img1.jpg",
+    "title": "새우깡",
+    "price": 1000,
+    "taste": "짠맛",
+    "calorie": 67,
+    "gram": 250
+  },
+  {
+    "id": 2,
+    "img": "/data/MenuList/img1.jpg",
+    "title": "나쵸",
+    "price": 2000,
+    "taste": "단맛",
+    "calorie": 27,
+    "gram": 250
+  },
+  {
+    "id": 3,
+    "img": "/data/MenuList/img1.jpg",
+    "title": "도리토스",
+    "price": 3000,
+    "taste": "매운맛",
+    "calorie": 97,
+    "gram": 250
+  }
+]
