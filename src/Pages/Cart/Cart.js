@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import ShoppingProduct from '../../Components/Cart/ShoppingProduct/ShppingProduct';
+import EmptyCart from '../../Components/Cart/EmptyCart/EmptyCart';
 import './Cart.scss';
 
 class Cart extends React.Component {
@@ -87,7 +88,13 @@ class Cart extends React.Component {
       return Number(value) !== product.id;
     });
 
-    this.setState({ listData: filteredData }, this.calculatePrice);
+    this.setState(
+      {
+        listData: filteredData,
+        selectedArr: Array(filteredData.length).fill(false),
+      },
+      this.calculatePrice
+    );
   };
 
   calculatePrice = () => {
@@ -106,8 +113,8 @@ class Cart extends React.Component {
     let idx = selectedArr.indexOf(true);
     while (idx !== -1) {
       checkedArr.push(idx + 1);
-      console.log(selectedArr.indexOf(true));
       idx = selectedArr.indexOf(true, idx + 1);
+      console.log(idx);
     }
     const newCheckedArr = listData.filter(cartItem => {
       return !checkedArr.includes(parseInt(cartItem.id));
@@ -124,7 +131,9 @@ class Cart extends React.Component {
 
   render() {
     const { listData, resultPrice } = this.state;
-    return (
+    return listData.length === 0 ? (
+      <EmptyCart />
+    ) : (
       <div className="Cart">
         <article className="title">
           <h1>장바구니</h1>
@@ -159,7 +168,7 @@ class Cart extends React.Component {
               onClick={this.handleSelectedAll}
             />
             <div>
-              총{' '}
+              총
               <span>
                 {this.state.selectedArr.filter(el => true === el).length}
               </span>
