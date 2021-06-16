@@ -1,0 +1,68 @@
+@import '../../../Styles/variables';
+
+.ShoppingProduct {
+  @include flexSet(flex-start);
+  border-top: $grayBorder;
+  padding: 25px;
+
+  &:first-child {
+    border-top: none;
+  }
+
+  input {
+    margin-right: 25px;
+    background-color: $primaryColor;
+  }
+
+  img {
+    width: 80px;
+  }
+
+  .prodcutInfo {
+    flex-grow: 1;
+    margin-left: 15px;
+    font: {
+      size: 18px;
+      weight: bold;
+    }
+
+    div {
+      padding: 5px 0;
+    }
+  }
+
+  .quantityButtons {
+    @include flexSet(space-between);
+    width: 110px;
+    margin-right: 50px;
+    padding: 5px 10px;
+    border: $grayBorder;
+
+    span {
+      font: {
+        size: 22px;
+        weight: bold;
+      }
+    }
+
+    button {
+      font: {
+        size: 22px;
+        weight: bold;
+      }
+    }
+  }
+
+  .productPrice {
+    margin-right: 15px;
+    font: {
+      size: 22px;
+      weight: bold;
+    }
+  }
+
+  .deleteButton {
+    color: $basicGray;
+    font-size: 26px;
+  }
+}
