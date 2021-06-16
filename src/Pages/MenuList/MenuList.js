@@ -19,14 +19,14 @@ class MenuList extends React.Component {
       snackList: [],
       filtering: '신메뉴순',
       currentId: 1,
-      unlike: false,
     };
   }
 
   fetchItems = qs => {
+    console.log(qs);
     const url = qs
-      ? `http://10.58.0.85:8000/products${qs}`
-      : `http://10.58.0.85:8000/products?sort=-created_at`;
+      ? `http://10.58.62.145:8000/products${qs}`
+      : `http://10.58.62.145:8000/products?sort=-created_at`;
 
     fetch(url)
       .then(res => res.json())
@@ -176,7 +176,6 @@ class MenuList extends React.Component {
                       img={data.img}
                       taste={data.taste}
                       handlelikeBtn={this.handleLikeBtn}
-                      unlike={this.state.unlike}
                       rating={data.rating}
                       reviews={data.reviews}
                     />

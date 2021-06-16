@@ -15,6 +15,7 @@ class DaysBtn extends React.Component {
         {DAYS.map(day => {
           return (
             <button
+              key="id"
               type="button"
               className={
                 this.props.cate === day.content ? 'activateDays' : 'days'
