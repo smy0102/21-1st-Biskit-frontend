@@ -17,7 +17,7 @@ class ThemeBtn extends React.Component {
         {Theme.map(theme => {
           return (
             <button
-              key="id"
+              key={theme.id}
               type="button"
               className={
                 this.props.tastes === theme.content
