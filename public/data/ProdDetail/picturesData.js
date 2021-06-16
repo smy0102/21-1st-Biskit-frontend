@@ -1,0 +1,24 @@
+const PICTURES = [
+  {
+    id: 1,
+    url: 'https://img.cjcookit.com/images/file/product/544/20210521113810365.jpg?RS=600x600',
+  },
+  {
+    id: 2,
+    url: 'https://img.cjcookit.com/images/file/product/265/20210521113821355.jpg?RS=600x600',
+  },
+  {
+    id: 3,
+    url: 'https://img.cjcookit.com/images/file/product/918/20210521114745796.jpg?RS=600x600',
+  },
+  {
+    id: 4,
+    url: 'https://img.cjcookit.com/images/file/product/426/20210521114752583.jpg?RS=600x600',
+  },
+  {
+    id: 5,
+    url: 'https://img.cjcookit.com/images/file/product/867/20210521114759550.jpg?RS=600x600',
+  },
+];
+
+export default PICTURES;

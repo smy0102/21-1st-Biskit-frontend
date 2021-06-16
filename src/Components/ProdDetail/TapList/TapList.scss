@@ -1,0 +1,38 @@
+@import '/src/Styles/variables.scss';
+@import '../../../Styles/mixin';
+
+.TapList {
+  @include flexSet;
+  position: sticky;
+  top: 0;
+  height: 9vh;
+  margin-top: 100px;
+  border-bottom: $grayBorder;
+  background-color: white;
+  text-align: center;
+  z-index: 10;
+
+  ul {
+    @include flexSet(flex-start);
+    position: absolute;
+    bottom: 0;
+    width: 1180px;
+    list-style: none;
+
+    li {
+      @include flexSet;
+      width: 195px;
+      height: 75px;
+      font: {
+        size: 22px;
+        weight: 500;
+      }
+      cursor: pointer;
+
+      &.tapOn {
+        border-bottom: 4px solid $basicBlack;
+        font-weight: 800;
+      }
+    }
+  }
+}
