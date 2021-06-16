@@ -23,7 +23,9 @@ class ThemeBtn extends React.Component {
                   ? 'activateTastes'
                   : 'tastes'
               }
-              onClick={() => this.props.handleClickTaste(theme.content)}
+              onClick={() =>
+                this.props.handleClickTaste(theme.content, theme.qs)
+              }
             >
               {theme.content}
             </button>

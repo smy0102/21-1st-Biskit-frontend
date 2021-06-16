@@ -6,6 +6,7 @@ import DaysBtn from './DaysBtn';
 import ThemeBtn from './ThemeBtn';
 import DeliveryInfo from './DeliveryInfo';
 import ThemeInfo from './ThemeInfo';
+import { Link, withRouter } from 'react-router-dom';
 import { Theme } from './MenuListTheme';
 
 class MenuList extends React.Component {
@@ -18,15 +19,21 @@ class MenuList extends React.Component {
       snackList: [],
       filtering: '신메뉴순',
       currentId: 1,
+      unlike: false,
     };
   }
 
-  fetchItems = (name = 'menuData') => {
-    fetch(`/data/MenuList/${name}.json`, {})
+  fetchItems = qs => {
+    const url = qs
+      ? `http://10.58.0.85:8000/products${qs}`
+      : `http://10.58.0.85:8000/products?sort=-created_at`;
+
+    fetch(url)
       .then(res => res.json())
       .then(data => {
+        console.log(data);
         this.setState({
-          snackList: data,
+          snackList: data.result,
         });
       });
   };
@@ -35,20 +42,27 @@ class MenuList extends React.Component {
     this.fetchItems();
   }
 
-  handleClickTaste = theme => {
-    this.setState({ tastes: theme });
+  handleLikeBtn = e => {
+    this.setState({ unlike: !this.state.unlike });
   };
 
-  handleClickCate = day => {
+  handleClickTaste = (theme, qs) => {
+    this.setState({ tastes: theme });
+    this.fetchItems(qs);
+  };
+
+  handleClickCate = (day, qs) => {
     this.setState({ cate: day });
+    this.fetchItems(qs);
   };
 
   handleClickTab = e => {
-    this.setState({ tab: e.target.innerHTML });
+    this.setState({ tab: e.target.textContent });
   };
 
-  handleClickFiltering = e => {
-    this.setState({ filtering: e.target.innerHTML });
+  handleClickFiltering = (e, qs) => {
+    this.setState({ filtering: e.target.textContent });
+    this.fetchItems(qs);
   };
 
   handleMenuTab = id => {
@@ -56,7 +70,6 @@ class MenuList extends React.Component {
   };
 
   render() {
-    console.log(this.state.currentId);
     return (
       <>
         <section>
@@ -64,7 +77,11 @@ class MenuList extends React.Component {
             <div className="topSec">
               <h1>BISKIT 메뉴</h1>
               <div className="cateWrap">
-                <div className="tabWrap" onClick={this.handleClickTab}>
+                <div
+                  className="tabWrap"
+                  onClick={e => this.handleClickTab(e)}
+                  value="Tab"
+                >
                   <button
                     onClick={() => {
                       this.handleMenuTab(1);
@@ -79,7 +96,7 @@ class MenuList extends React.Component {
                   <button
                     onClick={() => {
                       this.handleMenuTab(2);
-                      this.fetchItems('themeData');
+                      this.fetchItems('?sort=-created_at');
                     }}
                     className={
                       this.state.tab === '테마별' ? 'activateTab' : 'themeTab'
@@ -134,7 +151,7 @@ class MenuList extends React.Component {
                             ? 'activatefilterList'
                             : 'filterList'
                         }
-                        onClick={this.handleClickFiltering}
+                        onClick={e => this.handleClickFiltering(e, list.qs)}
                       >
                         {this.state.filtering === list.content
                           ? '✓ ' + list.content
@@ -151,13 +168,17 @@ class MenuList extends React.Component {
                 {this.state.snackList.map(data => {
                   return (
                     <List
-                      key={data.id}
+                      id={data.id}
                       title={data.title}
                       price={data.price}
                       calorie={data.calorie}
                       gram={data.gram}
                       img={data.img}
                       taste={data.taste}
+                      handlelikeBtn={this.handleLikeBtn}
+                      unlike={this.state.unlike}
+                      rating={data.rating}
+                      reviews={data.reviews}
                     />
                   );
                 })}

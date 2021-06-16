@@ -19,7 +19,7 @@ class DaysBtn extends React.Component {
               className={
                 this.props.cate === day.content ? 'activateDays' : 'days'
               }
-              onClick={() => this.props.handleClickCate(day.content)}
+              onClick={() => this.props.handleClickCate(day.content, day.qs)}
             >
               {day.content}
             </button>

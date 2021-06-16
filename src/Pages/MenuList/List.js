@@ -1,13 +1,26 @@
 import React from 'react';
 import './list.scss';
+import { Link } from 'react-router-dom';
 
 class List extends React.Component {
   render() {
-    const { img, title, price, taste, calorie, gram } = this.props;
-    console.log(taste);
+    const {
+      img,
+      title,
+      price,
+      taste,
+      calorie,
+      gram,
+      handlelikeBtn,
+      id,
+      rating,
+      reviews,
+    } = this.props;
     return (
       <li className="menuLi">
-        <img className="menuImg" src={img} alt="snack" />
+        <Link to={`ProdDetail/${id}`}>
+          <img className="menuImg" src={img} alt="snack" />
+        </Link>
         <div className="recommend">
           <span className="limited">기간한정</span>
           <span className="name">NEW</span>
@@ -16,20 +29,22 @@ class List extends React.Component {
           <span className="listInfo">{gram}g</span>
           <span className="listInfo">{calorie}kcal</span>
           <span className="tasteWrap">
-            {taste.map(a => {
-              return <span className="tasteMap">{a}</span>;
-            })}
+            <span className="tasteMap">{taste}</span>
           </span>
           <p className="title">{title}</p>
           <p className="price">{price}원</p>
         </div>
         <div className="reviewWrap">
-          <span className="review">★★★★☆</span>
-          <span className="reviewCount">리뷰 100</span>
+          <span className="review">{rating}점</span>
+          <span className="reviewCount">{reviews}</span>
         </div>
         <div className="iconBox">
-          <button>
-            <img src="../images/MenuList/like.png" alt="like" />
+          <button onClick={handlelikeBtn}>
+            {this.props.unlike !== false ? (
+              <img src="../images/MenuList/like.png" alt="like" />
+            ) : (
+              <img src="../images/MenuList/unlike.png" alt="unlike" />
+            )}
           </button>
           <button>
             <img src="../images/MenuList/listBasket.png" alt="listBasket" />
