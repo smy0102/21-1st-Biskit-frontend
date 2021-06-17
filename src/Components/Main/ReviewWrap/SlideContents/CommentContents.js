@@ -18,25 +18,20 @@ class CommentContents extends React.Component {
             <div className="imgWrap">
               <img
                 alt={reviewList.result?.[reviewList.result?.length - 1].title}
-                src={
-                  reviewList.result?.[reviewList.result?.length - 1]
-                    .review_image
-                }
+                src={reviewList.result?.[reviewList.result?.length - 1].image}
               />
             </div>
           </div>
         </li>
         {reviewList.result?.map(el => {
-          return (
-            <SlideCount key={el.id} images={el.review_image} title={el.title} />
-          );
+          return <SlideCount key={el.id} images={el.image} title={el.title} />;
         })}
         <li className="slideCount">
           <div className="reviewMod">
             <div className="imgWrap">
               <img
                 alt={reviewList.result?.[0].title}
-                src={reviewList.result?.[0].review_image}
+                src={reviewList.result?.[0].image}
               />
             </div>
           </div>

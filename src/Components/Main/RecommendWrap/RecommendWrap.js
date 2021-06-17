@@ -5,23 +5,6 @@ import { TASTE } from './SlideContents/RecommendWrapConst/GnbMenu';
 import './RecommendWrap.scss';
 
 class RecommendWrap extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      recommendList: [],
-    };
-  }
-
-  componentDidMount() {
-    fetch('/data/Main/RecommendWrap/RecommendWrap.json')
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          recommendList: data,
-        });
-      });
-  }
-
   render() {
     const {
       isTasteClass,
@@ -32,8 +15,8 @@ class RecommendWrap extends React.Component {
       handleTasteNextMove,
       listTransition,
       listTasteTransform,
+      recommendList,
     } = this.props;
-    const { recommendList } = this.state;
     return (
       <div className="RecommendWrap">
         <div className="individ">
@@ -62,6 +45,7 @@ class RecommendWrap extends React.Component {
                             className="selected"
                             onClick={handleClick}
                             key={el.id}
+                            data-index={el.id}
                           >
                             <span>{el.content}</span>
                           </button>

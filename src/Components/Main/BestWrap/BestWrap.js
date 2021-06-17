@@ -11,7 +11,7 @@ class BestWrap extends React.Component {
     };
   }
   componentDidMount() {
-    fetch('/data/Main/BestWrap/BestWrap.json')
+    fetch('http://10.58.0.85:8000/products?per_page=1')
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -25,10 +25,10 @@ class BestWrap extends React.Component {
         <h2 className="bestTitle">실시간 베스트</h2>
         <div className="prodList">
           <ul>
-            {this.state.bestList.result?.map(el => {
-              return (
+            {this.state.bestList.result?.map((el, index) => {
+              return index === this.state.bestList.result.length - 1 ? null : (
                 <ProdList
-                  id={el.id}
+                  id={index}
                   title={el.title}
                   price={el.price}
                   gram={el.gram}

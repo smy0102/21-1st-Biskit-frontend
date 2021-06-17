@@ -10,7 +10,7 @@ class ProdList extends React.Component {
             <Link to="/" className="count">
               <img alt="하노이식 분짜" src={this.props.images}></img>
               <span className="flagNumBest">
-                <span>Best</span>0{this.props.id}
+                <span>Best</span>0{this.props.id + 1}
               </span>
             </Link>
           </div>

@@ -15,11 +15,11 @@ class Signup extends React.Component {
       idValue: '',
       pwValue: '',
       pwValueReconfirm: '',
-      mobileValue: '',
       adressValue: '',
       emailValue: '',
-      mobileFirst: '',
+      mobileFirst: '010',
       mobileSecond: '',
+      mobileThird: '',
     };
 
     this.checkID = this.checkID.bind(this);
@@ -46,6 +46,11 @@ class Signup extends React.Component {
     this.setState({ [name]: value });
   };
 
+  // handelInputSelect = event => {
+  //   const { value, name } = event.target;
+  //   this.setState({ [name]: value });
+  // };
+
   goToLogin = () => {
     fetch('http://10.58.2.209:8000/users/signup', {
       method: 'POST',
@@ -54,7 +59,9 @@ class Signup extends React.Component {
         account: this.state.idValue,
         password: this.state.pwValue,
         mobile:
-          '010' + '-' + this.state.mobileFirst + '-' + this.state.mobileSecond,
+          this.state.mobileFirst +
+          this.state.mobileSecond +
+          this.state.mobileThird,
         address: this.state.adressValue,
         email: this.state.emailValue,
       }),
@@ -102,6 +109,9 @@ class Signup extends React.Component {
   }
 
   render() {
+    console.log(
+      this.state.mobileFirst + this.state.mobileSecond + this.state.mobileThird
+    );
     const {
       handelInput,
       changeAll,
@@ -117,6 +127,7 @@ class Signup extends React.Component {
       isCheck1,
       isCheck2,
       allCheckBox,
+      mobileFirst,
     } = this.state;
     return (
       <div className="Signup">
@@ -140,6 +151,7 @@ class Signup extends React.Component {
             pwValueReconfirm={pwValueReconfirm}
             pwValue={pwValue}
             checkID={checkID}
+            mobileFirst={mobileFirst}
           />
           <SignInputTermsBox
             checked={checked}

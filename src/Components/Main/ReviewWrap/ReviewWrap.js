@@ -13,7 +13,7 @@ class ReviewWrap extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/data/Main/ReviewWrap/Review.json')
+    fetch('http://10.58.0.85:8000/products/1/review?per_page=1')
       .then(res => res.json())
       .then(data => {
         this.setState({

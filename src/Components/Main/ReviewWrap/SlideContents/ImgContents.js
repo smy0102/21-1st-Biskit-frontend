@@ -5,16 +5,13 @@ import { Link } from 'react-router-dom';
 class CommentContents extends React.Component {
   render() {
     const { reviewList, listReviewTranfrom } = this.props;
-
     return (
       <ul>
         <li
-          key={reviewList.result?.[reviewList.result?.length - 1].key}
           className={
             (listReviewTranfrom === -720
               ? 1
-              : Math.abs(listReviewTranfrom / 720)) ===
-            reviewList.result?.[0].id - 1
+              : Math.abs(listReviewTranfrom / 720)) === 0
               ? 'reviewCommentList on'
               : 'reviewCommentList'
           }
@@ -33,6 +30,7 @@ class CommentContents extends React.Component {
                 <span className="ratingStar">
                   <span className="star">
                     <span>
+                      ★
                       {
                         reviewList.result?.[reviewList.result?.length - 1]
                           .star_rating
@@ -47,27 +45,25 @@ class CommentContents extends React.Component {
             </Link>
           </div>
         </li>
-        {reviewList.result?.map(el => {
+        {reviewList.result?.map((el, key) => {
           return (
             <ImgCount
-              key={el.id}
-              review_image={el.review_image}
+              key={key}
+              id={key}
               listReviewTranfrom={listReviewTranfrom}
               content={el.content}
               title={el.title}
               star_rating={el.star_rating}
               account={el.account}
-              id={el.id}
             />
           );
         })}
         <li
-          key={reviewList.result?.[0].key}
           className={
             (listReviewTranfrom === -720
               ? 1
               : Math.abs(listReviewTranfrom / 720)) ===
-            reviewList.result?.[reviewList.result?.length - 1].id + 1
+            reviewList.result?.length + 1
               ? 'reviewCommentList on'
               : 'reviewCommentList'
           }
@@ -81,7 +77,7 @@ class CommentContents extends React.Component {
               <div className="ratingWrap">
                 <span className="ratingStar">
                   <span className="star">
-                    <span>{reviewList.result?.[0].star_rating}</span>
+                    <span>★ {reviewList.result?.[0].star_rating}</span>
                   </span>
                 </span>
               </div>

@@ -12,14 +12,14 @@ class ImgCount extends React.Component {
       account,
       content,
     } = this.props;
-
     return (
       <li
         key={key}
         className={
           (listReviewTranfrom === -720
             ? 1
-            : Math.abs(listReviewTranfrom / 720)) === id
+            : Math.abs(listReviewTranfrom / 720)) ===
+          id + 1
             ? 'reviewCommentList on'
             : 'reviewCommentList'
         }
@@ -33,7 +33,7 @@ class ImgCount extends React.Component {
             <div className="ratingWrap">
               <span className="ratingStar">
                 <span className="star">
-                  <span>{star_rating}</span>
+                  <span>★ {star_rating}</span>
                 </span>
               </span>
             </div>
