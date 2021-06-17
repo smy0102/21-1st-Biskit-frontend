@@ -10,10 +10,7 @@ class ThemeBtn extends React.Component {
           className={
             this.props.tastes === '전체' ? 'activateThemeBtn' : 'AllBtn'
           }
-          onClick={() => {
-            const qs = '?sort=-created_at';
-            this.props.handleClickTaste('전체', qs);
-          }}
+          onClick={() => this.props.handleClickTaste('전체')}
         >
           전체
         </span>
@@ -27,9 +24,9 @@ class ThemeBtn extends React.Component {
                   ? 'activateTastes'
                   : 'tastes'
               }
-              onClick={() => {
-                this.props.handleClickTaste(theme.content, theme.qs);
-              }}
+              onClick={() =>
+                this.props.handleClickTaste(theme.content, theme.qs)
+              }
             >
               {theme.content}
             </button>

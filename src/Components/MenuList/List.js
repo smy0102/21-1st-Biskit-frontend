@@ -1,6 +1,6 @@
 import React from 'react';
 import './list.scss';
-import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const createDate = () => {
   const month = new Date().getMonth() + 1;
@@ -29,26 +29,39 @@ class List extends React.Component {
   };
 
   handleBasket = () => {
-    const { price, id } = this.props;
-    if (localStorage?.getItem('token')) {
-      fetch('http://10.58.0.85:8000/orders', {
-        method: 'POST',
-        header: '',
-        body: JSON.stringify({
-          product_id: id,
-          quantity: 1,
-          total_price: price,
-          date: createDate(),
-        }),
+    const { img, title, price, id } = this.props;
+
+    fetch('http://10.58.1.35:8000/orders', {
+      method: 'POST',
+      body: JSON.stringify({
+        product_title: title,
+        product_image: img,
+        product_price: price,
+        quantity: 1,
+        total_price: price,
+        date: createDate(),
+      }),
+    })
+      .then(res => {
+        return res.json();
       })
-        .then(res => {
-          alert('상품을 장바구니에 담았습니다.');
-        })
-        .then(res => {});
-    } else {
-      alert('로그인 후 사용이 가능합니다.');
-      this.props.history.push('/login');
-    }
+      .then(res => {
+        console.log(res);
+      });
+  };
+
+  handleBasket = () => {
+    this.props.handleBasket();
+    this.setState(
+      {
+        basket: !this.state.basket,
+      },
+      () => {
+        this.state.basket
+          ? alert('장바구니에 담겼습니다.')
+          : alert('장바구니에서 제외했습니다.');
+      }
+    );
   };
 
   render() {
@@ -56,13 +69,9 @@ class List extends React.Component {
       this.props;
     return (
       <li className="menuLi">
-        <img
-          className="menuImg"
-          src={img}
-          alt="snack"
-          onClick={() => this.props.history.push(`ProdDetail/${id}`)}
-        />
-
+        <Link to={`ProdDetail/${id}`}>
+          <img className="menuImg" src={img} alt="snack" />
+        </Link>
         {/* <div className="recommend">
           <span className="limited">기간한정</span>
           <span className="name">NEW</span>
@@ -73,16 +82,11 @@ class List extends React.Component {
           <span className="tasteWrap">
             <span className="tasteMap">{taste}</span>
           </span>
-          <p
-            className="title"
-            onClick={() => this.props.history.push(`ProdDetail/${id}`)}
-          >
-            {title}
-          </p>
+          <p className="title">{title}</p>
           <p className="price">{price}원</p>
         </div>
         <div className="reviewWrap">
-          <span className="review">★{rating}</span>
+          <span className="review">{rating}</span>
           <span className="reviewCount">{reviews}</span>
         </div>
         <div className="iconBox">
@@ -93,7 +97,6 @@ class List extends React.Component {
               <img src="../images/MenuList/unlike.png" alt="unlike" />
             )}
           </button>
-
           <button onClick={this.handleBasket}>
             <img src="../images/MenuList/listBasket.png" alt="listBasket" />
           </button>
@@ -103,4 +106,4 @@ class List extends React.Component {
   }
 }
 
-export default withRouter(List);
+export default List;

@@ -1,0 +1,103 @@
+@import '../../Styles/common.scss';
+@import '../../Styles/reset.scss';
+@import '../../Styles/variables.scss';
+
+.cate {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+
+  .activateCate {
+    font-family: Arial;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 64px;
+    margin-right: 12px;
+    color: $basicBlack;
+    font-size: 20px;
+    font-weight: 800;
+    text-decoration: underline;
+    line-height: 30px;
+    cursor: pointer;
+    &::after {
+      position: absolute;
+      content: '';
+      display: block;
+      top: 50%;
+      right: 0;
+      width: 1px;
+      height: 20px;
+      margin-top: -10px;
+      background-color: #363636;
+    }
+  }
+
+  .cateAll {
+    font-family: Arial;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 64px;
+    margin-right: 12px;
+    color: $basicDarkgray;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+    cursor: pointer;
+    &::after {
+      position: absolute;
+      content: '';
+      display: block;
+      top: 50%;
+      right: 0;
+      width: 1px;
+      height: 20px;
+      margin-top: -10px;
+      background-color: #363636;
+    }
+  }
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 64px;
+    margin-right: 12px;
+    color: $basicDarkgray;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    &:nth-last-child(1) {
+      padding: 0;
+    }
+  }
+
+  .days {
+    padding: 0;
+    color: $basicDarkgray;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+    cursor: pointer;
+  }
+
+  .activateDays {
+    background-color: rgba($basicBlack, $alpha: 1);
+    border-radius: 50%;
+    padding: 0;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 30px;
+    cursor: pointer;
+  }
+}
