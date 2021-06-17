@@ -1,0 +1,40 @@
+{
+  "result": [
+    {
+      "id": 1,
+      "user": "vel",
+      "review_image": "/images/Main/food1.jpeg",
+      "content": "짭쪼룸한1번 맛과 꽈리고추의 살짝 매운맛이 너무 매력적인 요리입니다. 대접용요리로도 손색이 없어요",
+      "title": "몽골리안 비프",
+      "star_rating": "6.0",
+      "account": "by.ekf*****"
+    },
+    {
+      "id": 2,
+      "user": "tempora",
+      "review_image": "/images/Main/food2.png",
+      "content": " 바다향2번 한 입 가득~ 비스킷은 해물이 더 많네요^^ 해물이 많아 놀라고 맛에 또 놀랐어요",
+      "title": "모듬해물찜",
+      "star_rating": "4.0",
+      "account": "by.ekf*****"
+    },
+    {
+      "id": 3,
+      "user": "minima",
+      "review_image": "/images/Main/food3.jpeg",
+      "content": "짭쪼룸한3번 맛과 꽈리고추의 살짝 매운맛이 너무 매력적인 요리입니다. 대접용요리로도 손색이 없어요",
+      "title": "몽골리안 비프",
+      "star_rating": "1.0",
+      "account": "by.ekf*****"
+    },
+    {
+      "id": 4,
+      "user": "minima",
+      "review_image": "/images/Main/food4.png",
+      "content": " 바다향4번 한 입 가득~ 비스킷은 해물이 더 많네요^^ 해물이 많아 놀라고 맛에 또 놀랐어요",
+      "title": "모듬해물찜",
+      "star_rating": "1.0",
+      "account": "by.ekf*****"
+    }
+  ]
+}

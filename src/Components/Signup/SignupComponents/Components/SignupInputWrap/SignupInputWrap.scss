@@ -3,6 +3,12 @@
 .SignupInputWrap {
   margin-top: 30px;
 
+  input {
+    &::placeholder {
+      font-size: 14px;
+    }
+  }
+
   input,
   select {
     &:focus {

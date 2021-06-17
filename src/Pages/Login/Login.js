@@ -1,6 +1,6 @@
 import React from 'react';
-import './Login.scss';
 import { Link, withRouter } from 'react-router-dom';
+import './Login.scss';
 
 class Login extends React.Component {
   constructor() {
@@ -34,6 +34,7 @@ class Login extends React.Component {
         if (result.message === 'SUCCESS') {
           this.props.history.push('/');
           localStorage.setItem('token', result.token);
+          window.location.replace('/');
         } else {
           alert('아이디와 패스워드를 확인해주세요');
         }

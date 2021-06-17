@@ -1,6 +1,8 @@
 @import '/src/Styles/variables.scss';
 
 .Nav {
+  border-bottom: $grayBorder;
+
   .gnbWrap {
     min-width: 1260px;
     height: 35px;
@@ -43,7 +45,6 @@
     max-width: 1920px;
     min-width: 1260px;
     height: 81px;
-    border-bottom: $grayBorder;
 
     .logo {
       margin: 25px 0 0 40px;
@@ -75,6 +76,10 @@
             width: 30px;
             height: 30px;
             margin-bottom: 4px;
+
+            &:first-child {
+              margin-left: 2px;
+            }
           }
         }
       }
