@@ -1,14 +1,13 @@
 import React from 'react';
-import './Signup.scss';
 import { withRouter } from 'react-router-dom';
 import SignupInputWrap from '../../Components/Signup/SignupComponents/Components/SignupInputWrap/SignupInputWrap';
 import SignInputTermsBox from '../../Components/Signup/SignupComponents/Components/SignInputTermsBox/SignInputTermsBox';
+import './Signup.scss';
 
 class Signup extends React.Component {
   constructor() {
     super();
     this.state = {
-      // isCheck: [false, false],
       isCheck1: false,
       isCheck2: false,
       allCheckBox: false,
@@ -22,6 +21,8 @@ class Signup extends React.Component {
       mobileFirst: '',
       mobileSecond: '',
     };
+
+    this.checkID = this.checkID.bind(this);
   }
 
   changeAll = () => {
@@ -45,31 +46,29 @@ class Signup extends React.Component {
     this.setState({ [name]: value });
   };
 
-  addEmail = () => {
-    this.setState({
-      mobileValue: this.state.mobileFirst + '-' + this.state.mobileSecond,
-    });
-  };
-
   goToLogin = () => {
-    fetch('http://10.58.2.73:8000/users/signup', {
+    fetch('http://10.58.2.209:8000/users/signup', {
       method: 'POST',
       body: JSON.stringify({
         name: this.state.nameValue,
         account: this.state.idValue,
         password: this.state.pwValue,
-        mobile: this.state.mobileFirst + '-' + this.state.mobileSecond,
+        mobile:
+          '010' + '-' + this.state.mobileFirst + '-' + this.state.mobileSecond,
         address: this.state.adressValue,
         email: this.state.emailValue,
       }),
     })
       .then(response => response.json())
       .then(result => {
-        console.log(result);
         if (result.message === 'SUCCESS') {
           this.props.history.push('/login');
-        } else {
-          alert('이메일과 패스워드를 확인해주세요');
+        } else if (result.message === 'VALUE_IS_EMPTY') {
+          alert('입력창을 다시 확인 해주세요.');
+        } else if (result.message === 'INVALID_FORMAT') {
+          alert('알맞지 않은 형식입니다 다시 확인 해주세요');
+        } else if (result.message === 'ALREADY_EXISTS') {
+          alert('중복된 ID입니다.');
         }
       });
   };
@@ -84,23 +83,40 @@ class Signup extends React.Component {
     );
   };
 
+  checkID(e) {
+    e.preventDefault();
+    fetch('http://10.58.2.209:8000/users/account-validator', {
+      method: 'POST',
+      body: JSON.stringify({
+        account: this.state.idValue,
+      }),
+    })
+      .then(response => response.json())
+      .then(result => {
+        if (result.message === 'ALREADY_EXISTS') {
+          alert('중복된 ID입니다. 다른 ID를 입력해주세요');
+        } else if (result.message === 'INVALID_FORMAT') {
+          alert('알맞는 형식을 입력해주세요');
+        } else alert('가입 가능한 ID 입니다.');
+      });
+  }
+
   render() {
-    const { handelInput, changeAll, handleChange, toggleCheckBox, goToLogin } =
-      this;
+    const {
+      handelInput,
+      changeAll,
+      handleChange,
+      toggleCheckBox,
+      goToLogin,
+      checkID,
+    } = this;
     const {
       pwValueReconfirm,
       checked,
-      nameValue,
-      idValue,
-      mobileValue,
-      adressValue,
-      emailValue,
       pwValue,
       isCheck1,
       isCheck2,
       allCheckBox,
-      mobileFirst,
-      mobileSecond,
     } = this.state;
     return (
       <div className="Signup">
@@ -123,13 +139,7 @@ class Signup extends React.Component {
             handelInput={handelInput}
             pwValueReconfirm={pwValueReconfirm}
             pwValue={pwValue}
-            nameValue={nameValue}
-            idValue={idValue}
-            mobileValue={mobileValue}
-            adressValue={adressValue}
-            emailValue={emailValue}
-            mobileFirst={mobileFirst}
-            mobileSecond={mobileSecond}
+            checkID={checkID}
           />
           <SignInputTermsBox
             checked={checked}

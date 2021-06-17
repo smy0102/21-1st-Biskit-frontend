@@ -1,0 +1,28 @@
+{
+  "result": [
+    {
+      "id": 1,
+      "title": "1번 눈꽃 치즈 닭갈비",
+      "price": "25,800",
+      "gram": "36.0",
+      "taste": "매콤맛",
+      "images": "images/Main/food2.png"
+    },
+    {
+      "id": 2,
+      "title": "2번 눈꽃 치즈 닭갈비이",
+      "price": "25,800",
+      "gram": "36.0",
+      "taste": "매콤맛",
+      "images": "images/Main/food1.jpeg"
+    },
+    {
+      "id": 3,
+      "title": "3번 눈꽃 치즈 닭갈비으",
+      "price": "25,800",
+      "gram": "36.0",
+      "taste": "매콤맛",
+      "images": "images/Main/food2.png"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 import React from 'react';
-import './Login.scss';
 import { Link, withRouter } from 'react-router-dom';
+import './Login.scss';
 
 class Login extends React.Component {
   constructor() {
@@ -21,7 +21,7 @@ class Login extends React.Component {
   };
 
   goToMain = () => {
-    fetch('http://10.58.2.73:8000/users/signin', {
+    fetch('http://10.58.2.209:8000/users/signin', {
       method: 'POST',
       body: JSON.stringify({
         account: this.state.idValue,
@@ -34,6 +34,7 @@ class Login extends React.Component {
         if (result.message === 'SUCCESS') {
           this.props.history.push('/');
           localStorage.setItem('token', result.token);
+          window.location.replace('/');
         } else {
           alert('아이디와 패스워드를 확인해주세요');
         }

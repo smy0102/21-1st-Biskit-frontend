@@ -1,0 +1,125 @@
+.BestWrap {
+  width: 1180px;
+  margin: 140px auto 0;
+
+  .bestTitle {
+    position: relative;
+    width: 1180px;
+    margin: 0 auto;
+    color: #101010;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 56px;
+  }
+
+  .prodList {
+    margin-top: 40px;
+    overflow: hidden;
+
+    ul {
+      float: left;
+      width: 1221px;
+      margin: -64px 0 0 -41px;
+
+      li {
+        float: left;
+        width: 366px;
+        height: 450px;
+        margin: 64px 0 0 41px;
+
+        .proModule {
+          position: relative;
+
+          .imgWrap {
+            position: relative;
+            width: 366px;
+            height: 366px;
+
+            .flagNumBest {
+              width: 64px;
+              height: 64px;
+              padding: 8px 0 0 10px;
+              text-align: left;
+              position: absolute;
+              left: 16px;
+              top: 16px;
+              background: #202020;
+              color: #fff;
+              font-size: 18px;
+              line-height: 24px;
+              letter-spacing: 0;
+
+              span {
+                display: block;
+                margin-bottom: -2px;
+              }
+            }
+          }
+
+          .txtWrap {
+            position: relative;
+            padding: 16px 0 0;
+
+            .textInfo {
+              display: block;
+              color: #101010;
+              font-weight: 500;
+              font-size: 17px;
+              word-break: break-all;
+              width: 310px;
+            }
+
+            .priceInfo {
+              padding-top: 8px;
+              font-size: 0;
+
+              .sale {
+                display: inline-block;
+                color: #101010;
+                font-size: 18px;
+                line-height: 27px;
+                font-weight: 700;
+                vertical-align: middle;
+
+                .price {
+                  display: inline-block;
+                  vertical-align: top;
+                }
+              }
+              .servings {
+                display: inline-block;
+                padding-left: 6px;
+                font-size: 16px;
+                line-height: 24px;
+                vertical-align: middle;
+                color: #606060;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .moreList {
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    a {
+      position: relative;
+      display: flex;
+      align-items: center;
+      color: #101010;
+      font-size: 20px;
+      font-weight: 700;
+
+      img {
+        margin: 0 0 3px 8px;
+        width: 16px;
+        height: 16px;
+        vertical-align: middle;
+      }
+    }
+  }
+}
