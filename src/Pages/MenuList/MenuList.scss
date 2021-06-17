@@ -143,4 +143,18 @@ section {
       }
     }
   }
+  .pageNumb {
+    height: 120px;
+    padding-top: 120px;
+    padding-bottom: 120px;
+    display: flex;
+    justify-content: center;
+    button {
+      margin: 10px;
+      width: 40px;
+      height: 40px;
+      background-color: black;
+      color: #fff;
+    }
+  }
 }

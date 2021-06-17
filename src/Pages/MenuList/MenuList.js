@@ -16,6 +16,7 @@ class MenuList extends React.Component {
       cate: '전체',
       tastes: '전체',
       tab: '배송일별',
+      page: 1,
       snackList: [],
       filtering: '신메뉴순',
       currentId: 1,
@@ -23,10 +24,9 @@ class MenuList extends React.Component {
   }
 
   fetchItems = qs => {
-    console.log(qs);
     const url = qs
-      ? `http://10.58.62.145:8000/products${qs}`
-      : `http://10.58.62.145:8000/products?sort=-created_at`;
+      ? `http://10.58.0.85:8000/products${qs}`
+      : `http://10.58.0.85:8000/products?sort=-created_at`;
 
     fetch(url)
       .then(res => res.json())
@@ -42,6 +42,19 @@ class MenuList extends React.Component {
     this.fetchItems();
   }
 
+  componentDidUpdate(prevProps, _) {
+    if (prevProps.location.search !== this.props.location.search) {
+      fetch(`http://10.58.0.85:8000/products${this.props.location.search}`)
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          this.setState({
+            snackList: data.result,
+          });
+        });
+    }
+  }
+
   handleLikeBtn = e => {
     this.setState({ unlike: !this.state.unlike });
   };
@@ -49,11 +62,13 @@ class MenuList extends React.Component {
   handleClickTaste = (theme, qs) => {
     this.setState({ tastes: theme });
     this.fetchItems(qs);
+    this.props.history.push(`/menuList${qs}`);
   };
 
   handleClickCate = (day, qs) => {
     this.setState({ cate: day });
     this.fetchItems(qs);
+    this.props.history.push(`/menuList${qs}`);
   };
 
   handleClickTab = e => {
@@ -63,10 +78,16 @@ class MenuList extends React.Component {
   handleClickFiltering = (e, qs) => {
     this.setState({ filtering: e.target.textContent });
     this.fetchItems(qs);
+    this.props.history.push(`/menuList${qs}`);
   };
 
   handleMenuTab = id => {
     this.setState({ currentId: id });
+  };
+
+  pageNum = index => {
+    const qs = `?page=${index + 1}`;
+    this.props.history.push(`/menuList${qs}`);
   };
 
   render() {
@@ -85,7 +106,8 @@ class MenuList extends React.Component {
                   <button
                     onClick={() => {
                       this.handleMenuTab(1);
-                      this.fetchItems();
+                      this.fetchItems('?sort=-created_at');
+                      this.props.history.push('?sort=-created_at');
                     }}
                     className={
                       this.state.tab === '배송일별' ? 'activateTab' : 'dateTab'
@@ -97,6 +119,7 @@ class MenuList extends React.Component {
                     onClick={() => {
                       this.handleMenuTab(2);
                       this.fetchItems('?sort=-created_at');
+                      this.props.history.push('?sort=-created_at');
                     }}
                     className={
                       this.state.tab === '테마별' ? 'activateTab' : 'themeTab'
@@ -165,15 +188,15 @@ class MenuList extends React.Component {
 
             <div className="menuListContainer">
               <ul className="menuUl">
-                {this.state.snackList.map(data => {
-                  return (
+                {this.state.snackList.map((data, index) => {
+                  return index === this.state.snackList.length - 1 ? null : (
                     <List
                       id={data.id}
                       title={data.title}
                       price={data.price}
                       calorie={data.calorie}
                       gram={data.gram}
-                      img={data.img}
+                      img={data.images}
                       taste={data.taste}
                       handlelikeBtn={this.handleLikeBtn}
                       rating={data.rating}
@@ -183,6 +206,14 @@ class MenuList extends React.Component {
                 })}
               </ul>
             </div>
+          </div>
+          <div className="pageNumb">
+            <button type="button" onClick={e => this.pageNum(0)}>
+              1
+            </button>
+            <button type="button" onClick={e => this.pageNum(1)}>
+              2
+            </button>
           </div>
         </section>
       </>

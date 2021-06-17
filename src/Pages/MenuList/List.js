@@ -1,6 +1,17 @@
 import React from 'react';
 import './list.scss';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+
+const createDate = () => {
+  const month = new Date().getMonth() + 1;
+  const date = new Date().getDate();
+
+  if (month >= 10) {
+    return month + date;
+  } else {
+    return '0' + month + date;
+  }
+};
 
 class List extends React.Component {
   constructor() {
@@ -18,39 +29,32 @@ class List extends React.Component {
   };
 
   handleBasket = () => {
-    const { img, title, price, id } = this.props;
-    fetch('', {
-      method: 'POST',
-      body: JSON.stringify({
-        product_title: title,
-        product_image: img,
-        product_price: price,
-        quantity: 1,
-        total_price: price,
-        date: '',
-      }),
-    })
-      .then(res => {
-        console.log(res);
-        return res.json();
+    const { price, id } = this.props;
+    if (localStorage.getItem('token')) {
+      fetch('http://10.58.3.9:8000/orders', {
+        method: 'POST',
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+        body: JSON.stringify({
+          product_id: id,
+          quantity: 1,
+          total_price: price,
+          date: createDate(),
+        }),
       })
-      .then(res => {
-        console.log(res);
-      });
-  };
-
-  handleBaskee = () => {
-    this.props.handleBasket();
-    this.setState(
-      {
-        basket: !this.state.basket,
-      },
-      () => {
-        this.state.basket
-          ? alert('장바구니에 담겼습니다.')
-          : alert('장바구니에서 제외했습니다.');
-      }
-    );
+        .then(response => response.json())
+        .then(result => {
+          if (result.message === 'SUCCESS') {
+            alert('상품을 장바구니에 담았습니다.');
+          } else {
+            alert('장바구니 실패');
+          }
+        });
+    } else {
+      alert('로그인 후 사용이 가능합니다.');
+      this.props.history.push('/login');
+    }
   };
 
   render() {
@@ -58,9 +62,13 @@ class List extends React.Component {
       this.props;
     return (
       <li className="menuLi">
-        <Link to={`ProdDetail/${id}`}>
-          <img className="menuImg" src={img} alt="snack" />
-        </Link>
+        <img
+          className="menuImg"
+          src={img}
+          alt="snack"
+          onClick={() => this.props.history.push(`ProdDetail/${id}`)}
+        />
+
         {/* <div className="recommend">
           <span className="limited">기간한정</span>
           <span className="name">NEW</span>
@@ -71,11 +79,16 @@ class List extends React.Component {
           <span className="tasteWrap">
             <span className="tasteMap">{taste}</span>
           </span>
-          <p className="title">{title}</p>
+          <p
+            className="title"
+            onClick={() => this.props.history.push(`ProdDetail/${id}`)}
+          >
+            {title}
+          </p>
           <p className="price">{price}원</p>
         </div>
         <div className="reviewWrap">
-          <span className="review">{rating}점</span>
+          <span className="review">★{rating}</span>
           <span className="reviewCount">{reviews}</span>
         </div>
         <div className="iconBox">
@@ -86,6 +99,7 @@ class List extends React.Component {
               <img src="../images/MenuList/unlike.png" alt="unlike" />
             )}
           </button>
+
           <button onClick={this.handleBasket}>
             <img src="../images/MenuList/listBasket.png" alt="listBasket" />
           </button>
@@ -95,4 +109,4 @@ class List extends React.Component {
   }
 }
 
-export default List;
+export default withRouter(List);
