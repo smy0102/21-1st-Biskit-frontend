@@ -1,0 +1,71 @@
+@import '/src/Styles/variables.scss';
+@import '../../../Styles/mixin';
+
+.Review {
+  width: 780px;
+  margin: 30px 0;
+
+  .evaluationAverage {
+    @include flexSet(space-between);
+    padding: 25px 30px;
+    background-color: #f7f7f7;
+
+    div {
+      font-size: 26px;
+
+      .perfectScore {
+        color: $basicDarkgray;
+        font-size: 20px;
+      }
+    }
+
+    button {
+      padding: 20px 50px;
+      background-color: $primaryColor;
+      font-size: 16px;
+    }
+  }
+  .reviewList {
+    .sortingButtons {
+      padding: 20px 0 10px 0;
+      text-align: right;
+      button {
+        margin-left: 10px;
+        font-size: 16px;
+
+        &.button1 {
+          padding-right: 15px;
+          border-right: $grayBorder;
+        }
+      }
+    }
+
+    .reviewWrap {
+      border-top: 3px solid $basicBlack;
+
+      .review {
+        padding: 20px 0;
+        border-bottom: $grayBorder;
+
+        .informations {
+          @include flexSet(space-between);
+          padding-bottom: 10px;
+
+          .id {
+            font-size: 22px;
+            font-weight: bold;
+          }
+
+          .date {
+            color: $basicDarkgray;
+          }
+        }
+
+        .evalueation {
+          padding-bottom: 10px;
+          color: $basicGreen;
+        }
+      }
+    }
+  }
+}

@@ -39,6 +39,7 @@
   .menuContainer {
     @include flexSet(space-between, normal);
     position: relative;
+    margin: 0 auto;
     max-width: 1920px;
     min-width: 1260px;
     height: 81px;

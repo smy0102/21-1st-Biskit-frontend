@@ -1,0 +1,5 @@
+@mixin headInfoSet($padding: 20px) {
+  display: flex;
+  padding: $padding 0;
+  font-size: 14px;
+}
