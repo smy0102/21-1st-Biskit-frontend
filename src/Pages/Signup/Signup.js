@@ -61,7 +61,6 @@ class Signup extends React.Component {
     })
       .then(response => response.json())
       .then(result => {
-        console.log(result);
         if (result.message === 'SUCCESS') {
           this.props.history.push('/login');
         } else if (result.message === 'VALUE_IS_EMPTY') {
@@ -86,7 +85,6 @@ class Signup extends React.Component {
 
   checkID(e) {
     e.preventDefault();
-    console.log(this.state.idValue);
     fetch('http://10.58.2.209:8000/users/account-validator', {
       method: 'POST',
       body: JSON.stringify({
@@ -95,7 +93,6 @@ class Signup extends React.Component {
     })
       .then(response => response.json())
       .then(result => {
-        console.log(result);
         if (result.message === 'ALREADY_EXISTS') {
           alert('중복된 ID입니다. 다른 ID를 입력해주세요');
         } else if (result.message === 'INVALID_FORMAT') {

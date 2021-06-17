@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ImgCount from './ReviewList/ImgCount';
-import SlideCount from './ReviewList/SlideCount';
+import ImgContents from './SlideContents/ImgContents';
+import CommentContents from './SlideContents/CommentContents';
 import './ReviewWrap.scss';
 
 class ReviewWrap extends React.Component {
@@ -75,150 +75,17 @@ class ReviewWrap extends React.Component {
                   alt="quotes"
                   src="images/Main/quotes.png"
                 />
-                <ul>
-                  <li
-                    key={reviewList.result?.[reviewList.result?.length - 1].key}
-                    className={
-                      (listReviewTranfrom === -720
-                        ? 1
-                        : Math.abs(listReviewTranfrom / 720)) ===
-                      reviewList.result?.[0].id - 1
-                        ? 'reviewCommentList on'
-                        : 'reviewCommentList'
-                    }
-                  >
-                    <div className="reviewMod">
-                      <Link to="/">
-                        <strong className="title">
-                          {
-                            reviewList.result?.[reviewList.result?.length - 1]
-                              .title
-                          }
-                        </strong>
-                        <div className="txtWrap">
-                          <p className="comment">
-                            {
-                              reviewList.result?.[reviewList.result?.length - 1]
-                                .content
-                            }
-                          </p>
-                        </div>
-                        <div className="ratingWrap">
-                          <span className="ratingStar">
-                            <span className="star">
-                              <span>
-                                {
-                                  reviewList.result?.[
-                                    reviewList.result?.length - 1
-                                  ].star_rating
-                                }
-                              </span>
-                            </span>
-                          </span>
-                        </div>
-                        <span className="id">
-                          {
-                            reviewList.result?.[reviewList.result?.length - 1]
-                              .account
-                          }
-                        </span>
-                      </Link>
-                    </div>
-                  </li>
-                  {this.state.reviewList.result?.map(el => {
-                    return (
-                      <ImgCount
-                        key={el.id}
-                        review_image={el.review_image}
-                        listReviewTranfrom={listReviewTranfrom}
-                        content={el.content}
-                        title={el.title}
-                        star_rating={el.star_rating}
-                        account={el.account}
-                        id={el.id}
-                      />
-                    );
-                  })}
-                  <li
-                    key={reviewList.result?.[0].key}
-                    className={
-                      (listReviewTranfrom === -720
-                        ? 1
-                        : Math.abs(listReviewTranfrom / 720)) ===
-                      reviewList.result?.[reviewList.result?.length - 1].id + 1
-                        ? 'reviewCommentList on'
-                        : 'reviewCommentList'
-                    }
-                  >
-                    <div className="reviewMod">
-                      <Link to="/">
-                        <strong className="title">
-                          {reviewList.result?.[0].title}
-                        </strong>
-                        <div className="txtWrap">
-                          <p className="comment">
-                            {reviewList.result?.[0].content}
-                          </p>
-                        </div>
-                        <div className="ratingWrap">
-                          <span className="ratingStar">
-                            <span className="star">
-                              <span>{reviewList.result?.[0].star_rating}</span>
-                            </span>
-                          </span>
-                        </div>
-                        <span className="id">
-                          {reviewList.result?.[0].account}
-                        </span>
-                      </Link>
-                    </div>
-                  </li>
-                </ul>
+                <ImgContents
+                  reviewList={reviewList}
+                  listReviewTranfrom={listReviewTranfrom}
+                />
               </div>
               <div className="reviewList">
-                <ul
-                  className="prodCarousel"
-                  style={{
-                    transform: `translateX(${listReviewTranfrom}px)`,
-                    transition: `${listTransition}`,
-                  }}
-                >
-                  <li className="slideCount">
-                    <div className="reviewMod">
-                      <div className="imgWrap">
-                        <img
-                          alt={
-                            reviewList.result?.[reviewList.result?.length - 1]
-                              .title
-                          }
-                          src={
-                            reviewList.result?.[reviewList.result?.length - 1]
-                              .review_image
-                          }
-                        />
-                      </div>
-                    </div>
-                  </li>
-                  {reviewList.result?.map(el => {
-                    return (
-                      <SlideCount
-                        key={el.id}
-                        images={el.review_image}
-                        title={el.title}
-                      />
-                    );
-                  })}
-                  <li className="slideCount">
-                    <div className="reviewMod">
-                      <div className="imgWrap">
-                        <img
-                          alt={reviewList.result?.[0].title}
-                          src={reviewList.result?.[0].review_image}
-                        />
-                      </div>
-                    </div>
-                  </li>
-                </ul>
+                <CommentContents
+                  listReviewTranfrom={listReviewTranfrom}
+                  listTransition={listTransition}
+                  reviewList={reviewList}
+                />
               </div>
             </div>
           </div>

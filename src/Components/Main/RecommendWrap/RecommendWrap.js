@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import RecommendSlideCount from './RecommendSlideCount';
-import { TASTE } from './RecommendWrapConst/GnbMenu';
+import SlideContents from './SlideContents/SlideContents';
+import { TASTE } from './SlideContents/RecommendWrapConst/GnbMenu';
 import './RecommendWrap.scss';
 
 class RecommendWrap extends React.Component {
@@ -11,6 +11,7 @@ class RecommendWrap extends React.Component {
       recommendList: [],
     };
   }
+
   componentDidMount() {
     fetch('/data/Main/RecommendWrap/RecommendWrap.json')
       .then(res => res.json())
@@ -20,6 +21,7 @@ class RecommendWrap extends React.Component {
         });
       });
   }
+
   render() {
     const {
       isTasteClass,
@@ -109,148 +111,12 @@ class RecommendWrap extends React.Component {
                 </button>
               </div>
             </dt>
-            <dd class="dd">
-              {TASTE.map(el => {
-                return (
-                  <div
-                    class="listRecom"
-                    style={
-                      recommendTaste === el.content
-                        ? { display: 'block' }
-                        : { display: 'none' }
-                    }
-                  >
-                    <div class="imgListSlide">
-                      <div class="prodList">
-                        <ul
-                          class="prodCarousel"
-                          style={{
-                            transform: `translateX(${listTasteTransform}px)`,
-                            transition: listTransition,
-                          }}
-                        >
-                          <li
-                            class="slideCount"
-                            key={
-                              recommendList.result?.[
-                                recommendList.result?.length - 1
-                              ].id
-                            }
-                          >
-                            <div className="proModule">
-                              <div className="imgWrap">
-                                <Link to="/" class="count">
-                                  <img
-                                    alt="상품"
-                                    src={
-                                      recommendList.result?.[
-                                        recommendList.result?.length - 1
-                                      ].images
-                                    }
-                                  />
-                                </Link>
-                              </div>
-                              <div className="txtWrap">
-                                <Link to="/" class="count">
-                                  <div className="titleInfo">
-                                    <span class="title">
-                                      {
-                                        recommendList.result?.[
-                                          recommendList.result?.length - 1
-                                        ].title
-                                      }
-                                    </span>
-                                  </div>
-                                </Link>
-                                <div className="priceInfo">
-                                  <p className="sale">
-                                    <span className="price">
-                                      {
-                                        recommendList.result?.[
-                                          recommendList.result?.length - 1
-                                        ].price
-                                      }
-                                    </span>
-                                    <span className="won">원</span>
-                                  </p>
-                                  <p className="servings">
-                                    /
-                                    {
-                                      recommendList.result?.[
-                                        recommendList.result?.length - 1
-                                      ].gram
-                                    }
-                                    g
-                                  </p>
-                                  <button type="button" className="cartBtn">
-                                    <img
-                                      alt="cart"
-                                      src="/images/common/icon/basket.png"
-                                    />
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </li>
-                          {recommendList.result?.map(ele => {
-                            return (
-                              <RecommendSlideCount
-                                key={ele.id}
-                                title={ele.title}
-                                price={ele.price}
-                                gram={ele.gram}
-                                images={ele.images}
-                              />
-                            );
-                          })}
-                          <li
-                            class="slideCount"
-                            key={recommendList.result?.[0].id}
-                          >
-                            <div className="proModule">
-                              <div className="imgWrap">
-                                <Link to="/" class="count">
-                                  <img
-                                    alt="상품"
-                                    src={recommendList.result?.[0].images}
-                                  />
-                                </Link>
-                              </div>
-                              <div className="txtWrap">
-                                <Link to="/" class="count">
-                                  <div className="titleInfo">
-                                    <span class="title">
-                                      {recommendList.result?.[0].title}
-                                    </span>
-                                  </div>
-                                </Link>
-                                <div className="priceInfo">
-                                  <p className="sale">
-                                    <span className="price">
-                                      {recommendList.result?.[0].price}
-                                    </span>
-                                    <span className="won">원</span>
-                                  </p>
-                                  <p className="servings">
-                                    / {recommendList.result?.[0].gram}g
-                                  </p>
-                                  <button type="button" className="cartBtn">
-                                    <img
-                                      alt="cart"
-                                      src="/images/common/icon/basket.png"
-                                    />
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </dd>
+            <SlideContents
+              recommendTaste={recommendTaste}
+              listTasteTransform={listTasteTransform}
+              listTransition={listTransition}
+              recommendList={recommendList}
+            />
           </dl>
         </div>
         <span class="opacityRight">

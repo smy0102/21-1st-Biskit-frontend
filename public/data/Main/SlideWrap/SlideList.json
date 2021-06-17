@@ -17,11 +17,11 @@
   },
   {
     "id": "3",
-    "head": "이벤트 오픈",
-    "titleFirst": "오리지널의 맛",
-    "titleSecond": "달콤한 크로아상",
-    "subtitle": "이번달 만큼 20% 할인된 가격으로!",
-    "img": "images/Main/bread.jpg"
+    "head": "베스트 메뉴",
+    "titleFirst": "입맛을 돋우는",
+    "titleSecond": "특별한 프렌치 프라이",
+    "subtitle": "바삭하고 고소한 '비스킷'의 감자튀김을 만나보세요.",
+    "img": "images/Main/FrenchFries.mp4"
   },
   {
     "id": "4",
