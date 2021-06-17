@@ -4,7 +4,8 @@ import { LIST } from '../../../SignupConst/FirstPhoneNumber';
 
 class SignupInputWrap extends React.Component {
   render() {
-    const { pwValue, handelInput, pwValueReconfirm, checkID } = this.props;
+    const { pwValue, handelInput, pwValueReconfirm, checkID, mobileFirst } =
+      this.props;
     return (
       <div className="SignupInputWrap">
         <table border="0" summary>
@@ -105,10 +106,14 @@ class SignupInputWrap extends React.Component {
                 <img alt="필수" src="/images/Signup/Required.gif" />
               </th>
               <td>
-                <select>
+                <select
+                  value={mobileFirst}
+                  onChange={handelInput}
+                  name="mobileFirst"
+                >
                   {LIST.map(el => {
                     return (
-                      <option value={el.value} key={el.id}>
+                      <option key={el.id} value={el.value}>
                         {el.value}
                       </option>
                     );
@@ -118,7 +123,7 @@ class SignupInputWrap extends React.Component {
                 <input
                   type="text"
                   class="inputTypeText mobile"
-                  name="mobileFirst"
+                  name="mobileSecond"
                   onChange={handelInput}
                   placeholder="0000"
                   maxLength="4"
@@ -127,7 +132,7 @@ class SignupInputWrap extends React.Component {
                 <input
                   type="text"
                   class="inputTypeText mobile"
-                  name="mobileSecond"
+                  name="mobileThird"
                   onChange={handelInput}
                   placeholder="0000"
                   maxLength="4"

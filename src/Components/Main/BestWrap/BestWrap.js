@@ -11,24 +11,26 @@ class BestWrap extends React.Component {
     };
   }
   componentDidMount() {
-    fetch('/data/Main/BestWrap/BestWrap.json')
+    fetch('http://10.58.0.85:8000/products?per_page=1')
       .then(res => res.json())
       .then(data => {
         this.setState({
-          bestList: data,
+          bestList: data.result.filter(list => list.title),
         });
       });
   }
+
   render() {
+    const { bestList } = this.state;
     return (
       <div className="BestWrap">
         <h2 className="bestTitle">실시간 베스트</h2>
         <div className="prodList">
           <ul>
-            {this.state.bestList.result?.map(el => {
+            {bestList.map((el, index) => {
               return (
                 <ProdList
-                  id={el.id}
+                  id={index}
                   title={el.title}
                   price={el.price}
                   gram={el.gram}
@@ -39,7 +41,7 @@ class BestWrap extends React.Component {
           </ul>
         </div>
         <div className="moreList">
-          <Link to="/">
+          <Link to="/menuList">
             메뉴 더보기
             <img alt="더보기" src="images/Main/bold-arrow.png"></img>
           </Link>

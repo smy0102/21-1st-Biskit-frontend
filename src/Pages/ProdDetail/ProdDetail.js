@@ -7,7 +7,7 @@ import Information from '../../Components/ProdDetail/TapContents/Information';
 import Review from '../../Components/ProdDetail/TapContents/Review';
 import DeliveryRefund from '../../Components/ProdDetail/TapContents/DeliveryRefund';
 import WEEK_NAME from '../../Data/weekname';
-import './prodDetail.scss';
+import './ProdDetail.scss';
 
 const tapContents = {
   0: <Description />,

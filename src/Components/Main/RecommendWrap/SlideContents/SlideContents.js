@@ -94,8 +94,9 @@ class SlideContents extends React.Component {
                         </div>
                       </div>
                     </li>
-                    {recommendList.result?.map(ele => {
-                      return (
+                    {recommendList.result?.map((ele, index) => {
+                      return index ===
+                        recommendList.result.length - 1 ? null : (
                         <RecommendSlideCount
                           key={ele.id}
                           title={ele.title}

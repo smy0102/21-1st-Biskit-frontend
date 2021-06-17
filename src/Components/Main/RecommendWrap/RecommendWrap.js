@@ -5,23 +5,6 @@ import { TASTE } from './SlideContents/RecommendWrapConst/GnbMenu';
 import './RecommendWrap.scss';
 
 class RecommendWrap extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      recommendList: [],
-    };
-  }
-
-  componentDidMount() {
-    fetch('/data/Main/RecommendWrap/RecommendWrap.json')
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          recommendList: data,
-        });
-      });
-  }
-
   render() {
     const {
       isTasteClass,
@@ -32,8 +15,9 @@ class RecommendWrap extends React.Component {
       handleTasteNextMove,
       listTransition,
       listTasteTransform,
+      recommendList,
+      tasteransform,
     } = this.props;
-    const { recommendList } = this.state;
     return (
       <div className="RecommendWrap">
         <div className="individ">
@@ -62,6 +46,7 @@ class RecommendWrap extends React.Component {
                             className="selected"
                             onClick={handleClick}
                             key={el.id}
+                            data-index={el.id}
                           >
                             <span>{el.content}</span>
                           </button>
@@ -75,7 +60,7 @@ class RecommendWrap extends React.Component {
               </div>
               <p className="desc">
                 <span className="name">고객님</span>의 구매 내역과&nbsp;
-                <Link to="/" class="linkTxtGreen">
+                <Link to="/menuList" class="linkTxtGreen">
                   맛취향
                 </Link>
                 에 따라
@@ -94,12 +79,12 @@ class RecommendWrap extends React.Component {
                 <span class="countWrap">
                   <span classNme="num">
                     <strong>
-                      {Math.abs(listTasteTransform / 787) ===
-                      recommendList.result?.length + 1
+                      {Math.abs(listTasteTransform / tasteransform) ===
+                      recommendList.result?.length
                         ? 1
-                        : Math.abs(listTasteTransform / 787)}
+                        : Math.abs(listTasteTransform / tasteransform)}
                     </strong>
-                    /{recommendList.result?.length}
+                    /{recommendList.result?.length - 1}
                   </span>
                 </span>
                 <button
