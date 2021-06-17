@@ -19,7 +19,6 @@ class ShppingProduct extends Component {
           onClick={() => handleSingleBox(id)}
           checked={selectedArr[id]}
           className="selectButton"
-          key={this.props.key}
         />
         <img alt="product" src={listData.images} />
         <div className="prodcutInfo">

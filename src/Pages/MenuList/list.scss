@@ -13,6 +13,7 @@
 
   .menuImg {
     object-fit: cover;
+    cursor: pointer;
     width: 100%;
     height: 320px;
     margin-bottom: 8px;
@@ -23,6 +24,7 @@
     height: 25px;
     font-size: 12px;
     font-weight: 600;
+
     .limited {
       color: #fff;
       display: flex;
@@ -33,6 +35,7 @@
       height: 25px;
       background-color: #ee0700;
     }
+
     .name {
       color: rgba($basicDarkgray, $alpha: 1);
       display: flex;
@@ -72,6 +75,7 @@
 
     .title {
       color: rgba($basicBlack, $alpha: 1);
+      cursor: pointer;
       padding-top: 8px;
       padding-bottom: 8px;
       font-size: 20px;
@@ -92,7 +96,7 @@
     .review {
       color: rgba($basicGreen, $alpha: 1);
       padding-right: 8px;
-      font-size: 24px;
+      font-size: 16px;
     }
     .reviewCount {
       border-left: 1px solid rgba($basicDarkgray, $alpha: 0.3);

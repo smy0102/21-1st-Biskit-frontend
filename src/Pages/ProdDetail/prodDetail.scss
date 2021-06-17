@@ -5,7 +5,6 @@
   display: flex;
   justify-content: center;
   margin: 50px auto;
-
   .headLeft {
     .subInfo {
       @include flexSet(space-between);
@@ -13,34 +12,27 @@
       padding: 0 25px;
       margin: 20px 0;
       font-size: 20px;
-
       .evaluation {
         display: flex;
-
         div {
           margin-right: 10px;
-
           &.reviewCount {
             padding-left: 10px;
             border-left: 1px solid $basicGray;
           }
-
           span {
             font-weight: bolder;
           }
         }
       }
-
       .recipeShare {
         display: flex;
-
         div {
           display: flex;
           align-items: center;
           margin-left: 10px;
           font-size: 16px;
           cursor: pointer;
-
           img {
             width: 22px;
             margin-right: 5px;
@@ -50,33 +42,11 @@
       }
     }
   }
-
   .headRight {
     width: 500px;
     margin-left: 80px;
-
-    .flagWrap {
-      margin: 4px 0;
-
-      .limitedFlag {
-        padding: 5px;
-        background-color: #ee0700;
-        color: white;
-        font-size: 12px;
-        font-weight: bold;
-      }
-
-      .newFlag {
-        padding: 5px 12px;
-        background-color: $primaryColor;
-        font-size: 12px;
-        font-weight: bold;
-      }
-    }
-
     .titleWrap {
       margin: 35px 0;
-
       .subTitle {
         margin: 5px 0;
         font: {
@@ -84,7 +54,6 @@
           weight: bold;
         }
       }
-
       .mainTitle {
         margin: 5px 0;
         font: {
@@ -92,7 +61,6 @@
           weight: bold;
         }
       }
-
       .origin {
         font: {
           size: 30px;
@@ -100,17 +68,14 @@
         }
       }
     }
-
     .subInfo {
       display: flex;
       padding-bottom: 10px;
       border-bottom: $grayBorder;
       flex-direction: row;
       font-size: 15px;
-
       div {
         margin: 3px 15px 3px 0;
-
         &.gram,
         &.calorie {
           padding-right: 15px;
@@ -118,13 +83,11 @@
         }
       }
     }
-
     .priceInfo {
       display: flex;
       align-items: center;
       padding: 20px 0;
       border-bottom: $grayBorder;
-
       .priceTitle {
         width: 100px;
         font: {
@@ -132,7 +95,6 @@
           weight: bold;
         }
       }
-
       .priceText {
         font: {
           size: 26px;
@@ -140,7 +102,6 @@
         }
       }
     }
-
     .pointInfo {
       @include headInfoSet;
       border-bottom: $grayBorder;
@@ -151,51 +112,41 @@
       .pointText {
         display: flex;
         align-items: center;
-
         span {
           color: $basicGreen;
         }
-
         img {
           width: 15px;
           opacity: 0.7;
         }
       }
     }
-
     .deliverymethod {
       @include headInfoSet;
-
       .deliverymethodTitle {
         width: 100px;
         color: $basicDarkgray;
       }
-
       .deliverymethodText {
         display: flex;
         align-items: center;
-
         img {
           width: 15px;
           opacity: 0.7;
         }
       }
     }
-
     .deliveryprice {
       @include headInfoSet(0);
       margin-bottom: 30px;
-
       .deliverypriceTitle {
         width: 100px;
         color: $basicDarkgray;
       }
     }
-
     .cart {
       padding: 20px 0;
       border-top: 2px solid $basicBlack;
-
       .headCartInformation {
         border-right: $grayBorder;
         border-left: $grayBorder;
@@ -203,11 +154,9 @@
     }
   }
 }
-
 .detailContents {
   display: flex;
   justify-content: center;
-
   .sideCart {
     display: flex;
     flex-direction: column;

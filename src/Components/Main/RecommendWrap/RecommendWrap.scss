@@ -1,0 +1,310 @@
+.RecommendWrap {
+  position: relative;
+  margin: 16px auto 0;
+  max-width: 1920px;
+  max-height: 520px;
+  overflow: hidden;
+
+  .individ {
+    position: relative;
+    width: 1180px;
+    margin: 0 auto;
+  }
+
+  .opacityRight {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 1920px;
+    height: 1px;
+    margin-left: -960px;
+
+    span {
+      position: absolute;
+      z-index: 6;
+      right: 0;
+      top: 0;
+      width: 424px;
+      height: 520px;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 1) 30%
+      );
+      opacity: 0.8;
+    }
+  }
+
+  dt {
+    position: relative;
+    z-index: 8;
+    float: left;
+    width: 329px;
+    height: 520px;
+    padding-top: 116px;
+
+    .major .row {
+      color: #101010;
+      font-size: 40px;
+      line-height: 56px;
+
+      .slideTaste {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        z-index: 4;
+
+        &.on {
+          .slideLayout {
+            display: block;
+            max-height: 180px;
+            overflow-y: auto;
+          }
+        }
+
+        .slideHide {
+          position: relative;
+          width: 222px;
+          border-bottom: 4px solid #202020;
+          overflow: visible;
+          text-align: left;
+          z-index: 3;
+          padding-left: 0;
+
+          strong {
+            display: inline-block;
+            color: #101010;
+            font-weight: 700;
+            font-size: 40px;
+            line-height: 54px;
+            padding-right: 40px;
+          }
+
+          img {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+          }
+        }
+
+        .slideLayout {
+          display: none;
+          position: absolute;
+          left: 0;
+          top: 58px;
+          width: 222px;
+          padding: 7px 0;
+          border: 1px solid #202020;
+          background: #fff;
+          z-index: 1;
+
+          button {
+            display: block;
+            width: 100%;
+            height: 54px;
+            padding: 5px 0 0 23px;
+            color: #606060;
+            font-weight: 500;
+            font-size: 28px;
+            line-height: 42px;
+            text-align: left;
+
+            &:hover {
+              color: #101010;
+              background: #f7f7f7;
+            }
+          }
+        }
+      }
+    }
+
+    .desc {
+      position: relative;
+      padding-top: 12px;
+      color: #606060;
+      font-size: 15px;
+      line-height: 23px;
+      z-index: 3;
+
+      .name {
+        color: #101010;
+        font-weight: 700;
+      }
+
+      .linkTxtGreen {
+        font-weight: 500;
+        color: #008a00;
+        text-decoration: underline;
+      }
+    }
+
+    .opacityLeft {
+      position: absolute;
+      z-index: 2;
+      left: 202px;
+      top: 0;
+      width: 327px;
+      height: 520px;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 1) 40%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      opacity: 0.6;
+    }
+
+    .miniSlideArrowWrap {
+      position: absolute;
+      left: 0;
+      bottom: 108px;
+      right: auto;
+      top: auto;
+
+      .slidePrev {
+        margin-right: 12px;
+      }
+
+      .slideNext {
+        margin-left: 12px;
+      }
+
+      button {
+        vertical-align: middle;
+      }
+
+      img {
+        width: 24px;
+        height: 24px;
+      }
+
+      .countWrap {
+        font-size: 18px;
+        font-weight: 500;
+      }
+    }
+  }
+  .dd {
+    position: absolute;
+    left: 340px;
+    float: left;
+    width: 1180px;
+    height: 540px;
+    top: 0;
+    overflow: hidden;
+
+    .prodList {
+      overflow: hidden;
+      position: absolute;
+      left: 0;
+      top: 0;
+      min-width: 1574px;
+
+      .prodCarousel {
+        opacity: 1;
+        width: 25000px;
+
+        .slideCount {
+          float: left;
+          width: 787px;
+
+          &:first-child {
+            margin-left: 0;
+          }
+
+          .proModule {
+            position: relative;
+            display: table-cell;
+            width: 787px;
+            height: 520px;
+            padding: 0 48px 0 477px;
+            vertical-align: middle;
+
+            .imgWrap {
+              position: absolute;
+              z-index: 0;
+              left: 0;
+              top: 0;
+              width: 520px;
+              height: 520px;
+              text-align: center;
+
+              img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+              }
+            }
+
+            .txtWrap {
+              position: relative;
+              z-index: 4;
+              padding: 0 0 24px;
+
+              &::before {
+                position: absolute;
+                top: -10px;
+                left: -10px;
+                content: '';
+                width: 200px;
+                height: 100px;
+                padding-left: 20px;
+                background-color: #fff;
+                opacity: 0.8;
+                z-index: -1;
+              }
+
+              .title {
+                max-height: 60px;
+                font-weight: 700;
+                font-size: 26px;
+                line-height: 30px;
+                color: #101010;
+              }
+
+              .priceInfo {
+                padding-top: 14px;
+
+                .sale {
+                  display: inline-block;
+                  color: #101010;
+                  vertical-align: middle;
+                  font-weight: 700;
+                  font-size: 28px;
+                  line-height: 42px;
+                }
+
+                .servings {
+                  line-height: 36px;
+                  vertical-align: bottom;
+                  display: inline-block;
+                  padding-left: 6px;
+                  font-size: 16px;
+                  color: #606060;
+                }
+
+                .cartBtn {
+                  display: inline-block;
+                  margin-top: 0;
+                  margin-left: 16px;
+                  z-index: 1;
+                  width: 40px;
+                  height: 40px;
+                  background: #ccc;
+                  border-radius: 50%;
+
+                  img {
+                    width: 20px;
+                    height: 20px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

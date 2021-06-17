@@ -8,7 +8,10 @@ class DaysBtn extends React.Component {
       <div className="cate">
         <span
           className={this.props.cate === '전체' ? 'activateCate' : 'cateAll'}
-          onClick={() => this.props.handleClickCate('전체')}
+          onClick={() => {
+            const qs = '?sort=-created_at';
+            this.props.handleClickCate('전체', qs);
+          }}
         >
           전체
         </span>

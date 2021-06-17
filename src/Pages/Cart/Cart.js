@@ -8,7 +8,6 @@ class Cart extends React.Component {
   constructor() {
     super();
     this.state = {
-      quantity: 1,
       listData: [],
       selectedArr: [],
       deletedArr: [],
@@ -47,14 +46,12 @@ class Cart extends React.Component {
     const { selectedArr } = this.state;
     const newCheck = [...selectedArr];
     newCheck[id] = !newCheck[id];
-    this.setState({ selectedArr: newCheck }, () => this.handleAllSelector());
+    this.setState({ selectedArr: newCheck }, this.handleAllSelector);
   };
 
   handleAllSelector = () => {
     const checkedItems = this.state.selectedArr.every(list => list);
-    checkedItems
-      ? this.setState({ selectedAll: true })
-      : this.setState({ selectedAll: false });
+    this.setState({ selectedAll: checkedItems });
   };
 
   handleQuantity = event => {
@@ -100,11 +97,11 @@ class Cart extends React.Component {
   calculatePrice = () => {
     const { listData } = this.state;
 
-    const result = listData.reduce(
+    const resultPrice = listData.reduce(
       (pre, curr) => pre + parseInt(curr.quantity * curr.price),
       0
     );
-    this.setState({ resultPrice: result });
+    this.setState({ resultPrice });
   };
 
   selectDelete = () => {
@@ -112,7 +109,7 @@ class Cart extends React.Component {
     const checkedArr = [];
     let idx = selectedArr.indexOf(true);
     while (idx !== -1) {
-      checkedArr.push(idx + 1);
+      checkedArr.push(idx);
       idx = selectedArr.indexOf(true, idx + 1);
       console.log(idx);
     }
@@ -181,7 +178,6 @@ class Cart extends React.Component {
               return (
                 <ShoppingProduct
                   id={index}
-                  key={data.id}
                   listData={data}
                   handleQuantity={this.handleQuantity}
                   deleteProduct={this.deleteProduct}
