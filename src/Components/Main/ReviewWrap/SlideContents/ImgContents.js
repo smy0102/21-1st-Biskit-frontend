@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 
 class CommentContents extends React.Component {
   render() {
-    const { reviewList, listReviewTranfrom } = this.props;
+    const { reviewList, listReviewTranfrom, reveiwTransform } = this.props;
     return (
       <ul>
         <li
           className={
-            (listReviewTranfrom === -720
+            (listReviewTranfrom === -reveiwTransform
               ? 1
-              : Math.abs(listReviewTranfrom / 720)) === 0
+              : Math.abs(listReviewTranfrom / reveiwTransform)) === 0
               ? 'reviewCommentList on'
               : 'reviewCommentList'
           }
@@ -55,14 +55,15 @@ class CommentContents extends React.Component {
               title={el.title}
               star_rating={el.star_rating}
               account={el.account}
+              reveiwTransform={reveiwTransform}
             />
           );
         })}
         <li
           className={
-            (listReviewTranfrom === -720
+            (listReviewTranfrom === -reveiwTransform
               ? 1
-              : Math.abs(listReviewTranfrom / 720)) ===
+              : Math.abs(listReviewTranfrom / reveiwTransform)) ===
             reviewList.result?.length + 1
               ? 'reviewCommentList on'
               : 'reviewCommentList'

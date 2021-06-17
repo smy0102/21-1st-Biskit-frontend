@@ -12,7 +12,7 @@ const slideTransform = 1920;
 const tasteransform = 787;
 const reveiwTransform = 720;
 const slideindex = 4;
-const tasteindex = 4;
+const tasteindex = 3;
 const reviewindex = 4;
 
 class Main extends React.Component {
@@ -64,7 +64,6 @@ class Main extends React.Component {
       listTasteTransform: -tasteransform,
     });
 
-    console.log(e.target.dataset.index);
     fetch(
       `http://10.58.0.85:8000/products?taste=${e.target.dataset.index}&per_page=2`
     )
@@ -269,6 +268,7 @@ class Main extends React.Component {
               listTasteTransform={listTasteTransform}
               listTransition={listTransition}
               recommendList={recommendList}
+              tasteransform={tasteransform}
             />
             <BestWrap />
             <ReviewWrap
@@ -276,6 +276,7 @@ class Main extends React.Component {
               listReviewTranfrom={listReviewTranfrom}
               handleReveiwNextMove={handleReveiwNextMove}
               listTransition={listTransition}
+              reveiwTransform={reveiwTransform}
             />
             <NoticeWrap getMonth={this.state.date.getMonth()} />
           </section>

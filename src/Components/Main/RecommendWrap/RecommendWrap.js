@@ -16,6 +16,7 @@ class RecommendWrap extends React.Component {
       listTransition,
       listTasteTransform,
       recommendList,
+      tasteransform,
     } = this.props;
     return (
       <div className="RecommendWrap">
@@ -59,7 +60,7 @@ class RecommendWrap extends React.Component {
               </div>
               <p className="desc">
                 <span className="name">고객님</span>의 구매 내역과&nbsp;
-                <Link to="/" class="linkTxtGreen">
+                <Link to="/menuList" class="linkTxtGreen">
                   맛취향
                 </Link>
                 에 따라
@@ -78,12 +79,12 @@ class RecommendWrap extends React.Component {
                 <span class="countWrap">
                   <span classNme="num">
                     <strong>
-                      {Math.abs(listTasteTransform / 787) ===
-                      recommendList.result?.length + 1
+                      {Math.abs(listTasteTransform / tasteransform) ===
+                      recommendList.result?.length
                         ? 1
-                        : Math.abs(listTasteTransform / 787)}
+                        : Math.abs(listTasteTransform / tasteransform)}
                     </strong>
-                    /{recommendList.result?.length}
+                    /{recommendList.result?.length - 1}
                   </span>
                 </span>
                 <button

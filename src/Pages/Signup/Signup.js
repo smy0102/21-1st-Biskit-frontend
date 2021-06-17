@@ -46,13 +46,8 @@ class Signup extends React.Component {
     this.setState({ [name]: value });
   };
 
-  // handelInputSelect = event => {
-  //   const { value, name } = event.target;
-  //   this.setState({ [name]: value });
-  // };
-
   goToLogin = () => {
-    fetch('http://10.58.2.209:8000/users/signup', {
+    fetch('http://10.58.0.85:8000/users/signup', {
       method: 'POST',
       body: JSON.stringify({
         name: this.state.nameValue,
@@ -69,6 +64,7 @@ class Signup extends React.Component {
       .then(response => response.json())
       .then(result => {
         if (result.message === 'SUCCESS') {
+          alert('회원가입 되었습니다.');
           this.props.history.push('/login');
         } else if (result.message === 'VALUE_IS_EMPTY') {
           alert('입력창을 다시 확인 해주세요.');
@@ -92,7 +88,7 @@ class Signup extends React.Component {
 
   checkID(e) {
     e.preventDefault();
-    fetch('http://10.58.2.209:8000/users/account-validator', {
+    fetch('http://10.58.0.85:8000/users/account-validator', {
       method: 'POST',
       body: JSON.stringify({
         account: this.state.idValue,

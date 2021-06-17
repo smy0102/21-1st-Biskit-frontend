@@ -11,21 +11,22 @@ class ImgCount extends React.Component {
       star_rating,
       account,
       content,
+      reveiwTransform,
     } = this.props;
     return (
       <li
         key={key}
         className={
-          (listReviewTranfrom === -720
+          (listReviewTranfrom === -reveiwTransform
             ? 1
-            : Math.abs(listReviewTranfrom / 720)) ===
+            : Math.abs(listReviewTranfrom / reveiwTransform)) ===
           id + 1
             ? 'reviewCommentList on'
             : 'reviewCommentList'
         }
       >
         <div className="reviewMod">
-          <Link to="/">
+          <Link to={`/prodDtail/${id + 1}`}>
             <strong className="title">{title}</strong>
             <div className="txtWrap">
               <p className="comment">{content}</p>
