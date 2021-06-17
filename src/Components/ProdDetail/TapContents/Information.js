@@ -10,7 +10,7 @@ class Information extends Component {
   }
 
   componentDidMount() {
-    fetch('http://10.58.0.85:8000/products/1')
+    fetch(`http://10.58.3.9:8000/products/${this.props.match.params.id}`)
       .then(res => res.json())
       .then(data => {
         const { information } = data.result;

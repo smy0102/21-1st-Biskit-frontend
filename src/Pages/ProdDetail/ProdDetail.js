@@ -40,7 +40,7 @@ class ProdDetail extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://10.58.3.9:8000/products/1')
+    fetch(`http://10.58.3.9:8000/products/${this.props.match.params.id}`)
       .then(res => res.json())
       .then(data => {
         const { title, sub_title, price, gram, calorie, taste } = data.result;
@@ -55,7 +55,7 @@ class ProdDetail extends React.Component {
         console.log(data);
       });
 
-    fetch('http://10.58.3.9:8000/products/1/review')
+    fetch(`http://10.58.3.9:8000/products/${this.props.match.params.id}`)
       .then(res => res.json())
       .then(data => {
         this.setState({

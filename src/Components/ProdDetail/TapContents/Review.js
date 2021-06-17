@@ -11,7 +11,7 @@ class Review extends Component {
   }
 
   componentDidMount() {
-    fetch('http://10.58.0.85:8000/products/1/review')
+    fetch(`http://10.58.3.9:8000/products/${this.props.match.params.id}`)
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -33,10 +33,6 @@ class Review extends Component {
           <button>리뷰작성</button>
         </div>
         <div className="reviewList">
-          <div className="sortingButtons">
-            <button className="button1">베스트순</button>
-            <button>최신순</button>
-          </div>
           <div className="reviewWrap">
             {reviewList.map((review, idx) => {
               return (
