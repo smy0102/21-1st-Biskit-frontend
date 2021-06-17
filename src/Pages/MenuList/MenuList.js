@@ -2,14 +2,12 @@ import React from 'react';
 import './MenuList.scss';
 import { FILTER } from './MenuListFilter';
 import List from './List';
-import DaysBtn from './DaysBtn.js';
+import DaysBtn from './DaysBtn';
 import ThemeBtn from './ThemeBtn';
 import DeliveryInfo from './DeliveryInfo';
 import ThemeInfo from './ThemeInfo';
 import { Link, withRouter } from 'react-router-dom';
 import { Theme } from './MenuListTheme';
-
-const LIMIT = 20;
 
 class MenuList extends React.Component {
   constructor() {

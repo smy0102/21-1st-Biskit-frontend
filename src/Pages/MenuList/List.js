@@ -30,10 +30,12 @@ class List extends React.Component {
 
   handleBasket = () => {
     const { price, id } = this.props;
-    if (localStorage?.getItem('token')) {
-      fetch('http://10.58.0.85:8000/orders', {
+    if (localStorage.getItem('token')) {
+      fetch('http://10.58.3.9:8000/orders', {
         method: 'POST',
-        header: '',
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
         body: JSON.stringify({
           product_id: id,
           quantity: 1,
@@ -41,10 +43,14 @@ class List extends React.Component {
           date: createDate(),
         }),
       })
-        .then(res => {
-          alert('상품을 장바구니에 담았습니다.');
-        })
-        .then(res => {});
+        .then(response => response.json())
+        .then(result => {
+          if (result.message === 'SUCCESS') {
+            alert('상품을 장바구니에 담았습니다.');
+          } else {
+            alert('장바구니 실패');
+          }
+        });
     } else {
       alert('로그인 후 사용이 가능합니다.');
       this.props.history.push('/login');
