@@ -11,7 +11,7 @@ class ProductPictures extends Component {
   }
 
   componentDidMount() {
-    fetch('/data/ProdDetail/prodDetailData.json')
+    fetch('http://10.58.0.85:8000/products/1')
       .then(res => res.json())
       .then(data => {
         const { detail_image } = data.result;

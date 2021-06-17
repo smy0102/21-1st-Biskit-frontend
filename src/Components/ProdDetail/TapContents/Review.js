@@ -11,12 +11,12 @@ class Review extends Component {
   }
 
   componentDidMount() {
-    fetch('/data/ProdDetail/review.json')
+    fetch('http://10.58.0.85:8000/products/1/review')
       .then(res => res.json())
       .then(data => {
         this.setState({
           reviewList: data.result,
-          evaluation: Math.round(data.product_rate[0].avg * 10) / 10,
+          evaluation: Math.round(data.product_rate.avg * 10) / 10,
         });
       });
   }

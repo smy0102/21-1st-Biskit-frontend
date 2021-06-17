@@ -47,14 +47,13 @@ class Signup extends React.Component {
   };
 
   goToLogin = () => {
-    fetch('http://10.58.2.209:8000/users/signup', {
+    fetch('http://10.58.3.9:8000/users/signup', {
       method: 'POST',
       body: JSON.stringify({
         name: this.state.nameValue,
         account: this.state.idValue,
         password: this.state.pwValue,
-        mobile:
-          '010' + '-' + this.state.mobileFirst + '-' + this.state.mobileSecond,
+        mobile: '010' + this.state.mobileFirst + this.state.mobileSecond,
         address: this.state.adressValue,
         email: this.state.emailValue,
       }),
@@ -85,7 +84,7 @@ class Signup extends React.Component {
 
   checkID(e) {
     e.preventDefault();
-    fetch('http://10.58.2.209:8000/users/account-validator', {
+    fetch('http://10.58.3.9:8000/users/account-validator', {
       method: 'POST',
       body: JSON.stringify({
         account: this.state.idValue,

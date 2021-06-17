@@ -30,6 +30,7 @@ class ProdDetail extends React.Component {
       reviewCount: 0,
       deliveryDateArr: [],
       selectedDate: '',
+      selectedDateForFetch: '',
       quantity: 0,
       resultPrice: 0,
       isSelectBoxOn: false,
@@ -39,7 +40,7 @@ class ProdDetail extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/data/ProdDetail/prodDetailData.json')
+    fetch('http://10.58.3.9:8000/products/1')
       .then(res => res.json())
       .then(data => {
         const { title, sub_title, price, gram, calorie, taste } = data.result;
@@ -51,15 +52,17 @@ class ProdDetail extends React.Component {
           calorie: calorie,
           taste: taste,
         });
+        console.log(data);
       });
 
-    fetch('/data/ProdDetail/review.json')
+    fetch('http://10.58.3.9:8000/products/1/review')
       .then(res => res.json())
       .then(data => {
         this.setState({
-          reviewCount: data.product_rate[0].count,
-          evaluation: Math.round(data.product_rate[0].avg * 10) / 10,
+          reviewCount: data.product_rate.count,
+          evaluation: Math.round(data.product_rate.avg * 10) / 10,
         });
+        console.log(data);
       });
   }
 
@@ -96,6 +99,7 @@ class ProdDetail extends React.Component {
       },
       () => {
         date.target.value = '';
+        this.convertDeliveryDate(this.state.selectedDate);
       }
     );
   };
@@ -104,7 +108,7 @@ class ProdDetail extends React.Component {
     const { quantity } = this.state;
 
     if (word === 'minus' && quantity === 1) {
-      alert('최소 1개 이사 구매하셔야 합니다. 수량을 변경해 주세요.');
+      alert('최소 1개 이상 구매하셔야 합니다. 수량을 변경해 주세요.');
       return;
     }
 
@@ -142,22 +146,46 @@ class ProdDetail extends React.Component {
   };
 
   putCart = () => {
-    if (this.state.selectedDate === '') {
-      alert('배송받을 날짜를 선택하세요.');
-    } else {
-      fetch('api주소', {
+    if (localStorage.getItem('token') && this.state.selectedDate !== '') {
+      fetch('http://10.58.1.177:8000/orders', {
         method: 'POST',
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
         body: JSON.stringify({
-          title: this.state.mainTitle,
-          status: '주문전',
+          product_id: 1,
           quantity: this.state.quantity,
-          deliveryDate: this.state.selectedDate,
-          resultPrice: this.state.resultPrice,
+          total_price: this.state.price * this.state.quantity,
+          date: this.state.selectedDateForFetch,
         }),
       })
         .then(response => response.json())
-        .then(result => console.log('결과: ', result));
+        .then(result => {
+          if (result.message === 'SUCCESS') {
+            alert('상품을 장바구니에 담았습니다.');
+          }
+        });
+    } else {
+      alert('로그인 후 사용이 가능합니다.');
+      this.props.history.push('/login');
     }
+  };
+
+  convertDeliveryDate = date => {
+    let strArr = date.replace(/[^0-9]/g, '').split('');
+
+    if (strArr.length === 3) {
+      strArr.unshift('0');
+    } else if (strArr.length === 2) {
+      strArr.splice(0, 0, '0');
+      strArr.splice(2, 0, '0');
+    } else {
+      return strArr;
+    }
+
+    let newDate = strArr.join('');
+
+    this.setState({ selectedDateForFetch: newDate });
   };
 
   render() {
@@ -178,6 +206,8 @@ class ProdDetail extends React.Component {
       isLike,
       activatedTap,
     } = this.state;
+
+    console.log(this.props);
     return (
       <div className="ProdDetail">
         <header className="DetailHead">
@@ -205,10 +235,6 @@ class ProdDetail extends React.Component {
             </div>
           </article>
           <article className="headRight">
-            <div className="flagWrap">
-              <span className="limitedFlag">한정수량</span>
-              <span className="newFlag">NEW</span>
-            </div>
             <div className="titleWrap">
               <div className="subTitle">{subTitle}</div>
               <div className="mainTitle">{mainTitle}</div>
