@@ -13,7 +13,7 @@ class ReviewWrap extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/data/Main/ReviewWrap/Review.json')
+    fetch('http://10.58.0.85:8000/products/1/review?per_page=1')
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -28,6 +28,7 @@ class ReviewWrap extends React.Component {
       listReviewTranfrom,
       handleReveiwNextMove,
       listTransition,
+      reveiwTransform,
     } = this.props;
     const { reviewList } = this.state;
 
@@ -52,10 +53,10 @@ class ReviewWrap extends React.Component {
               <span class="countWrap">
                 <span classNme="num">
                   <strong>
-                    {Math.abs(listReviewTranfrom / 720) ===
+                    {Math.abs(listReviewTranfrom / reveiwTransform) ===
                     reviewList.result?.length + 1
                       ? 1
-                      : Math.abs(listReviewTranfrom / 720)}
+                      : Math.abs(listReviewTranfrom / reveiwTransform)}
                   </strong>
                   /{reviewList.result?.length}
                 </span>
@@ -78,6 +79,7 @@ class ReviewWrap extends React.Component {
                 <ImgContents
                   reviewList={reviewList}
                   listReviewTranfrom={listReviewTranfrom}
+                  reveiwTransform={reveiwTransform}
                 />
               </div>
               <div className="reviewList">
@@ -85,6 +87,7 @@ class ReviewWrap extends React.Component {
                   listReviewTranfrom={listReviewTranfrom}
                   listTransition={listTransition}
                   reviewList={reviewList}
+                  reveiwTransform={reveiwTransform}
                 />
               </div>
             </div>

@@ -24,9 +24,6 @@ class RecommendSlideCount extends React.Component {
                 <span className="won">원</span>
               </p>
               <p className="servings">/ {gram}g</p>
-              <button type="button" className="cartBtn">
-                <img alt="cart" src="/images/common/icon/basket.png" />
-              </button>
             </div>
           </div>
         </div>

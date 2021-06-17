@@ -15,11 +15,11 @@ class Signup extends React.Component {
       idValue: '',
       pwValue: '',
       pwValueReconfirm: '',
-      mobileValue: '',
       adressValue: '',
       emailValue: '',
-      mobileFirst: '',
+      mobileFirst: '010',
       mobileSecond: '',
+      mobileThird: '',
     };
 
     this.checkID = this.checkID.bind(this);
@@ -47,13 +47,16 @@ class Signup extends React.Component {
   };
 
   goToLogin = () => {
-    fetch('http://10.58.3.9:8000/users/signup', {
+    fetch('http://10.58.0.85:8000/users/signup', {
       method: 'POST',
       body: JSON.stringify({
         name: this.state.nameValue,
         account: this.state.idValue,
         password: this.state.pwValue,
-        mobile: '010' + this.state.mobileFirst + this.state.mobileSecond,
+        mobile:
+          this.state.mobileFirst +
+          this.state.mobileSecond +
+          this.state.mobileThird,
         address: this.state.adressValue,
         email: this.state.emailValue,
       }),
@@ -61,6 +64,7 @@ class Signup extends React.Component {
       .then(response => response.json())
       .then(result => {
         if (result.message === 'SUCCESS') {
+          alert('회원가입 되었습니다.');
           this.props.history.push('/login');
         } else if (result.message === 'VALUE_IS_EMPTY') {
           alert('입력창을 다시 확인 해주세요.');
@@ -84,7 +88,7 @@ class Signup extends React.Component {
 
   checkID(e) {
     e.preventDefault();
-    fetch('http://10.58.3.9:8000/users/account-validator', {
+    fetch('http://10.58.0.85:8000/users/account-validator', {
       method: 'POST',
       body: JSON.stringify({
         account: this.state.idValue,
@@ -101,6 +105,9 @@ class Signup extends React.Component {
   }
 
   render() {
+    console.log(
+      this.state.mobileFirst + this.state.mobileSecond + this.state.mobileThird
+    );
     const {
       handelInput,
       changeAll,
@@ -116,6 +123,7 @@ class Signup extends React.Component {
       isCheck1,
       isCheck2,
       allCheckBox,
+      mobileFirst,
     } = this.state;
     return (
       <div className="Signup">
@@ -139,6 +147,7 @@ class Signup extends React.Component {
             pwValueReconfirm={pwValueReconfirm}
             pwValue={pwValue}
             checkID={checkID}
+            mobileFirst={mobileFirst}
           />
           <SignInputTermsBox
             checked={checked}

@@ -24,6 +24,7 @@ class Main extends React.Component {
       listTasteTransform: -tasteransform,
       listReviewTranfrom: -reveiwTransform,
       listTransition: '1s ease-in-out',
+      recommendList: [],
       isTasteClass: false,
       date: new Date(),
       fixDate,
@@ -62,6 +63,16 @@ class Main extends React.Component {
       isTasteClass: !this.state.isTasteClass,
       listTasteTransform: -tasteransform,
     });
+
+    fetch(
+      `http://10.58.0.85:8000/products?taste=${e.target.dataset.index}&per_page=2`
+    )
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          recommendList: data,
+        });
+      });
   };
 
   componentDidMount() {
@@ -69,6 +80,14 @@ class Main extends React.Component {
     this.autoNext = setInterval(() => {
       this.handleNextMove();
     }, 4000);
+
+    fetch('http://10.58.0.85:8000/products?taste=1&per_page=2')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          recommendList: data,
+        });
+      });
   }
 
   componentWillUnmount() {
@@ -199,6 +218,7 @@ class Main extends React.Component {
       listReviewTranfrom,
       recommendTaste,
       isPlayOn,
+      recommendList,
     } = this.state;
     const hours = Math.floor(countDate / (60 * 60 * 1000));
     const mins = Math.floor((countDate - hours * 60 * 60 * 1000) / (60 * 1000));
@@ -247,6 +267,8 @@ class Main extends React.Component {
               handleTasteNextMove={handleTasteNextMove}
               listTasteTransform={listTasteTransform}
               listTransition={listTransition}
+              recommendList={recommendList}
+              tasteransform={tasteransform}
             />
             <BestWrap />
             <ReviewWrap
@@ -254,6 +276,7 @@ class Main extends React.Component {
               listReviewTranfrom={listReviewTranfrom}
               handleReveiwNextMove={handleReveiwNextMove}
               listTransition={listTransition}
+              reveiwTransform={reveiwTransform}
             />
             <NoticeWrap getMonth={this.state.date.getMonth()} />
           </section>
