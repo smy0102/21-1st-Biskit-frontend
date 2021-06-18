@@ -10,15 +10,16 @@ class Information extends Component {
   }
 
   componentDidMount() {
-    fetch('/data/ProdDetail/prodDetailData.json')
+    fetch(`http://10.58.3.9:8000/products/${this.props.match.params.id}`)
       .then(res => res.json())
       .then(data => {
-        const { information } = data.description_info;
+        const { information } = data.result;
         this.setState({
           imageSrc: information,
         });
       });
   }
+
   render() {
     return (
       <div className="Information">

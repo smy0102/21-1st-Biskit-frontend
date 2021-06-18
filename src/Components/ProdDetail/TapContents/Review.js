@@ -11,12 +11,12 @@ class Review extends Component {
   }
 
   componentDidMount() {
-    fetch('/data/ProdDetail/review.json')
+    fetch(`http://10.58.3.9:8000/products/${this.props.match.params.id}`)
       .then(res => res.json())
       .then(data => {
         this.setState({
           reviewList: data.result,
-          evaluation: Math.round(data.product_rate[0].avg * 10) / 10,
+          evaluation: Math.round(data.product_rate.avg * 10) / 10,
         });
       });
   }
@@ -33,10 +33,6 @@ class Review extends Component {
           <button>리뷰작성</button>
         </div>
         <div className="reviewList">
-          <div className="sortingButtons">
-            <button className="button1">베스트순</button>
-            <button>최신순</button>
-          </div>
           <div className="reviewWrap">
             {reviewList.map((review, idx) => {
               return (
