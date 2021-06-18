@@ -12,7 +12,7 @@ class DeliveryRefund extends Component {
   }
 
   componentDidMount() {
-    fetch(`${API}/products/${1}`)
+    fetch(`${API}/products/${this.props.params}`)
       .then(res => res.json())
       .then(data => {
         const { delivery, refund } = data.result;

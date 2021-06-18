@@ -46,7 +46,6 @@ class MenuList extends React.Component {
       fetch(`${API}/products${this.props.location.search}`)
         .then(res => res.json())
         .then(data => {
-          console.log(data);
           this.setState({
             snackList: data.result,
           });
@@ -210,9 +209,11 @@ class MenuList extends React.Component {
             <button type="button" onClick={e => this.pageNum(0)}>
               1
             </button>
-            <button type="button" onClick={e => this.pageNum(1)}>
-              2
-            </button>
+            {this.state.snackList.length > 20 && (
+              <button type="button" onClick={e => this.pageNum(1)}>
+                2
+              </button>
+            )}
           </div>
         </section>
       </>

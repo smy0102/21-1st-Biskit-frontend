@@ -11,7 +11,7 @@ class Information extends Component {
   }
 
   componentDidMount() {
-    fetch(`${API}/products/${this.props.match.params.id}`)
+    fetch(`${API}/products/${this.props.params}`)
       .then(res => res.json())
       .then(data => {
         const { information } = data.result;
@@ -20,6 +20,7 @@ class Information extends Component {
         });
       });
   }
+
   render() {
     return (
       <div className="Information">

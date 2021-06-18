@@ -8,7 +8,7 @@ import RecommendWrap from '../../Components/Main/RecommendWrap/RecommendWrap';
 import { API } from '../../config';
 import './Main.scss';
 
-const days = ['일', '월', '화', '수', '목', '금', '토'];
+const days = ['월', '화', '수', '목', '금', '토', '일'];
 const slideTransform = 1920;
 const tasteransform = 787;
 const reveiwTransform = 720;

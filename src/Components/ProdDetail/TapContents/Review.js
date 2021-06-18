@@ -12,7 +12,7 @@ class Review extends Component {
   }
 
   componentDidMount() {
-    fetch(`${API}/products/${this.props.match.params.id}`)
+    fetch(`${API}/products/${this.props.params}/review`)
       .then(res => res.json())
       .then(data => {
         this.setState({

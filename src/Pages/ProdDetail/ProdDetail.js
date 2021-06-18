@@ -10,13 +10,6 @@ import WEEK_NAME from '../../Data/weekname';
 import { API } from '../../config';
 import './prodDetail.scss';
 
-const tapContents = {
-  0: <Description />,
-  1: <Information />,
-  2: <Review />,
-  3: <DeliveryRefund />,
-};
-
 class ProdDetail extends React.Component {
   constructor() {
     super();
@@ -31,6 +24,7 @@ class ProdDetail extends React.Component {
       reviewCount: 0,
       deliveryDateArr: [],
       selectedDate: '',
+      selectedDateForFetch: '',
       quantity: 0,
       resultPrice: 0,
       isSelectBoxOn: false,
@@ -203,11 +197,19 @@ class ProdDetail extends React.Component {
       isLike,
       activatedTap,
     } = this.state;
+
+    const tapContents = {
+      0: <Description params={this.props.match.params.id} />,
+      1: <Information params={this.props.match.params.id} />,
+      2: <Review params={this.props.match.params.id} />,
+      3: <DeliveryRefund params={this.props.match.params.id} />,
+    };
+
     return (
       <div className="ProdDetail">
         <header className="DetailHead">
           <article className="headLeft">
-            <ProductPictures />
+            <ProductPictures params={this.props.match.params.id} />
             <div className="subInfo">
               <div className="evaluation">
                 <div>

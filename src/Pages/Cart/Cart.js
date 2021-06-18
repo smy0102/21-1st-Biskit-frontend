@@ -104,8 +104,7 @@ class Cart extends React.Component {
       },
       this.calculatePrice
     );
-    // console.log(value);
-    // console.log(this.state.deletedArr);
+
     fetch(`${API}/orders/delete`, {
       headers: {
         Authorization: localStorage.getItem('token'),
@@ -123,14 +122,6 @@ class Cart extends React.Component {
       0
     );
     this.setState({ resultPrice });
-
-    // fetch(`${API}/orders/delete`, {
-    //   headers: {
-    //     Authorization: localStorage.getItem('token'),
-    //   },
-    //   method: 'POST',
-    //   body: product_id
-    // }).then(response => response.json());
   };
 
   selectDelete = () => {
@@ -138,51 +129,49 @@ class Cart extends React.Component {
     const checkedArr = [];
     const selectedArrayForFetch = [...selectedArr];
     let idx = selectedArr.indexOf(true);
+
     while (idx !== -1) {
       checkedArr.push(idx);
       idx = selectedArr.indexOf(true, idx + 1);
-      console.log(idx);
     }
     const newCheckedArr = listData.filter(cartItem => {
       return !checkedArr.includes(parseInt(cartItem.id));
     });
+
     const newDeletedArr = listData.filter(cartItem => {
       return checkedArr.includes(parseInt(cartItem.id));
     });
-    console.log(selectedArrayForFetch + 'newCheckedArr');
-    this.setState(
-      {
-        listData: newCheckedArr,
-        deletedArr: newDeletedArr,
-        selectedArr: Array(newCheckedArr.length).fill(false),
-      },
-      () => this.a(selectedArrayForFetch)
-    );
-    console.log(this.state.checkedIndexArr);
+
+    this.setState({
+      listData: newCheckedArr,
+      deletedArr: newDeletedArr,
+      selectedArr: Array(newCheckedArr.length).fill(false),
+    });
+
+    const checkedIndex = [];
+
+    for (let i in selectedArrayForFetch) {
+      if (selectedArrayForFetch[i]) {
+        checkedIndex.push(this.state.listData[i].product_id);
+      }
+    }
+
+    this.setState({
+      checkedIndexArr: checkedIndex,
+    });
 
     fetch(`${API}/orders/delete`, {
       headers: {
         Authorization: localStorage.getItem('token'),
       },
       method: 'POST',
-      body: this.state.checkedIndexArr,
+      body: JSON.stringify({ selecteditemid: checkedIndex }),
     })
       .then(response => response.json())
+      .then(data => console.log(data))
       .catch(error => console.log(error));
-  };
 
-  a = selectedArrayForFetch => {
-    const aaa = [];
-    console.log(selectedArrayForFetch);
-    for (let i in selectedArrayForFetch) {
-      if (selectedArrayForFetch[i]) {
-        aaa.push(this.state.listData[i].product_id);
-      }
-    }
-    console.log(aaa);
-    this.setState({
-      checkedIndexArr: aaa,
-    });
+    window.location.replace('/cart');
   };
 
   render() {

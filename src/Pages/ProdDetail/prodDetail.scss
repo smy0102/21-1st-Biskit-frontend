@@ -5,17 +5,22 @@
   display: flex;
   justify-content: center;
   margin: 50px auto;
+
   .headLeft {
+    
     .subInfo {
       @include flexSet(space-between);
       width: 600px;
       padding: 0 25px;
       margin: 20px 0;
       font-size: 20px;
+
       .evaluation {
         display: flex;
+
         div {
           margin-right: 10px;
+
           &.reviewCount {
             padding-left: 10px;
             border-left: 1px solid $basicGray;
@@ -25,8 +30,10 @@
           }
         }
       }
+
       .recipeShare {
         display: flex;
+
         div {
           display: flex;
           align-items: center;
@@ -42,11 +49,14 @@
       }
     }
   }
+
   .headRight {
     width: 500px;
     margin-left: 80px;
+
     .titleWrap {
       margin: 35px 0;
+
       .subTitle {
         margin: 5px 0;
         font: {
@@ -74,8 +84,10 @@
       border-bottom: $grayBorder;
       flex-direction: row;
       font-size: 15px;
+
       div {
         margin: 3px 15px 3px 0;
+
         &.gram,
         &.calorie {
           padding-right: 15px;
@@ -112,41 +124,51 @@
       .pointText {
         display: flex;
         align-items: center;
+
         span {
           color: $basicGreen;
         }
+
         img {
           width: 15px;
           opacity: 0.7;
         }
       }
     }
+
     .deliverymethod {
       @include headInfoSet;
+
       .deliverymethodTitle {
         width: 100px;
         color: $basicDarkgray;
       }
+
       .deliverymethodText {
         display: flex;
         align-items: center;
+
         img {
           width: 15px;
           opacity: 0.7;
         }
       }
     }
+
     .deliveryprice {
       @include headInfoSet(0);
       margin-bottom: 30px;
+
       .deliverypriceTitle {
         width: 100px;
         color: $basicDarkgray;
       }
     }
+
     .cart {
       padding: 20px 0;
       border-top: 2px solid $basicBlack;
+
       .headCartInformation {
         border-right: $grayBorder;
         border-left: $grayBorder;
@@ -154,9 +176,11 @@
     }
   }
 }
+
 .detailContents {
   display: flex;
   justify-content: center;
+
   .sideCart {
     display: flex;
     flex-direction: column;

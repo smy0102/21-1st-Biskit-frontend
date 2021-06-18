@@ -22,7 +22,7 @@ class GridWrap extends React.Component {
           <Link to="/">
             <strong>
               {getMonth + 1}월 {getDate + 2}일(
-              {days[getDay + 2]})에 받을 수 있어요
+              {days[getDay + 1]})에 받을 수 있어요
             </strong>
             <p>오전 7시까지 주문하시면 다음날 배송됩니다</p>
             <span className="linkTime link">

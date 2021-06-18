@@ -11,15 +11,17 @@ class Description extends Component {
   }
 
   componentDidMount() {
-    fetch(`${API}/products/${1}`)
+    fetch(`${API}/products/${this.props.params}`)
       .then(res => res.json())
       .then(data => {
+        console.log(data);
         const { detail } = data.result;
         this.setState({
           imageSrc: detail,
         });
       });
   }
+
   render() {
     return (
       <div className="Description">

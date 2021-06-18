@@ -62,7 +62,7 @@ class Login extends React.Component {
               />
               <input
                 type="password"
-                placeholder="비밀번호 영문, 특수문자, 숫자혼합 8~12자"
+                placeholder="비밀번호 영문 대소문자, 특수문자, 숫자혼합 8~12자"
                 className="loginInputBox"
                 onChange={this.handleInput}
                 name="pwValue"
