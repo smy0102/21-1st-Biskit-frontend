@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './productPictures.scss';
+import { API } from '../../../config';
 
 class ProductPictures extends Component {
   constructor() {
@@ -11,7 +12,7 @@ class ProductPictures extends Component {
   }
 
   componentDidMount() {
-    fetch(`http://10.58.3.9:8000/products/${this.props.match.params.id}`)
+    fetch(`${API}/products/${this.props.params}`)
       .then(res => res.json())
       .then(data => {
         const { detail_image } = data.result;

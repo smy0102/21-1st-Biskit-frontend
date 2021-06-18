@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './deliveryRefund.scss';
+import { API } from '../../../config';
 
 class DeliveryRefund extends Component {
   constructor() {
@@ -11,7 +12,7 @@ class DeliveryRefund extends Component {
   }
 
   componentDidMount() {
-    fetch(`http://10.58.3.9:8000/products/${this.props.match.params.id}`)
+    fetch(`${API}/products/${this.props.params}`)
       .then(res => res.json())
       .then(data => {
         const { delivery, refund } = data.result;
@@ -21,7 +22,6 @@ class DeliveryRefund extends Component {
         });
       });
   }
-
   render() {
     const { refundImage, deliveryImage } = this.state;
     return (

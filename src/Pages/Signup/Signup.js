@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import SignupInputWrap from '../../Components/Signup/SignupComponents/Components/SignupInputWrap/SignupInputWrap';
 import SignInputTermsBox from '../../Components/Signup/SignupComponents/Components/SignInputTermsBox/SignInputTermsBox';
+import { API } from '../../config';
 import './Signup.scss';
 
 class Signup extends React.Component {
@@ -47,7 +48,7 @@ class Signup extends React.Component {
   };
 
   goToLogin = () => {
-    fetch('http://10.58.0.85:8000/users/signup', {
+    fetch(`${API}/users/signup`, {
       method: 'POST',
       body: JSON.stringify({
         name: this.state.nameValue,
@@ -88,7 +89,7 @@ class Signup extends React.Component {
 
   checkID(e) {
     e.preventDefault();
-    fetch('http://10.58.0.85:8000/users/account-validator', {
+    fetch(`${API}/users/account-validator`, {
       method: 'POST',
       body: JSON.stringify({
         account: this.state.idValue,

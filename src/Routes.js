@@ -6,6 +6,7 @@ import MenuList from './Pages/MenuList/MenuList';
 import ProdDetail from './Pages/ProdDetail/ProdDetail';
 import Login from './Pages/Login/Login';
 import Signup from './Pages/Signup/Signup';
+import Cart from './Pages/Cart/Cart';
 import Nav from './Components/Nav/Nav';
 import Footer from './Components/Footer/Footer';
 
@@ -17,10 +18,11 @@ class Routes extends React.Component {
         <Switch>
           <Route exact path="/" component={Main} />
           <Route exact path="/menuList" component={MenuList} />
+          <Route exact path="/prodDetail/:id" component={ProdDetail} />
           <Route exact path="/prodDetail" component={ProdDetail} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/proddetail/:id" component={ProdDetail} />
+          <Route exact path="/cart" component={Cart} />
         </Switch>
         <Footer />
       </Router>

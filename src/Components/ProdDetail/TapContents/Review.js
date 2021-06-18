@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './review.scss';
+import { API } from '../../../config';
 
 class Review extends Component {
   constructor() {
@@ -11,7 +12,7 @@ class Review extends Component {
   }
 
   componentDidMount() {
-    fetch(`http://10.58.3.9:8000/products/${this.props.match.params.id}`)
+    fetch(`${API}/products/${this.props.params}/review`)
       .then(res => res.json())
       .then(data => {
         this.setState({

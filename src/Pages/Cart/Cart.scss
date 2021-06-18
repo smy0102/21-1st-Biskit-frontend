@@ -1,0 +1,135 @@
+@import '/src/Styles/variables.scss';
+
+.Cart {
+  margin: 70px auto;
+  width: 1180px;
+
+  .title {
+    @include flexSet(space-between);
+    margin-bottom: 50px;
+
+    h1 {
+      font: {
+        size: 48px;
+        weight: bold;
+      }
+    }
+
+    div {
+      @include flexSet;
+
+      div {
+        @include flexSet(space-between, center, column);
+        margin-left: 10px;
+
+        .iconBackground {
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          background-color: rgb(241, 241, 241);
+          img {
+            width: 40px;
+            margin-top: 20px;
+          }
+        }
+
+        &.cartIcon {
+          background-color: $primaryColor;
+        }
+
+        .iconText {
+          padding-top: 20px;
+        }
+      }
+    }
+  }
+
+  .cartInformation {
+    .cartTop {
+      @include flexSet(flex-start);
+      padding: 25px 0;
+      border-bottom: 3px solid $basicBlack;
+
+      input {
+        margin-right: 25px;
+        background-color: $primaryColor;
+      }
+
+      div {
+        padding-right: 25px;
+        font: {
+          size: 28px;
+          weight: bold;
+        }
+      }
+
+      button {
+        padding: 5px 30px;
+        border: $grayBorder;
+      }
+    }
+
+    .totalShoppingPrice {
+      @include flexSet;
+      padding: 30px 0;
+      border-top: 3px solid $basicBlack;
+      border-bottom: $grayBorder;
+      text-align: center;
+
+      div {
+        padding: 10px 20px;
+
+        .priceTitle {
+          font: {
+            size: 16px;
+            weight: bold;
+          }
+        }
+
+        .accent {
+          font: {
+            size: 32px;
+            weight: bold;
+          }
+        }
+
+        .totalPrice {
+          color: $basicRed;
+          font: {
+            size: 32px;
+            weight: bold;
+          }
+        }
+      }
+
+      .priceOperator {
+        font: {
+          size: 32px;
+          weight: bold;
+        }
+      }
+    }
+
+    .purchaseButtons {
+      margin-top: 30px;
+      text-align: center;
+
+      button {
+        padding: 15px 45px;
+        font: {
+          size: 20px;
+          weight: bold;
+        }
+
+        &.selectedButton {
+          margin-right: 15px;
+          border: 1px solid $basicBlack;
+        }
+
+        &.allButton {
+          background-color: $primaryColor;
+        }
+      }
+    }
+  }
+}

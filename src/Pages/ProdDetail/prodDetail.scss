@@ -7,6 +7,7 @@
   margin: 50px auto;
 
   .headLeft {
+    
     .subInfo {
       @include flexSet(space-between);
       width: 600px;
@@ -24,7 +25,6 @@
             padding-left: 10px;
             border-left: 1px solid $basicGray;
           }
-
           span {
             font-weight: bolder;
           }
@@ -40,7 +40,6 @@
           margin-left: 10px;
           font-size: 16px;
           cursor: pointer;
-
           img {
             width: 22px;
             margin-right: 5px;
@@ -65,7 +64,6 @@
           weight: bold;
         }
       }
-
       .mainTitle {
         margin: 5px 0;
         font: {
@@ -73,7 +71,6 @@
           weight: bold;
         }
       }
-
       .origin {
         font: {
           size: 30px;
@@ -81,7 +78,6 @@
         }
       }
     }
-
     .subInfo {
       display: flex;
       padding-bottom: 10px;
@@ -99,13 +95,11 @@
         }
       }
     }
-
     .priceInfo {
       display: flex;
       align-items: center;
       padding: 20px 0;
       border-bottom: $grayBorder;
-
       .priceTitle {
         width: 100px;
         font: {
@@ -113,7 +107,6 @@
           weight: bold;
         }
       }
-
       .priceText {
         font: {
           size: 26px;
@@ -121,7 +114,6 @@
         }
       }
     }
-
     .pointInfo {
       @include headInfoSet;
       border-bottom: $grayBorder;

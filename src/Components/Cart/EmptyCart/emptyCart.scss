@@ -1,0 +1,81 @@
+@import '/src/Styles/variables.scss';
+
+.EmptyCart {
+  margin: 70px auto;
+  width: 1180px;
+
+  .title {
+    @include flexSet(space-between);
+    margin-bottom: 50px;
+
+    h1 {
+      font: {
+        size: 48px;
+        weight: bold;
+      }
+    }
+
+    div {
+      @include flexSet;
+
+      div {
+        @include flexSet(space-between, center, column);
+        margin-left: 10px;
+
+        .iconBackground {
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          background-color: rgb(241, 241, 241);
+          img {
+            width: 40px;
+            margin-top: 20px;
+          }
+        }
+
+        &.cartIcon {
+          background-color: $primaryColor;
+        }
+
+        .iconText {
+          padding-top: 20px;
+        }
+      }
+    }
+  }
+
+  .EmptyCart {
+    border-top: 3px solid $basicBlack;
+    text-align: center;
+
+    img {
+      width: 80px;
+      margin-top: 70px;
+      opacity: 0.4;
+    }
+
+    .noticeText {
+      margin-top: 25px;
+      font: {
+        size: 22px;
+        weight: bold;
+      }
+    }
+
+    .subText {
+      margin-top: 10px;
+      color: $basicDarkgray;
+    }
+
+    button {
+      margin: 15px 0 80px 0;
+      padding: 15px 35px;
+      border: $grayBorder;
+      color: $basicBlack;
+
+      a {
+        color: $basicBlack;
+      }
+    }
+  }
+}

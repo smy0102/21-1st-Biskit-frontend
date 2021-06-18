@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './description.scss';
+import { API } from '../../../config';
 
 class Description extends Component {
   constructor() {
@@ -10,7 +11,7 @@ class Description extends Component {
   }
 
   componentDidMount() {
-    fetch(`http://10.58.3.9:8000/products/${this.props.match.params.id}`)
+    fetch(`${API}/products/${this.props.params}`)
       .then(res => res.json())
       .then(data => {
         console.log(data);

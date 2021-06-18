@@ -7,14 +7,8 @@ import Information from '../../Components/ProdDetail/TapContents/Information';
 import Review from '../../Components/ProdDetail/TapContents/Review';
 import DeliveryRefund from '../../Components/ProdDetail/TapContents/DeliveryRefund';
 import WEEK_NAME from '../../Data/weekname';
+import { API } from '../../config';
 import './prodDetail.scss';
-
-const tapContents = {
-  0: <Description />,
-  1: <Information />,
-  2: <Review />,
-  3: <DeliveryRefund />,
-};
 
 class ProdDetail extends React.Component {
   constructor() {
@@ -40,7 +34,7 @@ class ProdDetail extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`http://10.58.3.9:8000/products/${this.props.match.params.id}`)
+    fetch(`${API}/products/${this.props.match.params.id}`)
       .then(res => res.json())
       .then(data => {
         const { title, sub_title, price, gram, calorie, taste } = data.result;
@@ -52,17 +46,15 @@ class ProdDetail extends React.Component {
           calorie: calorie,
           taste: taste,
         });
-        console.log(data);
       });
 
-    fetch(`http://10.58.3.9:8000/products/${this.props.match.params.id}`)
+    fetch(`${API}/products/${this.props.match.params.id}/review`)
       .then(res => res.json())
       .then(data => {
         this.setState({
           reviewCount: data.product_rate.count,
           evaluation: Math.round(data.product_rate.avg * 10) / 10,
         });
-        console.log(data);
       });
   }
 
@@ -147,7 +139,7 @@ class ProdDetail extends React.Component {
 
   putCart = () => {
     if (localStorage.getItem('token') && this.state.selectedDate !== '') {
-      fetch('http://10.58.1.177:8000/orders', {
+      fetch(`${API}/orders`, {
         method: 'POST',
         headers: {
           Authorization: localStorage.getItem('token'),
@@ -182,7 +174,6 @@ class ProdDetail extends React.Component {
     } else {
       return strArr;
     }
-
     let newDate = strArr.join('');
 
     this.setState({ selectedDateForFetch: newDate });
@@ -207,12 +198,18 @@ class ProdDetail extends React.Component {
       activatedTap,
     } = this.state;
 
-    console.log(this.props);
+    const tapContents = {
+      0: <Description params={this.props.match.params.id} />,
+      1: <Information params={this.props.match.params.id} />,
+      2: <Review params={this.props.match.params.id} />,
+      3: <DeliveryRefund params={this.props.match.params.id} />,
+    };
+
     return (
       <div className="ProdDetail">
         <header className="DetailHead">
           <article className="headLeft">
-            <ProductPictures />
+            <ProductPictures params={this.props.match.params.id} />
             <div className="subInfo">
               <div className="evaluation">
                 <div>
