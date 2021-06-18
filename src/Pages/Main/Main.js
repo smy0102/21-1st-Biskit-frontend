@@ -5,6 +5,7 @@ import ReviewWrap from '../../Components/Main/ReviewWrap/ReviewWrap';
 import BestWrap from '../../Components/Main/BestWrap/BestWrap';
 import NoticeWrap from '../../Components/Main/NoticeWrap/NoticeWrap';
 import RecommendWrap from '../../Components/Main/RecommendWrap/RecommendWrap';
+import { API } from '../../config';
 import './Main.scss';
 
 const days = ['일', '월', '화', '수', '목', '금', '토'];
@@ -64,9 +65,7 @@ class Main extends React.Component {
       listTasteTransform: -tasteransform,
     });
 
-    fetch(
-      `http://10.58.0.85:8000/products?taste=${e.target.dataset.index}&per_page=2`
-    )
+    fetch(`${API}/products?taste=${e.target.dataset.index}&per_page=2`)
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -81,7 +80,7 @@ class Main extends React.Component {
       this.handleNextMove();
     }, 4000);
 
-    fetch('http://10.58.0.85:8000/products?taste=1&per_page=2')
+    fetch(`${API}/products?taste=1&per_page=2`)
       .then(res => res.json())
       .then(data => {
         this.setState({

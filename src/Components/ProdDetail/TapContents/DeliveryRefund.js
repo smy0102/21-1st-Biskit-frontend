@@ -1,8 +1,29 @@
 import React, { Component } from 'react';
 import './deliveryRefund.scss';
+import { API } from '../../../config';
 
 class DeliveryRefund extends Component {
+  constructor() {
+    super();
+    this.state = {
+      refundImage: '',
+      deliveryImage: '',
+    };
+  }
+
+  componentDidMount() {
+    fetch(`${API}/products/${1}`)
+      .then(res => res.json())
+      .then(data => {
+        const { delivery, refund } = data.result;
+        this.setState({
+          refundImage: refund,
+          deliveryImage: delivery,
+        });
+      });
+  }
   render() {
+    const { refundImage, deliveryImage } = this.state;
     return (
       <div className="DeliveryRefund">
         <div className="question">
@@ -19,11 +40,11 @@ class DeliveryRefund extends Component {
         <div className="deliveryRefundWrap">
           <div className="container">
             <div className="title">배송안내</div>
-            <img alt="delivery notice" src="/images/ProdDetail/delivery.png" />
+            <img alt="delivery notice" src={deliveryImage} />
           </div>
           <div className="container">
             <div className="title">변경/취소/반품 안내</div>
-            <img alt="delivery notice" src="/images/ProdDetail/refund.png" />
+            <img alt="delivery notice" src={refundImage} />
           </div>
         </div>
       </div>

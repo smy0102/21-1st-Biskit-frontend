@@ -16,8 +16,6 @@ class OrderInformation extends Component {
       isLike,
       setDeliveryDate,
       selectDeliveryDate,
-      // subtractQuantity,
-      // addQuantity,
       handleQuantity,
       closeSelectBox,
       handleLike,

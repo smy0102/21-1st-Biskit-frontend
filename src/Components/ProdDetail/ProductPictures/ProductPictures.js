@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './productPictures.scss';
+import { API } from '../../../config';
 
 class ProductPictures extends Component {
   constructor() {
@@ -11,7 +12,7 @@ class ProductPictures extends Component {
   }
 
   componentDidMount() {
-    fetch('/data/ProdDetail/prodDetailData.json')
+    fetch(`${API}/products/${1}`)
       .then(res => res.json())
       .then(data => {
         const { detail_image } = data.result;

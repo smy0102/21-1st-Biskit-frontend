@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import ShoppingProduct from '../../Components/Cart/ShoppingProduct/ShppingProduct';
 import EmptyCart from '../../Components/Cart/EmptyCart/EmptyCart';
 import './Cart.scss';
+import { API } from '../../config';
 
 class Cart extends React.Component {
   constructor() {
@@ -13,13 +14,19 @@ class Cart extends React.Component {
       deletedArr: [],
       resultPrice: 0,
       selectedAll: true,
+      checkedIndexArr: [],
     };
   }
 
   componentDidMount() {
-    fetch('/data/Cart/CartData.json')
+    fetch(`${API}/orders`, {
+      headers: {
+        Authorization: localStorage.getItem('token'),
+      },
+    })
       .then(res => res.json())
       .then(data => {
+        console.log(data);
         this.setState(
           {
             listData: data.result,
@@ -82,31 +89,54 @@ class Cart extends React.Component {
     const { value } = event.target;
 
     const filteredData = listData.filter(product => {
-      return Number(value) !== product.id;
+      return Number(value) !== product.product_id;
+    });
+
+    const deletedData = listData.filter(product => {
+      return Number(value) === product.product_id;
     });
 
     this.setState(
       {
         listData: filteredData,
+        deletedArr: deletedData,
         selectedArr: Array(filteredData.length).fill(false),
       },
       this.calculatePrice
     );
+    // console.log(value);
+    // console.log(this.state.deletedArr);
+    fetch(`${API}/orders/delete`, {
+      headers: {
+        Authorization: localStorage.getItem('token'),
+      },
+      method: 'POST',
+      body: [value],
+    }).then(response => response.json());
   };
 
   calculatePrice = () => {
     const { listData } = this.state;
 
     const resultPrice = listData.reduce(
-      (pre, curr) => pre + parseInt(curr.quantity * curr.price),
+      (pre, curr) => pre + parseInt(curr.quantity * curr.product_price),
       0
     );
     this.setState({ resultPrice });
+
+    // fetch(`${API}/orders/delete`, {
+    //   headers: {
+    //     Authorization: localStorage.getItem('token'),
+    //   },
+    //   method: 'POST',
+    //   body: product_id
+    // }).then(response => response.json());
   };
 
   selectDelete = () => {
     const { listData, selectedArr } = this.state;
     const checkedArr = [];
+    const selectedArrayForFetch = [...selectedArr];
     let idx = selectedArr.indexOf(true);
     while (idx !== -1) {
       checkedArr.push(idx);
@@ -119,10 +149,39 @@ class Cart extends React.Component {
     const newDeletedArr = listData.filter(cartItem => {
       return checkedArr.includes(parseInt(cartItem.id));
     });
+    console.log(selectedArrayForFetch + 'newCheckedArr');
+    this.setState(
+      {
+        listData: newCheckedArr,
+        deletedArr: newDeletedArr,
+        selectedArr: Array(newCheckedArr.length).fill(false),
+      },
+      () => this.a(selectedArrayForFetch)
+    );
+    console.log(this.state.checkedIndexArr);
+
+    fetch(`${API}/orders/delete`, {
+      headers: {
+        Authorization: localStorage.getItem('token'),
+      },
+      method: 'POST',
+      body: this.state.checkedIndexArr,
+    })
+      .then(response => response.json())
+      .catch(error => console.log(error));
+  };
+
+  a = selectedArrayForFetch => {
+    const aaa = [];
+    console.log(selectedArrayForFetch);
+    for (let i in selectedArrayForFetch) {
+      if (selectedArrayForFetch[i]) {
+        aaa.push(this.state.listData[i].product_id);
+      }
+    }
+    console.log(aaa);
     this.setState({
-      listData: newCheckedArr,
-      deletedArr: newDeletedArr,
-      selectedArr: Array(newCheckedArr.length).fill(false),
+      checkedIndexArr: aaa,
     });
   };
 

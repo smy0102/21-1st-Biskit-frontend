@@ -8,6 +8,7 @@ import DeliveryInfo from './DeliveryInfo';
 import ThemeInfo from './ThemeInfo';
 import { Link, withRouter } from 'react-router-dom';
 import { Theme } from './MenuListTheme';
+import { API } from '../../config';
 
 class MenuList extends React.Component {
   constructor() {
@@ -24,9 +25,7 @@ class MenuList extends React.Component {
   }
 
   fetchItems = qs => {
-    const url = qs
-      ? `http://10.58.0.85:8000/products${qs}`
-      : `http://10.58.0.85:8000/products?sort=-created_at`;
+    const url = qs ? `${API}${qs}` : `${API}/products?sort=-created_at`;
 
     fetch(url)
       .then(res => res.json())
@@ -44,7 +43,7 @@ class MenuList extends React.Component {
 
   componentDidUpdate(prevProps, _) {
     if (prevProps.location.search !== this.props.location.search) {
-      fetch(`http://10.58.0.85:8000/products${this.props.location.search}`)
+      fetch(`${API}/products${this.props.location.search}`)
         .then(res => res.json())
         .then(data => {
           console.log(data);

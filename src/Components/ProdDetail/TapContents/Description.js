@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './description.scss';
+import { API } from '../../../config';
 
 class Description extends Component {
   constructor() {
@@ -10,10 +11,10 @@ class Description extends Component {
   }
 
   componentDidMount() {
-    fetch('/data/ProdDetail/prodDetailData.json')
+    fetch(`${API}/products/${1}`)
       .then(res => res.json())
       .then(data => {
-        const { detail } = data.description_info;
+        const { detail } = data.result;
         this.setState({
           imageSrc: detail,
         });

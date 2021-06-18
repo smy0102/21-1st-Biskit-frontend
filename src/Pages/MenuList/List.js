@@ -1,5 +1,6 @@
 import React from 'react';
 import './list.scss';
+import { API } from '../../config';
 import { withRouter } from 'react-router-dom';
 
 const createDate = () => {
@@ -31,7 +32,7 @@ class List extends React.Component {
   handleBasket = () => {
     const { price, id } = this.props;
     if (localStorage.getItem('token')) {
-      fetch('http://10.58.3.9:8000/orders', {
+      fetch(`${API}/orders`, {
         method: 'POST',
         headers: {
           Authorization: localStorage.getItem('token'),

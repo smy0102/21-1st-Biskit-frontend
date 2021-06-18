@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { API } from '../../config';
 import './Login.scss';
 
 class Login extends React.Component {
@@ -21,7 +22,7 @@ class Login extends React.Component {
   };
 
   goToMain = () => {
-    fetch('http://10.58.3.9:8000/users/signin', {
+    fetch(`${API}/users/signin`, {
       method: 'POST',
       body: JSON.stringify({
         account: this.state.idValue,
