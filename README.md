@@ -71,7 +71,6 @@
 - 장바구니 담기: fetch (post)를 이용해 장바구니 페이지로 데이터 전달
 
 ### 메뉴 리스트 페이지 (권오현)
-
 - checkBox + QueryString을 사용한 상품 다중 필터링 기능 구현
 - QueryString을 사용한 상품 리스트 정렬 기능 구현 
 - path parameter를 사용하여 제품 상세 페이지와의 동적 라우팅 기능 구현
