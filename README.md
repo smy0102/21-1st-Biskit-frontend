@@ -1,3 +1,5 @@
+![스크린샷 2021-06-20 오후 3 56 59](https://user-images.githubusercontent.com/73716178/122665086-3a8b0180-d1e0-11eb-8ac0-064b0fcfa6ab.png)
+
 # Biskit front-end team 입니다!
 요리키트를 판매하는 이커머스 플랫폼인  [CJ COOKIT](https://www.cjcookit.com/pc/main) 클론 프로젝트
 
@@ -5,12 +7,29 @@
 - 📢준비된 식재료로 만든 요리키트를 판매하는 사이트인 CJ 쿡킷 사이트를 클론한 **"biskit(비스킷)"** 프로젝트
 
 ## 프로젝트 계획 및 기간
-
 📆 2021.6.7 ~ 6.18
 - 1st Sprint : 개발환경 초기세팅, 전체 레이아웃, 컴포넌트화
 - 2nd Sprint : 컴포넌트 별 기능 구현, 프론트-백 통신, 코드 리팩토링, conflict 수정 작업
 
 ## 페이지별 기능 Demo
+### [회원가입]
+![비스킷 회원가입](https://user-images.githubusercontent.com/73716178/122664662-bfc0e700-d1dd-11eb-90c0-1488e700f75d.gif)
+### [로그인/로그아웃]
+![비스킷 로그인:로그아웃](https://user-images.githubusercontent.com/73716178/122664543-17128780-d1dd-11eb-8b9d-5ab11fa72bec.gif)
+### 메인 배너 슬라이드
+![메인리뷰슬라이드](https://user-images.githubusercontent.com/73716178/122664644-9c963780-d1dd-11eb-8caa-6855bd334c8b.gif)
+### [제품 상세 페이지]
+![비스킷 제품상세페이지](https://user-images.githubusercontent.com/73716178/122664656-af107100-d1dd-11eb-8997-97fb06401656.gif)
+### [메뉴 리스트]
+![비스킷 메뉴리스트](https://user-images.githubusercontent.com/73716178/122664658-b46dbb80-d1dd-11eb-966e-baadd6be4c96.gif)
+### [장바구니 기능 구현]
+![비스킷 장바구니](https://user-images.githubusercontent.com/73716178/122664783-61e0cf00-d1de-11eb-8fbc-4491bee09b18.gif)
+
+### Biskit Demo 유튜브 링크
+<a href="https://www.youtube.com/watch?v=SE_5vtrBrsg">
+    <img src="http://img.shields.io/badge/-YouTube-FF0000?style=flat&logo=YouTube&link=https://https://www.youtube.com/watch?v=SE_5vtrBrsg/"
+        style="height : auto; margin-left : 10px; margin-right : 10px;"/>
+</a>
 
 ## 구현 기능 상세
 
