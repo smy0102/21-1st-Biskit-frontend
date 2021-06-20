@@ -16,9 +16,8 @@
 ![비스킷 회원가입](https://user-images.githubusercontent.com/73716178/122664662-bfc0e700-d1dd-11eb-90c0-1488e700f75d.gif)
 ### [로그인/로그아웃]
 ![비스킷 로그인:로그아웃](https://user-images.githubusercontent.com/73716178/122664543-17128780-d1dd-11eb-8b9d-5ab11fa72bec.gif)
-### 메인 슬라이드
+### 메인 배너 슬라이드
 ![메인리뷰슬라이드](https://user-images.githubusercontent.com/73716178/122664644-9c963780-d1dd-11eb-8caa-6855bd334c8b.gif)
-![메인 맛추천 슬라이드](https://user-images.githubusercontent.com/73716178/122665366-bcc7f580-d1e1-11eb-8afc-da229b86b866.gif)
 ### [제품 상세 페이지]
 ![비스킷 제품상세페이지](https://user-images.githubusercontent.com/73716178/122664656-af107100-d1dd-11eb-8997-97fb06401656.gif)
 ### [메뉴 리스트]
@@ -65,11 +64,11 @@
 - 제품의 장바구니가 비어있을 경우 다른 UI가 나오도록 구현 
 
 ### 제품 상세 페이지 (신미영)
-(ex)
-- URLSearchParams를 사용하여 거래내역 모달창 안, 제품 사이즈별 필터링 기능 구현
-- path parameter를 사용하여 상품 리스트 페이지 및 결제 진행 페이지와의 동적 라우팅 기능 구현
-- Query parameter를 사용하여 결제 진행 페이지와의 사이즈별 제품 라우팅 기능 구현
-- 장바구니 담기: fetch (post)를 이용해 장바구니 페이지로 데이터 전달.
+- fecth를 이용해 백엔드와 통신하여 페이지 데이터 렌더링
+- 상품 이미지 캐러셀 노출 기능 구현
+- 상세설명/정보/리뷰/배송,환불,문의 탭 기능 구현
+- 상품 찜하기 기능 구현
+- 장바구니 담기: fetch (post)를 이용해 장바구니 페이지로 데이터 전달
 
 ### 메뉴 리스트 페이지 (권오현)
 (ex)
