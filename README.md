@@ -16,8 +16,9 @@
 ![비스킷 회원가입](https://user-images.githubusercontent.com/73716178/122664662-bfc0e700-d1dd-11eb-90c0-1488e700f75d.gif)
 ### [로그인/로그아웃]
 ![비스킷 로그인:로그아웃](https://user-images.githubusercontent.com/73716178/122664543-17128780-d1dd-11eb-8b9d-5ab11fa72bec.gif)
-### 메인 배너 슬라이드
+### 메인 슬라이드
 ![메인리뷰슬라이드](https://user-images.githubusercontent.com/73716178/122664644-9c963780-d1dd-11eb-8caa-6855bd334c8b.gif)
+![메인 맛추천 슬라이드](https://user-images.githubusercontent.com/73716178/122665366-bcc7f580-d1e1-11eb-8afc-da229b86b866.gif)
 ### [제품 상세 페이지]
 ![비스킷 제품상세페이지](https://user-images.githubusercontent.com/73716178/122664656-af107100-d1dd-11eb-8997-97fb06401656.gif)
 ### [메뉴 리스트]
