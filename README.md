@@ -1,4 +1,4 @@
-# Biskit front-end team 입니다!
+# Biskit Frontend
 요리키트를 판매하는 이커머스 플랫폼인  [CJ COOKIT](https://www.cjcookit.com/pc/main)를 모티브로 한 프로젝트
 
 ![스크린샷 2021-06-20 오후 3 56 59](https://user-images.githubusercontent.com/73716178/122665086-3a8b0180-d1e0-11eb-8ac0-064b0fcfa6ab.png)
